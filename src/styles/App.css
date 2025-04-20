@@ -1,0 +1,27 @@
+/* Basic reset and screen setup */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f0f0f0; /* Example background */
+}
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-area {
+  padding: 20px;
+  flex-grow: 1; /* Allows content area to fill remaining space */
+}
+
+/* Basic button styling reset */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: inherit;
+  color: inherit;
+}

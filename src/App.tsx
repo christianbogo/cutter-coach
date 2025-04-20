@@ -12,9 +12,10 @@ import Teams from "./pages/Teams";
 import Results from "./pages/Results";
 import Records from "./pages/Records";
 import About from "./pages/About";
-import "./App.css";
 
-function App(): JSX.Element {
+import "./styles/App.css";
+
+function App(): React.ReactElement {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
 
   const toggleNavMenu = (): void => {

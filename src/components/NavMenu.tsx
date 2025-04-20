@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./NavMenu.css";
+
+import "../styles/NavMenu.css";
 
 // Define the props interface
 interface NavMenuProps {
@@ -9,7 +10,7 @@ interface NavMenuProps {
 }
 
 // Simple placeholder for a close icon (TS compatible)
-const CloseIcon = (): JSX.Element => (
+const CloseIcon = (): React.ReactElement => (
   <svg
     width="24"
     height="24"
@@ -34,7 +35,10 @@ const CloseIcon = (): JSX.Element => (
   </svg>
 );
 
-function NavMenu({ isOpen, onCloseMenu }: NavMenuProps): JSX.Element | null {
+function NavMenu({
+  isOpen,
+  onCloseMenu,
+}: NavMenuProps): React.ReactElement | null {
   // Component can return JSX or null
   if (!isOpen) {
     return null;
