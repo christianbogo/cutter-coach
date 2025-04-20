@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.21faf7fd.css",
+    "main.js": "/static/js/main.71df4b75.js",
+    "static/media/logo.svg": "/static/media/logo.b33b64cdaf4797e22d5d78808fd7e518.svg",
+    "static/media/20-ordered-list.svg": "/static/media/20-ordered-list.bbf528322216085e491fa61b2409bac7.svg",
+    "static/media/20-users.svg": "/static/media/20-users.444716e054d8458bfb11ee97daf1a762.svg",
+    "static/media/20-database.svg": "/static/media/20-database.a7eb13d353d725f5ebb55c2ba98281cb.svg",
+    "static/media/20-atom.svg": "/static/media/20-atom.ecd9625f0b00b26fff04da383bed4be2.svg",
+    "index.html": "/index.html",
+    "static/media/20-heart.svg": "/static/media/20-heart.f79e1594936a955bbc33d5a675ac0857.svg",
+    "static/media/20-pointer.svg": "/static/media/20-pointer.8b019765d4f86a95ce29a0f634b102e0.svg",
+    "static/media/20-xmark-sm.svg": "/static/media/20-xmark-sm.8632737b899820823466bdd6c69734f3.svg",
+    "static/media/20-house.svg": "/static/media/20-house.c21cb20aae402864f55f4f6c9ef2eec4.svg",
+    "main.21faf7fd.css.map": "/static/css/main.21faf7fd.css.map",
+    "main.71df4b75.js.map": "/static/js/main.71df4b75.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.21faf7fd.css",
+    "static/js/main.71df4b75.js"
+  ]
+}

@@ -1,132 +1,136 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
+// Requirement 1: Use new Nucleo SVGs
+import XMarkSM from "../assets/nucleo/primary/20-xmark-sm.svg";
+import House from "../assets/nucleo/primary/20-house.svg";
+import Users from "../assets/nucleo/primary/20-users.svg";
+import Database from "../assets/nucleo/primary/20-database.svg";
+import OrderedList from "../assets/nucleo/primary/20-ordered-list.svg";
+import Atom from "../assets/nucleo/primary/20-atom.svg";
+
+// Requirement 3: Use hyphenated class names in CSS file
 import "../styles/NavMenu.css";
 
-// Define the props interface
+// Props interface remains the same
 interface NavMenuProps {
   isOpen: boolean;
   onCloseMenu: () => void;
 }
 
-// Simple placeholder for a close icon (TS compatible)
-const CloseIcon = (): React.ReactElement => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M18 6L6 18"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M6 6L18 18"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+function NavMenu({ isOpen, onCloseMenu }: NavMenuProps): React.ReactElement {
+  // Handle Escape key to close menu
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent): void => {
+      if (event.key === "Escape") {
+        onCloseMenu();
+      }
+    };
 
-function NavMenu({
-  isOpen,
-  onCloseMenu,
-}: NavMenuProps): React.ReactElement | null {
-  // Component can return JSX or null
-  if (!isOpen) {
-    return null;
-  }
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+      // Prevent background scroll when menu is open
+      document.body.style.overflow = "hidden";
+    } else {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = ""; // Restore scroll
+    }
 
-  // Type the link click handler (no event needed here)
+    // Cleanup function
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = ""; // Ensure scroll is restored on unmount
+    };
+  }, [isOpen, onCloseMenu]); // Re-run effect when isOpen changes
+
   const handleLinkClick = (): void => {
     onCloseMenu();
   };
 
-  // Type the overlay click handler
   const handleOverlayClick = (
     event: React.MouseEvent<HTMLDivElement>
   ): void => {
-    // Check if the click was directly on the overlay, not on the content inside
     if (event.target === event.currentTarget) {
       onCloseMenu();
     }
   };
 
-  // Type the content click handler to stop propagation
   const handleContentClick = (event: React.MouseEvent<HTMLElement>): void => {
-    event.stopPropagation();
+    event.stopPropagation(); // Prevent clicks inside content from closing menu
   };
 
-  // Type the close button click handler
-  const handleCloseButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ): void => {
+  const handleCloseButtonClick = (): void => {
+    // No event needed if not used
     onCloseMenu();
   };
 
+  // Dynamically add 'is-open' class for CSS transitions
+  const overlayClassName = `nav-menu-overlay ${isOpen ? "is-open" : ""}`;
+
   return (
-    // Use the typed overlay handler
-    <div className="nav-menu__overlay" onClick={handleOverlayClick}>
-      {/* Use the typed content handler */}
-      <nav className="nav-menu__content" onClick={handleContentClick}>
+    // Requirement 5: Overlay covers entire screen (handled by CSS)
+    <div className={overlayClassName} onClick={handleOverlayClick}>
+      {/* Requirement 6: Content slides in (handled by CSS) */}
+      <nav className="nav-menu-content" onClick={handleContentClick}>
         <button
-          className="nav-menu__close-button"
-          onClick={handleCloseButtonClick} // Use the typed handler
+          className="nav-menu-close-button"
+          onClick={handleCloseButtonClick}
           aria-label="Close navigation menu"
         >
-          <CloseIcon />
+          {/* Use imported XMark SVG */}
+          <img className="nav-menu-icon" src={XMarkSM} alt="Close" />
         </button>
-        <ul className="nav-menu__list">
-          <li className="nav-menu__item">
+        <ul className="nav-menu-list">
+          {/* Requirement 2: Icons left of text, both large */}
+          <li className="nav-menu-item">
             <Link
               to="/home"
-              className="nav-menu__link"
+              className="nav-menu-link"
               onClick={handleLinkClick}
             >
-              Home
+              <img className="nav-menu-icon" src={House} alt="" />{" "}
+              {/* Alt can be empty for decorative icons */}
+              <span>Home</span>
             </Link>
           </li>
-          <li className="nav-menu__item">
+          <li className="nav-menu-item">
             <Link
               to="/teams"
-              className="nav-menu__link"
+              className="nav-menu-link"
               onClick={handleLinkClick}
             >
-              Teams
+              <img className="nav-menu-icon" src={Users} alt="" />
+              <span>Teams</span>
             </Link>
           </li>
-          <li className="nav-menu__item">
+          <li className="nav-menu-item">
             <Link
               to="/results"
-              className="nav-menu__link"
+              className="nav-menu-link"
               onClick={handleLinkClick}
             >
-              Results
+              <img className="nav-menu-icon" src={Database} alt="" />
+              <span>Results</span>
             </Link>
           </li>
-          <li className="nav-menu__item">
+          <li className="nav-menu-item">
             <Link
               to="/records"
-              className="nav-menu__link"
+              className="nav-menu-link"
               onClick={handleLinkClick}
             >
-              Records
+              <img className="nav-menu-icon" src={OrderedList} alt="" />
+              <span>Records</span>
             </Link>
           </li>
-          <li className="nav-menu__item">
+          <li className="nav-menu-item">
             <Link
               to="/about"
-              className="nav-menu__link"
+              className="nav-menu-link"
               onClick={handleLinkClick}
             >
-              About
+              <img className="nav-menu-icon" src={Atom} alt="" />
+              <span>About</span>
             </Link>
           </li>
         </ul>
