@@ -14,6 +14,7 @@ import Records from "./pages/Records";
 import About from "./pages/About";
 
 import "./styles/App.css";
+import Footer from "./components/Footer";
 
 function App(): React.ReactElement {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
@@ -42,6 +43,7 @@ function App(): React.ReactElement {
             <Route path="*" element={<div>404: Page Not Found</div>} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );

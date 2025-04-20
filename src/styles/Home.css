@@ -1,0 +1,244 @@
+/* Home.css */
+
+/* Main container for the home page content */
+.home-container {
+  padding: 2rem 1rem; /* Add padding around the content */
+  max-width: 1000px; /* Limit content width for readability */
+  margin: 0 auto; /* Center the container */
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  text-align: center;
+  margin-bottom: 4rem; /* Space below hero */
+  padding: 2rem 0;
+}
+
+/* Style for the added Site Logo */
+.hero-logo {
+  display: block; /* Needed for margin auto centering */
+  height: 80px; /* Adjust height to make it large */
+  width: auto; /* Maintain aspect ratio */
+  margin: 0 auto 1.5rem auto; /* Center horizontally, add space below */
+}
+
+.hero-title {
+  font-size: 2.8rem; /* Large title */
+  font-weight: 700; /* Bold */
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.hero-learn-more {
+  font-size: 0.9rem;
+  font-weight: 600; /* SemiBold */
+  color: var(--color-accent-blue);
+  text-decoration: none;
+  display: inline-flex; /* Align text and arrow */
+  align-items: center;
+  gap: 0.3rem; /* Space between text and arrow */
+  transition: color 0.15s ease-in-out;
+}
+
+.hero-learn-more:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+/* Style for the imported arrow icon */
+.hero-arrow-icon {
+  width: 14px; /* Adjust size as needed */
+  height: 14px;
+  vertical-align: middle; /* Align with text */
+  transition: transform 0.15s ease-in-out;
+  margin-left: 0.1rem; /* Fine-tune spacing */
+}
+
+.hero-learn-more:hover .hero-arrow-icon {
+  transform: translateX(3px); /* Slight arrow movement on hover */
+}
+
+/* --- Athlete Finder Section --- */
+.athlete-finder-section {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.athlete-finder-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--color-text-primary);
+}
+
+.athlete-finder-description {
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.athlete-finder-input-group {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--color-surface, white);
+  border-radius: var(--border-radius-standard);
+  box-shadow: var(--box-shadow-standard);
+  border: 1px solid var(--color-border-soft);
+  overflow: hidden;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.athlete-finder-input-group:focus-within {
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 0 3px rgba(10, 88, 202, 0.2);
+}
+
+.athlete-finder-input {
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  box-sizing: border-box;
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border-radius: var(--border-radius-standard) var(--border-radius-standard) 0 0;
+}
+
+.athlete-finder-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-on-accent, white);
+  background-color: var(--color-accent-green, #146c43);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  flex-shrink: 0;
+  border-radius: 0 0 var(--border-radius-standard) var(--border-radius-standard);
+}
+
+.athlete-finder-button:hover {
+  background-color: #105433;
+}
+
+@media (min-width: 600px) {
+  .athlete-finder-input-group {
+    flex-direction: row;
+  }
+  .athlete-finder-input {
+    border-radius: var(--border-radius-standard) 0 0
+      var(--border-radius-standard);
+  }
+  .athlete-finder-button {
+    border-radius: 0 var(--border-radius-standard) var(--border-radius-standard)
+      0;
+  }
+}
+
+/* --- Supported Programs Section --- */
+.programs-section {
+  margin-bottom: 4rem;
+}
+
+.programs-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.programs-list {
+  /* Cards stack vertically */
+}
+
+.program-card {
+  /* Inherits base card styles */
+}
+
+.program-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.program-type {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.program-details {
+  font-size: 0.95rem;
+}
+
+.program-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  color: var(--color-text-primary);
+}
+
+.program-detail:last-child {
+  margin-bottom: 0;
+}
+
+.program-detail-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  vertical-align: middle;
+  color: var(--color-text-secondary);
+}
+
+/* --- Disclaimer Section --- */
+.disclaimer-section {
+  margin-bottom: 2rem;
+}
+
+.disclaimer-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.disclaimer-content {
+  padding: 1.5rem;
+}
+
+.disclaimer-text {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.disclaimer-text:last-child {
+  margin-bottom: 0;
+}
+
+.disclaimer-link {
+  color: var(--color-text-secondary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.disclaimer-link:hover {
+  color: var(--color-text-primary);
+}

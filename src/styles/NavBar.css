@@ -1,4 +1,9 @@
-/* NavBar.css */
+.site-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .nav-bar {
   display: flex;

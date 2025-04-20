@@ -1,70 +1,59 @@
-/* NavMenu.css */
-
-/* Ensure :root variables are accessible */
-
-/* Requirement 5: Overlay covers entire screen */
 .nav-menu-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
-  z-index: 1001; /* Higher than navbar */
-
-  /* Animation Setup: Initially hidden */
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1001;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.1s ease-out, visibility 0.1s ease-out; /* Fast fade */
-  display: flex; /* Use flex to position content */
+  transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+  display: flex;
 }
 
-/* Requirement 6: Slide-in Animation (applied via .is-open) */
 .nav-menu-overlay.is-open {
   opacity: 1;
   visibility: visible;
 }
 
 .nav-menu-content {
-  width: 90%; /* Responsive width */
-  max-width: 800px; /* Max width on larger screens */
+  width: 90%;
+  max-width: 800px;
   height: 100%;
   background-color: var(--color-surface, white);
-  padding: 1.5rem; /* 24px padding */
+  padding: 1.5rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  position: relative; /* For positioning the close button */
-
-  /* Animation Setup: Initially off-screen */
+  position: relative;
   transform: translateX(-100%);
-  transition: transform 0.1s ease-out; /* Fast slide */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); /* Add shadow for depth */
+  transition: transform 0.2s ease-out;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Trigger slide-in when overlay is open */
 .nav-menu-overlay.is-open .nav-menu-content {
   transform: translateX(0);
 }
 
 .nav-menu-close-button {
   position: absolute;
-  top: 1rem; /* 16px from top */
-  right: 1rem; /* 16px from right */
+  top: 1rem;
+  right: 1rem;
   background: none;
   border: none;
-  padding: 0.5rem; /* 8px padding for easier tap */
+  padding: 0.5rem;
   cursor: pointer;
-  line-height: 0; /* Prevent extra space around img */
+  line-height: 0;
 }
 
-/* Specific icon size for close button */
 .nav-menu-close-button .nav-menu-icon {
-  height: 24px; /* Slightly smaller close icon */
+  height: 24px;
   width: 24px;
-  color: var(--color-text-secondary, #6c757d); /* Muted color */
+  color: var(--color-text-secondary, #6c757d);
   transition: color 0.15s ease-in-out;
 }
+
 .nav-menu-close-button:hover .nav-menu-icon {
   color: var(--color-text-primary, #212529);
 }
@@ -73,45 +62,48 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-top: 3.5rem; /* Push list below close button (adjust as needed) */
-  flex-grow: 1; /* Allow list to take up space */
-  overflow-y: auto; /* Add scroll if content overflows */
+  margin-top: 3.5rem;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .nav-menu-item {
-  margin-bottom: 0.5rem; /* Space between items (8px) */
+  margin-bottom: 0.5rem;
+  border-radius: var(--border-radius-standard, 4px);
+  background-color: var(--color-surface, white);
 }
 
-/* Requirement 2 & 4: Large icon/text, black links */
 .nav-menu-link {
   display: flex;
   align-items: center;
-  padding: 0.8rem 0.5rem; /* Generous padding (12.8px vertical, 8px horizontal) */
+  padding: 0.8rem 0.5rem;
   text-decoration: none;
-  color: var(--color-text-primary, #212529); /* Primary black text color */
-  font-size: 1.6rem; /* Very large text (adjust as needed) */
-  font-weight: 500; /* Slightly bolder */
-  border-radius: 4px; /* Subtle rounding */
+  color: var(--color-text-primary, #212529);
+  font-size: 1.6rem;
+  font-weight: 500;
+  border-radius: 4px;
   transition: background-color 0.15s ease-in-out;
 }
 
 .nav-menu-link:hover {
-  background-color: rgba(0, 0, 0, 0.04); /* Subtle hover background */
-  /* No text color change or underline on hover */
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
-/* Icon styling within links */
 .nav-menu-link .nav-menu-icon {
-  height: 30px; /* Very large icon height (adjust as needed) */
+  height: 30px;
   width: auto;
-  margin-right: 1rem; /* Space between icon and text (16px) */
-  flex-shrink: 0; /* Prevent icon from shrinking */
+  margin-right: 1rem;
+  flex-shrink: 0;
 }
 
-/* Accessibility: Focus styles */
+.nav-menu-link:active {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: var(--color-text-primary, #212529);
+  text-decoration: none;
+}
+
 .nav-menu-link:focus,
 .nav-menu-close-button:focus {
-  outline: 2px solid var(--color-accent-blue, blue); /* Use blue accent for focus outline */
+  outline: 2px solid var(--color-accent-blue, blue);
   outline-offset: 2px;
 }
-/* Add focus styles for interactive elements inside if any */
