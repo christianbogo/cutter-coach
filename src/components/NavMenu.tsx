@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // Requirement 1: Use new Nucleo SVGs
 import XMarkSM from "../assets/nucleo/primary/20-xmark-sm.svg";
 import House from "../assets/nucleo/primary/20-house.svg";
+import User from "../assets/nucleo/primary/20-user.svg";
 import Users from "../assets/nucleo/primary/20-users.svg";
 import Database from "../assets/nucleo/primary/20-database.svg";
 import OrderedList from "../assets/nucleo/primary/20-ordered-list.svg";
@@ -91,6 +92,16 @@ function NavMenu({ isOpen, onCloseMenu }: NavMenuProps): React.ReactElement {
               <img className="nav-menu-icon" src={House} alt="" />{" "}
               {/* Alt can be empty for decorative icons */}
               <span>Home</span>
+            </Link>
+          </li>
+          <li className="nav-menu-item">
+            <Link
+              to="/athletes"
+              className="nav-menu-link"
+              onClick={handleLinkClick}
+            >
+              <img className="nav-menu-icon" src={User} alt="" />
+              <span>Athletes</span>
             </Link>
           </li>
           <li className="nav-menu-item">

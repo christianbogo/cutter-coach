@@ -1,0 +1,84 @@
+/* Support.css */
+
+/* Container to center the card on the page */
+.support-page-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+/* The main card holding the support information */
+.support-card {
+  background-color: var(--color-surface, white);
+  padding: 2.5rem 2rem; /* Generous padding inside the card */
+  border-radius: var(--border-radius-large, 12px); /* Softer corners */
+  box-shadow: var(
+    --box-shadow-standard,
+    0 4px 12px rgba(0, 0, 0, 0.08)
+  ); /* Subtle shadow */
+  border: 1px solid var(--color-border-soft, #dee2e6);
+  max-width: 500px; /* Limit card width */
+  width: 100%; /* Ensure it takes up available space up to max-width */
+  text-align: center; /* Center text within the card */
+  box-sizing: border-box;
+}
+
+/* Optional Icon Styling */
+.support-icon {
+  height: 40px; /* Adjust size as needed */
+  width: auto;
+  margin-bottom: 1rem;
+}
+
+/* Title styling */
+.support-title {
+  font-size: 1.8rem; /* Matches .programs-title from Home.css */ /* */
+  font-weight: 600; /* Matches .programs-title from Home.css */ /* */
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+}
+
+/* Paragraph text styling */
+.support-text {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+/* Specific container for Venmo details for potential layout adjustments */
+.support-venmo-info {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  /* Add display: flex if placing QR code next to handle */
+}
+
+/* Styling for the Venmo handle itself */
+.support-venmo-handle {
+  display: inline-block; /* Allows padding/margin */
+  background-color: var(
+    --color-surface-accent,
+    #e7f5ff
+  ); /* Very light blue background */
+  color: var(--color-accent-blue, #007bff); /* Venmo-like blue */
+  padding: 0.5rem 2rem;
+  border-radius: var(--border-radius-standard, 6px);
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: 1px solid var(--color-border-accent, #bde0fe);
+}
+
+/* Optional QR code styling */
+.venmo-qr {
+  display: block;
+  max-width: 150px; /* Adjust size */
+  margin: 1rem auto 0 auto; /* Center below handle if used */
+}
+
+/* Thank you message */
+.support-thank-you {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-top: 2rem; /* Space above thank you */
+  font-style: italic;
+}

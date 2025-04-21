@@ -25,3 +25,55 @@ button {
   font-size: inherit;
   color: inherit;
 }
+
+/* Basic style for loading messages */
+.loading-indicator {
+  text-align: center; /* Center the text */
+  padding: 2rem 1rem; /* Add some vertical and horizontal space */
+  color: var(--color-text-secondary, #6c757d); /* Muted text color */
+  font-style: italic;
+  font-size: 1rem;
+  width: 100%; /* Ensure it takes up available width for centering */
+  box-sizing: border-box;
+  animation: subtlePulse 1.5s ease-in-out infinite;
+}
+
+/* You could add a simple animation if desired, e.g.: */
+
+@keyframes subtlePulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Basic style for error messages */
+.error-message {
+  text-align: center; /* Center the text */
+  padding: 1.5rem 1rem; /* Add space around the message */
+  margin: 1rem auto; /* Add margin above/below and center block */
+  border: 1px solid var(--color-danger-border, #f5c2c7); /* Reddish border */
+  background-color: var(
+    --color-danger-background,
+    #f8d7da
+  ); /* Light red background */
+  color: var(--color-danger-text, #842029); /* Dark red text for contrast */
+  border-radius: var(
+    --border-radius-standard,
+    6px
+  ); /* Slightly rounded corners */
+  max-width: 600px; /* Limit width for readability */
+  font-weight: 500; /* Slightly bolder text */
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+/* Optional: Add an icon using ::before pseudo-element */
+
+.error-message::before {
+  content: "⚠️ ";
+  margin-right: 0.5em;
+}

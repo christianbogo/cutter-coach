@@ -148,63 +148,8 @@
   }
 }
 
-/* --- Supported Programs Section --- */
-.programs-section {
-  margin-bottom: 4rem;
-}
-
-.programs-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.programs-list {
-  /* Cards stack vertically */
-}
-
-.program-card {
-  /* Inherits base card styles */
-}
-
-.program-name {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.program-type {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  margin-bottom: 1rem;
-  font-style: italic;
-}
-
-.program-details {
-  font-size: 0.95rem;
-}
-
-.program-detail {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.6rem;
-  color: var(--color-text-primary);
-}
-
-.program-detail:last-child {
-  margin-bottom: 0;
-}
-
-.program-detail-icon {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  vertical-align: middle;
-  color: var(--color-text-secondary);
-}
+/* --- Supported Programs Section Styles Removed --- */
+/* Styles like .programs-section, .programs-title, .program-card, etc., are now in Programs.css */
 
 /* --- Disclaimer Section --- */
 .disclaimer-section {
@@ -218,8 +163,16 @@
   text-align: center;
 }
 
-.disclaimer-content {
+/* Base Card Style (Used by Disclaimer) */
+/* Ensure you have a base .card style defined globally or here if needed */
+/* Example base card style if not defined globally: */
+.card {
+  background-color: var(--color-surface, white);
+  border-radius: var(--border-radius-standard, 8px);
   padding: 1.5rem;
+  box-shadow: var(--box-shadow-standard, 0 2px 8px rgba(0, 0, 0, 0.06));
+  border: 1px solid var(--color-border-soft, #e9ecef);
+  margin-bottom: 1.5rem; /* Add margin between stacked cards */
 }
 
 .disclaimer-text {

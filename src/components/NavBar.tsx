@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import the Link component
 
 import Pointer from "../assets/nucleo/primary/20-pointer.svg";
 import SiteLogo from "../assets/logo.svg";
@@ -19,15 +20,36 @@ function NavBar({ onToggleMenu }: NavBarProps): React.ReactElement {
 
   return (
     <header className="nav-bar">
+      {/* Menu Toggle Button */}
       <button
-        onClick={handleToggleClick} // Use the typed handler
+        onClick={handleToggleClick}
         className="nav-bar__menu-button"
         aria-label="Toggle navigation menu"
       >
-        <img className="nav-icon" src={Pointer} alt="Navigation" />
+        <img className="nav-icon" src={Pointer} alt="Navigation Toggle" />
       </button>
-      <img className="nav-icon site-logo" src={SiteLogo} alt="Site Logo" />
-      <img className="nav-icon" src={Heart} alt="Heart Icon" />
+
+      {/* Site Logo Link to Home */}
+      <Link
+        to="/home"
+        className="nav-bar__logo-link"
+        aria-label="Go to homepage"
+      >
+        <img
+          className="nav-icon site-logo"
+          src={SiteLogo}
+          alt="Cutter's Coaching Logo"
+        />
+      </Link>
+
+      {/* Support Link */}
+      <Link
+        to="/support"
+        className="nav-bar__support-link"
+        aria-label="Go to support page"
+      >
+        <img className="nav-icon" src={Heart} alt="Support" />
+      </Link>
     </header>
   );
 }

@@ -1,0 +1,102 @@
+/* Programs.css */
+
+/* --- Supported Programs Section --- */
+.programs-section {
+  margin-bottom: 4rem; /* Spacing below the section */
+}
+
+.programs-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.programs-list {
+  display: grid; /* Use grid for layout */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Responsive columns */
+  gap: 1.5rem; /* Space between cards */
+}
+
+/* Base card styles (assuming these might be global or defined elsewhere) */
+/* If you don't have a global .card style, add some basics here: */
+.card {
+  background-color: var(--color-surface, white);
+  border-radius: var(--border-radius-standard, 8px);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow-standard, 0 2px 8px rgba(0, 0, 0, 0.06));
+  border: 1px solid var(--color-border-soft, #e9ecef);
+  transition: box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+/* Hover effect for cards (optional) */
+.card:hover {
+  box-shadow: var(--box-shadow-hover, 0 4px 12px rgba(0, 0, 0, 0.1));
+  transform: translateY(-2px);
+}
+
+/* Specific styles for program cards */
+.program-card {
+  /* Inherits base card styles, add specific overrides if needed */
+}
+
+.program-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--color-text-primary);
+}
+
+.program-type {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.program-details {
+  font-size: 0.95rem;
+}
+
+.program-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem; /* Space between icon and text */
+  margin-bottom: 0.6rem;
+  color: var(--color-text-primary);
+}
+
+.program-detail:last-child {
+  margin-bottom: 0;
+}
+
+.program-detail-icon {
+  display: inline-block; /* Ensure proper alignment and sizing */
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  color: var(--color-accent-blue); /* Example color for icons */
+}
+
+.program-detail-text {
+  /* Styles for the text next to the icon, if needed */
+}
+
+/* Message shown when no programs are available */
+.programs-empty-message {
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 2rem;
+  font-style: italic;
+}
+
+/* Adjust grid for smaller screens if needed */
+@media (max-width: 400px) {
+  .programs-list {
+    grid-template-columns: 1fr; /* Stack cards on very small screens */
+  }
+}
