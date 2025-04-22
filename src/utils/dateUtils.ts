@@ -65,23 +65,23 @@ export function getDisplayDate(dateString: string | undefined | null): string {
     timeZone: "UTC",
   });
 
-  return `${monthShort} ${dayWithSuffix}, 20${yearShort}`;
+  return `${monthShort} ${dayWithSuffix}, '${yearShort}`;
 }
 
 /**
- * Formats a date string ('YYYY-MM-DD') into 'YYYY-MM-DD' format.
+ * Calculates the age based on a birth date string ('YYYY-MM-DD').
  * Handles potential invalid date strings gracefully.
- * @param dateString Input date string ('YYYY-MM-DD')
- * @returns Formatted date string (e.g., "2025-03-21") or 'Invalid Date'
+ * @param birthDate Input birth date string ('YYYY-MM-DD')
+ * @returns Age as a number or NaN if the input is invalid
  */
-export function calculateAge(birthDate: string): string {
+export function calculateAge(birthDate: string | undefined | null): number {
   if (!birthDate) {
-    return "N/A"; // Handle null or undefined input
+    return NaN; // Handle null or undefined input
   }
 
   const birthParts = birthDate.split("-");
   if (birthParts.length !== 3) {
-    return "Invalid Date Format";
+    return NaN; // Invalid date format
   }
 
   const birthYear = parseInt(birthParts[0], 10);
@@ -89,15 +89,15 @@ export function calculateAge(birthDate: string): string {
   const birthDay = parseInt(birthParts[2], 10);
 
   const today = new Date();
-  const age = today.getFullYear() - birthYear;
+  let age = today.getFullYear() - birthYear;
 
   // Adjust for month and day
   if (
     today.getMonth() < birthMonth ||
     (today.getMonth() === birthMonth && today.getDate() < birthDay)
   ) {
-    return `${age - 1} years old`;
+    age -= 1;
   }
 
-  return `${age} years old`;
+  return age;
 }

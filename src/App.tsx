@@ -49,7 +49,7 @@ function App(): React.ReactElement {
             <Route path="/home" element={<Home />} />
 
             <Route path="/athletes" element={<Athletes />} />
-            <Route path="/athlete/:athleteId" element={<AthleteDetail />} />
+            <Route path="/athlete/:personId" element={<AthleteDetail />} />
             <Route path="/teams" element={<Teams />} />
             <Route path="/teams/:teamId" element={<TeamDetail />} />
             <Route path="/results" element={<Results />} />

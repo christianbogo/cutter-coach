@@ -13,66 +13,6 @@
   font-size: 1.8rem;
 }
 
-/* --- Info Table --- */
-.info-table {
-  width: 100%;
-  max-width: 700px; /* Limit width for readability */
-  margin: 0 auto 2.5rem auto; /* Center table */
-  border-collapse: collapse;
-  border: 1px solid var(--color-border-soft, #dee2e6);
-  background-color: var(--color-surface, white);
-  box-shadow: var(--box-shadow-standard);
-  border-radius: var(--border-radius-standard);
-  overflow: hidden; /* Ensures border radius applies to content */
-}
-
-.info-table th,
-.info-table td {
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--color-border-soft, #dee2e6);
-  vertical-align: top; /* Align content top */
-}
-
-.info-table tr:last-child th,
-.info-table tr:last-child td {
-  border-bottom: none; /* Remove bottom border on last row */
-}
-
-.info-table th {
-  font-weight: 600;
-  color: var(--color-text-secondary);
-  white-space: nowrap; /* Prevent headers from wrapping */
-  width: 1%; /* Make header column take minimum needed width */
-  padding-right: 2rem; /* Add space between header and data */
-}
-
-.info-table td {
-  color: var(--color-text-primary);
-}
-
-/* Style links within the table */
-.info-table td a {
-  color: var(--color-accent-blue);
-  text-decoration: none;
-}
-.info-table td a:hover {
-  text-decoration: underline;
-}
-
-/* Style list within the contacts cell */
-.info-table td ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.info-table td li {
-  margin-bottom: 0.25rem;
-}
-.info-table td li:last-child {
-  margin-bottom: 0;
-}
-
 /* --- Results Section --- */
 .results-section {
   margin-top: 2rem;
@@ -89,11 +29,8 @@
 .results-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-bottom: 2rem;
-  padding: 1rem;
-  background-color: var(--color-surface-secondary, #f8f9fa);
-  border-radius: var(--border-radius-standard, 6px);
 }
 
 .results-filters select {
@@ -175,16 +112,6 @@
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-  .info-table th,
-  .info-table td {
-    padding: 0.6rem 0.75rem;
-  }
-  .info-table th {
-    padding-right: 1rem;
-  }
-}
-
-@media (max-width: 600px) {
   .athlete-detail-page h1 {
     font-size: 1.6rem;
   }
@@ -197,82 +124,5 @@
   .results-filters select {
     width: 100%;
     min-width: unset;
-  }
-}
-
-@media (max-width: 480px) {
-  /* Stack table headers and data cells */
-  .info-table,
-  .info-table tbody,
-  .info-table tr,
-  .info-table td,
-  .info-table th {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .info-table tr {
-    border: 1px solid var(--color-border-soft);
-    border-radius: var(--border-radius-small);
-    margin-bottom: 1rem;
-    box-shadow: var(--box-shadow-standard);
-  }
-  .info-table thead {
-    display: none; /* Hide traditional header row */
-  }
-
-  .info-table td {
-    border: none;
-    border-bottom: 1px solid var(--color-border-soft);
-    position: relative;
-    padding-left: 50%; /* Make space for the label */
-    min-height: 1.5em; /* Ensure cells aren't too short */
-    text-align: right; /* Align data right */
-  }
-  .info-table tr:last-child td:last-child {
-    border-bottom: none;
-  }
-
-  .info-table td::before {
-    /* Use the th text as a label */
-    content: attr(
-      data-label
-    ); /* We'll need to add data-label attributes in JSX */
-    position: absolute;
-    left: 0.75rem;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    font-weight: 600;
-    color: var(--color-text-secondary);
-    text-align: left; /* Align label left */
-  }
-  .info-table th {
-    display: none; /* Hide the actual th cell */
-  }
-  /* Adjust list styling in stacked view */
-  .info-table td ul {
-    text-align: right;
-  }
-  .info-table td[data-label="Contacts"] ul {
-    padding-left: 0;
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 400px) {
-  .athlete-detail-page h1 {
-    font-size: 1.4rem;
-  }
-  .results-section h2 {
-    font-size: 1.2rem;
-  }
-  .info-table td,
-  .results-display th,
-  .results-display td {
-    font-size: 0.85rem;
-  }
-  .info-table td::before {
-    font-size: 0.8rem; /* Adjust label size */
   }
 }
