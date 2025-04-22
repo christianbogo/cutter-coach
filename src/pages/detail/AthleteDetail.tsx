@@ -40,9 +40,22 @@ const AthleteDetailContent: React.FC = () => {
     <div className="athlete-detail-page">
       <h1>
         {person.firstName} {person.lastName}{" "}
-        {currentAge !== null && `${currentAge}`}
+        {person.preferredName && person.preferredName !== person.firstName
+          ? `(${person.preferredName})`
+          : ""}
+        {currentAge && currentAge !== "NaN" && `${currentAge}`}
         {person.gender && `${person.gender}`}
       </h1>
+
+      {contacts.length > 0 && (
+        <p className="contacts-subtext">
+          {contacts.map((c, i) => (
+            <span key={i}>
+              {c.personName} ({c.relationship}){i < contacts.length - 1 && ", "}
+            </span>
+          ))}
+        </p>
+      )}
 
       {/* Filters Section - Updated onChange handlers */}
       <section className="results-section">

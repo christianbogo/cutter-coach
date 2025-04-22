@@ -1,11 +1,11 @@
 /* AthleteDetail.css */
 
+/* Page and H1 styles */
 .athlete-detail-page {
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .athlete-detail-page h1 {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -13,11 +13,62 @@
   font-size: 1.8rem;
 }
 
-/* --- Results Section --- */
+/* Info Table styles (Keep as is, including responsive) */
+.info-table {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 2.5rem auto;
+  border-collapse: collapse;
+  border: 1px solid var(--color-border-soft, #dee2e6);
+  background-color: var(--color-surface, white);
+  box-shadow: var(--box-shadow-standard);
+  border-radius: var(--border-radius-standard);
+  overflow: hidden;
+}
+.info-table th,
+.info-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-soft, #dee2e6);
+  vertical-align: top;
+}
+.info-table tr:last-child th,
+.info-table tr:last-child td {
+  border-bottom: none;
+}
+.info-table th {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  width: 1%;
+  padding-right: 2rem;
+}
+.info-table td {
+  color: var(--color-text-primary);
+}
+.info-table td a {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+}
+.info-table td a:hover {
+  text-decoration: underline;
+}
+.info-table td ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.info-table td li {
+  margin-bottom: 0.25rem;
+}
+.info-table td li:last-child {
+  margin-bottom: 0;
+}
+
+/* Results Section general styles */
 .results-section {
   margin-top: 2rem;
 }
-
 .results-section h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -25,21 +76,20 @@
   padding-bottom: 0.5rem;
 }
 
-/* --- Filter Controls --- */
+/* Filter Controls styles (Keep as is) */
 .results-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 2rem;
 }
-
 .results-filters select {
   padding: 0.6rem 0.8rem;
   font-size: 0.95rem;
   border: 1px solid var(--color-border-soft, #ced4da);
   border-radius: var(--border-radius-small, 4px);
   flex-grow: 1;
-  min-width: 180px; /* Adjust min width */
+  min-width: 180px;
   box-sizing: border-box;
   background-color: var(--color-surface, white);
   color: var(--color-text-primary);
@@ -50,13 +100,11 @@
   background-size: 0.65em auto, 100%;
   padding-right: 2.5em;
 }
-
 .results-filters select:focus {
   border-color: var(--color-accent-blue);
   box-shadow: 0 0 0 3px rgba(10, 88, 202, 0.2);
   outline: none;
 }
-
 .results-filters select:disabled {
   background-color: var(--color-button-disabled-bg, #e9ecef);
   cursor: not-allowed;
@@ -65,42 +113,59 @@
 
 /* --- Results Display Area --- */
 .results-display {
-  /* Placeholder for results table/list styling */
   margin-top: 1rem;
 }
+.results-display-grouped {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Adjusted gap */
+}
 
-.results-display table {
-  /* Example basic table styling */
-  width: 100%;
+/* Unified Minimal Table Style */
+.results-table {
+  width: 100%; /* Allow table to shrink to content */
+  max-width: 100%; /* Prevent overflow */
   border-collapse: collapse;
-  margin-bottom: 1rem;
+  margin-top: 0.25rem; /* Small space below heading */
+  margin-bottom: 0;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+    monospace;
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
-.results-display th,
-.results-display td {
-  border: 1px solid var(--color-border-soft);
-  padding: 0.5rem 0.75rem;
-  text-align: left;
-  font-size: 0.9rem;
+.results-table thead {
+  display: none; /* Hide all headers */
 }
-.results-display th {
-  background-color: var(--color-surface-secondary);
-  font-weight: 600;
+.results-table td {
+  padding: 0.2rem 0.5rem; /* Minimal padding */
+  border: none; /* No cell borders */
+  border-bottom: 1px solid var(--color-border-soft); /* Light bottom border for rows */
+  white-space: nowrap; /* Prevent wrapping within cells */
+}
+.results-table tr:last-child td {
+  border-bottom: none; /* No border on last row of table/group */
+}
+/* Right-align text in the last column */
+.results-table tr > *:last-child {
+  text-align: end;
 }
 
-/* Style for meet/event groupings */
-.results-display .result-group-heading {
-  font-size: 1.1rem;
+/* Small Group Heading Style */
+.result-group-heading {
+  font-size: 0.85rem; /* Small heading */
+  width: 100%; /* Full width */
   font-weight: 600;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--color-border-soft);
-}
-.results-display .result-group-heading:first-child {
   margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0.1rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-border-soft); /* Add back subtle border */
+  display: inline-block; /* Keep border only under text */
 }
 
-/* --- Loading/Error/Empty States --- */
+/* Loading/Error/Empty States (Keep as is) */
 .results-empty-message {
   text-align: center;
   color: var(--color-text-secondary);
@@ -111,6 +176,7 @@
 }
 
 /* --- Responsive Adjustments --- */
+/* Keep general page/filter responsiveness */
 @media (max-width: 768px) {
   .athlete-detail-page h1 {
     font-size: 1.6rem;
@@ -125,4 +191,77 @@
     width: 100%;
     min-width: unset;
   }
+}
+
+/* Keep info-table responsiveness */
+@media (max-width: 480px) {
+  .info-table,
+  .info-table tbody,
+  .info-table tr,
+  .info-table td,
+  .info-table th {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .info-table tr {
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--border-radius-small);
+    margin-bottom: 1rem;
+    box-shadow: var(--box-shadow-standard);
+  }
+  .info-table thead {
+    display: none;
+  }
+  .info-table td {
+    border: none;
+    border-bottom: 1px solid var(--color-border-soft);
+    position: relative;
+    padding-left: 50%;
+    min-height: 1.5em;
+    text-align: right;
+  }
+  .info-table tr:last-child td:last-child {
+    border-bottom: none;
+  }
+  .info-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0.75rem;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-align: left;
+  }
+  .info-table th {
+    display: none;
+  }
+  .info-table td ul {
+    text-align: right;
+  }
+  .info-table td[data-label="Contacts"] ul {
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+
+/* Keep general font adjustments */
+@media (max-width: 400px) {
+  .athlete-detail-page h1 {
+    font-size: 1.4rem;
+  }
+  .results-section h2 {
+    font-size: 1.2rem;
+  }
+  .results-table {
+    font-size: 0.8rem;
+  } /* Base size for results */
+}
+
+/* NO responsive stacking needed/wanted for .results-table */
+
+tr > *:first-child {
+  font-size: 1.5rem; /* Keep first column larger */
 }

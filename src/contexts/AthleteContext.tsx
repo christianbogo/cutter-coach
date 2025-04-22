@@ -41,15 +41,18 @@ export interface ContactInfo {
 // --- Helper Types for Processed Results ---
 export interface BestEffortResult extends IndividualResult {
   eventName: string;
+  eventCode: string; // Added eventCode property
   meetName: string;
   meetDate: string;
 }
 export interface ResultWithEventName extends IndividualResult {
   eventName: string;
+  eventCode: string; // Added eventCode property
 }
 export interface ResultWithMeetInfo extends IndividualResult {
   meetName: string;
   meetDate: string;
+  eventCode: string; // Added eventCode property
 }
 export interface MeetGroup {
   meetId: string;
@@ -347,11 +350,11 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
     | BestEffortResult[]
     | MeetGroup[]
     | EventGroup[] => {
-    // ... same logic as before ...
     const meetsMap = new Map(meets.map((m) => [m.id, m]));
-    const eventsMap = new Map(events.map((e) => [e.id, e]));
+    const eventsMap = new Map(events.map((e) => [e.id, e])); // Use full Event object
     let results = individualResults;
 
+    // Filters (same as before)
     if (selectedSeason !== "All-Time") {
       results = results.filter((r) => r.season === selectedSeason);
     }
@@ -368,30 +371,35 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
       results = results.filter((r) => r.event === selectedEvent);
     }
 
+    // Apply Presentation Logic
     if (selectedPresentation === "Best Efforts") {
       const bestEffortsMap = new Map<string, IndividualResult>();
       results.forEach((r) => {
         if (r.dq) return;
-        const currentBest = bestEffortsMap.get(r.event);
-        if (!currentBest || r.result < currentBest.result) {
+        const cb = bestEffortsMap.get(r.event);
+        if (!cb || r.result < cb.result) {
           bestEffortsMap.set(r.event, r);
         }
       });
       return Array.from(bestEffortsMap.values())
-        .map(
-          (r): BestEffortResult => ({
+        .map((r): BestEffortResult => {
+          const event = eventsMap.get(r.event); // Get full event object
+          const meet = meetsMap.get(r.meet);
+          return {
             ...r,
-            eventName: eventsMap.get(r.event)?.nameShort || "Unknown Event",
-            meetName: meetsMap.get(r.meet)?.nameShort || "Unknown Meet",
-            meetDate: meetsMap.get(r.meet)?.date || "N/A",
-          })
-        )
+            eventName: event?.nameShort || "Unknown Event",
+            eventCode: event?.code || "N/A", // Include eventCode
+            meetName: meet?.nameShort || "Unknown Meet",
+            meetDate: meet?.date || "N/A",
+          };
+        })
         .sort((a, b) => a.eventName.localeCompare(b.eventName));
     } else if (selectedPresentation === "By Meet") {
       const resultsByMeet = new Map<string, MeetGroup>();
       results.forEach((r) => {
         const meet = meetsMap.get(r.meet);
         if (!meet) return;
+        const event = eventsMap.get(r.event); // Get full event object
         const meetInfo = {
           meetId: meet.id,
           meetName: meet.nameShort,
@@ -399,14 +407,15 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
         };
         const resultInfo: ResultWithEventName = {
           ...r,
-          eventName: eventsMap.get(r.event)?.nameShort || "Unknown Event",
+          eventName: event?.nameShort || "Unknown Event",
+          eventCode: event?.code || "N/A", // Include eventCode
         };
         const existing: MeetGroup = resultsByMeet.get(meet.id) || {
           ...meetInfo,
           results: [],
         };
         existing.results.push(resultInfo);
-        existing.results.sort((a, b) => a.eventName.localeCompare(b.eventName));
+        existing.results.sort((a, b) => a.eventName.localeCompare(b.eventName)); // Sort by event name within meet
         resultsByMeet.set(meet.id, existing);
       });
       return Array.from(resultsByMeet.values()).sort(
@@ -418,11 +427,13 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
       results.forEach((r) => {
         const event = eventsMap.get(r.event);
         if (!event) return;
+        const meet = meetsMap.get(r.meet); // Get full meet object
         const eventInfo = { eventId: event.id, eventName: event.nameShort };
         const resultInfo: ResultWithMeetInfo = {
           ...r,
-          meetName: meetsMap.get(r.meet)?.nameShort || "Unknown Meet",
-          meetDate: meetsMap.get(r.meet)?.date || "N/A",
+          eventCode: event?.code || "N/A", // Include eventCode
+          meetName: meet?.nameShort || "Unknown Meet",
+          meetDate: meet?.date || "N/A",
         };
         const existing: EventGroup = resultsByEvent.get(event.id) || {
           ...eventInfo,
@@ -432,7 +443,7 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
         existing.results.sort(
           (a, b) =>
             new Date(b.meetDate).getTime() - new Date(a.meetDate).getTime()
-        );
+        ); // Sort by date within event
         resultsByEvent.set(event.id, existing);
       });
       return Array.from(resultsByEvent.values()).sort((a, b) =>

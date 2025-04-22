@@ -1,3 +1,5 @@
+// AthleteResults.tsx
+
 import React from "react";
 import {
   useAthleteContext,
@@ -7,8 +9,7 @@ import {
 } from "../contexts/AthleteContext"; // Adjust path
 import { getDisplayDate } from "../utils/dateUtils"; // Adjust path
 
-// --- Helper: Format Time (Copied from AthleteDetail) ---
-// Consider moving this to a shared utils file if used elsewhere
+// --- Helper: Format Time ---
 const formatResultTime = (resultSeconds: number): string => {
   if (resultSeconds === null || resultSeconds === undefined) return "N/A";
   const minutes = Math.floor(resultSeconds / 60);
@@ -18,10 +19,8 @@ const formatResultTime = (resultSeconds: number): string => {
 
 // --- Results Display Component ---
 const AthleteResults: React.FC = () => {
-  // Consume context to get filtered data and presentation mode
   const { filteredResultsData, selectedPresentation } = useAthleteContext();
 
-  // Render logic moved here
   if (filteredResultsData.length === 0) {
     return (
       <p className="results-empty-message">
@@ -30,59 +29,42 @@ const AthleteResults: React.FC = () => {
     );
   }
 
+  // --- Best Efforts Rendering ---
   if (selectedPresentation === "Best Efforts") {
     const data = filteredResultsData as BestEffortResult[];
     return (
       <table className="results-table best-efforts-table">
-        <thead>
-          <tr>
-            <th>Event</th>
-            <th>Time</th>
-            <th>Meet</th>
-            <th>Date</th>
-            <th>Age</th>
-          </tr>
-        </thead>
+        {/* No thead */}
         <tbody>
           {data.map((r) => (
             <tr key={r.id}>
-              <td data-label="Event">{r.eventName}</td>
-              <td data-label="Time">{formatResultTime(r.result)}</td>
-              <td data-label="Meet">{r.meetName}</td>
-              <td data-label="Date">{getDisplayDate(r.meetDate)}</td>
-              <td data-label="Age">{r.age}</td>
+              <td>{formatResultTime(r.result)}</td>
+              <td>{r.eventCode}</td>
+              <td>{getDisplayDate(r.meetDate)}</td>
             </tr>
           ))}
         </tbody>
       </table>
     );
-  } else if (selectedPresentation === "By Meet") {
+  }
+  // --- By Meet Rendering ---
+  else if (selectedPresentation === "By Meet") {
     const data = filteredResultsData as MeetGroup[];
     return (
-      <div>
+      <div className="results-display-grouped">
         {data.map((meetGroup) => (
           <div key={meetGroup.meetId} className="result-group">
             <h3 className="result-group-heading">
               {meetGroup.meetName} ({getDisplayDate(meetGroup.meetDate)})
             </h3>
             <table className="results-table by-meet-table">
-              <thead>
-                <tr>
-                  <th>Event</th>
-                  <th>Time</th>
-                  <th>Age</th>
-                  <th>DQ?</th>
-                </tr>
-              </thead>
+              {/* No thead */}
               <tbody>
                 {meetGroup.results.map((r) => (
                   <tr key={r.id}>
-                    <td data-label="Event">{r.eventName}</td>
-                    <td data-label="Time">
-                      {r.dq ? "DQ" : formatResultTime(r.result)}
-                    </td>
-                    <td data-label="Age">{r.age}</td>
-                    <td data-label="DQ?">{r.dq ? "Yes" : "No"}</td>
+                    <td> {r.dq ? "DQ" : formatResultTime(r.result)} </td>
+                    <td>{r.eventCode}</td>
+                    <td>{getDisplayDate(meetGroup.meetDate)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -91,33 +73,23 @@ const AthleteResults: React.FC = () => {
         ))}
       </div>
     );
-  } else if (selectedPresentation === "By Event") {
+  }
+  // --- By Event Rendering ---
+  else if (selectedPresentation === "By Event") {
     const data = filteredResultsData as EventGroup[];
     return (
-      <div>
+      <div className="results-display-grouped">
         {data.map((eventGroup) => (
           <div key={eventGroup.eventId} className="result-group">
             <h3 className="result-group-heading">{eventGroup.eventName}</h3>
             <table className="results-table by-event-table">
-              <thead>
-                <tr>
-                  <th>Meet</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Age</th>
-                  <th>DQ?</th>
-                </tr>
-              </thead>
+              {/* No thead */}
               <tbody>
                 {eventGroup.results.map((r) => (
                   <tr key={r.id}>
-                    <td data-label="Meet">{r.meetName}</td>
-                    <td data-label="Date">{getDisplayDate(r.meetDate)}</td>
-                    <td data-label="Time">
-                      {r.dq ? "DQ" : formatResultTime(r.result)}
-                    </td>
-                    <td data-label="Age">{r.age}</td>
-                    <td data-label="DQ?">{r.dq ? "Yes" : "No"}</td>
+                    <td> {r.dq ? "DQ" : formatResultTime(r.result)} </td>
+                    <td>{r.eventCode}</td>
+                    <td>{r.meetName}</td>
                   </tr>
                 ))}
               </tbody>
