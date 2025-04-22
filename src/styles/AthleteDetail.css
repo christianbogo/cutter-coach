@@ -1,11 +1,11 @@
 /* AthleteDetail.css */
 
-/* Page and H1 styles */
 .athlete-detail-page {
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .athlete-detail-page h1 {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -13,255 +13,180 @@
   font-size: 1.8rem;
 }
 
-/* Info Table styles (Keep as is, including responsive) */
-.info-table {
+.athlete-detail-page .athlete-subtext-toggle {
   width: 100%;
-  max-width: 700px;
-  margin: 0 auto 2.5rem auto;
-  border-collapse: collapse;
-  border: 1px solid var(--color-border-soft, #dee2e6);
-  background-color: var(--color-surface, white);
-  box-shadow: var(--box-shadow-standard);
-  border-radius: var(--border-radius-standard);
-  overflow: hidden;
-}
-.info-table th,
-.info-table td {
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--color-border-soft, #dee2e6);
-  vertical-align: top;
-}
-.info-table tr:last-child th,
-.info-table tr:last-child td {
-  border-bottom: none;
-}
-.info-table th {
-  font-weight: 600;
+  margin: 0 auto;
+  text-align: center;
   color: var(--color-text-secondary);
-  white-space: nowrap;
-  width: 1%;
-  padding-right: 2rem;
-}
-.info-table td {
-  color: var(--color-text-primary);
-}
-.info-table td a {
-  color: var(--color-accent-blue);
-  text-decoration: none;
-}
-.info-table td a:hover {
-  text-decoration: underline;
-}
-.info-table td ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.info-table td li {
-  margin-bottom: 0.25rem;
-}
-.info-table td li:last-child {
   margin-bottom: 0;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-/* Results Section general styles */
-.results-section {
-  margin-top: 2rem;
-}
-.results-section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border-soft);
-  padding-bottom: 0.5rem;
-}
-
-/* Filter Controls styles (Keep as is) */
-.results-filters {
+.results-filters-simplified {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+  flex-direction: column; /* Stack filter groups vertically */
+  gap: 1rem; /* Space between filter groups and the button */
+  padding: 1rem; /* Add some padding around the filters */
+  border: 1px solid var(--color-border-soft, #e0e0e0); /* Optional border */
+  border-radius: var(
+    --border-radius-standard,
+    8px
+  ); /* Optional rounded corners */
+  background-color: var(
+    --color-surface-secondary,
+    #f8f9fa
+  ); /* Optional subtle background */
+  margin-bottom: 1.5rem; /* Space below the filter section */
 }
-.results-filters select {
+
+/* Styling for each label + select group */
+.filter-group {
+  display: flex;
+  flex-direction: column; /* Stack label above select */
+  gap: 0.3rem; /* Space between label and select */
+}
+
+/* Styling for the labels */
+.filter-group label {
+  font-weight: 600; /* Make labels slightly bolder */
+  font-size: 0.9rem;
+  color: var(--color-text-secondary, #555);
+  display: block; /* Ensure it takes its own line */
+}
+
+/* Styling for the select dropdowns (matching .athletes-team-filter) */
+.filter-group select {
+  /* --- Layout & Box Model --- */
+  width: 100%; /* Make select take full width */
   padding: 0.6rem 0.8rem;
+  padding-right: 2.5em; /* Space for the dropdown arrow */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
   font-size: 0.95rem;
   border: 1px solid var(--color-border-soft, #ced4da);
   border-radius: var(--border-radius-small, 4px);
-  flex-grow: 1;
-  min-width: 180px;
-  box-sizing: border-box;
+
+  /* --- Appearance --- */
   background-color: var(--color-surface, white);
   color: var(--color-text-primary);
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  appearance: none; /* Remove default system appearance */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); /* Custom dropdown arrow */
   background-repeat: no-repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
-  padding-right: 2.5em;
+  cursor: pointer;
 }
-.results-filters select:focus {
+
+/* Focus state for select dropdowns (matching focus from Athletes.css) */
+.filter-group select:focus {
   border-color: var(--color-accent-blue);
   box-shadow: 0 0 0 3px rgba(10, 88, 202, 0.2);
   outline: none;
 }
-.results-filters select:disabled {
-  background-color: var(--color-button-disabled-bg, #e9ecef);
-  cursor: not-allowed;
-  opacity: 0.7;
+
+/* Styling for the Set Filters button (matching .athlete-finder-button) */
+.set-filters-button {
+  /* --- Layout & Box Model --- */
+  padding: 0.8rem 1.5rem;
+  width: 100%; /* Make button full width within the container */
+  box-sizing: border-box;
+
+  /* --- Typography --- */
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-on-accent, white);
+
+  /* --- Appearance --- */
+  background-color: var(--color-accent-green, #146c43);
+  border: none;
+  border-radius: var(
+    --border-radius-standard,
+    8px
+  ); /* Use standard radius for standalone button */
+  cursor: pointer;
+
+  /* --- Interaction --- */
+  transition: background-color 0.15s ease-in-out;
 }
 
-/* --- Results Display Area --- */
-.results-display {
-  margin-top: 1rem;
+.set-filters-button:hover {
+  background-color: #105433; /* Darker green on hover, matching Home.css */
 }
-.results-display-grouped {
+
+/* Optional: Style adjustment if needed when button is focused */
+.set-filters-button:focus {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+.athlete-section {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Adjusted gap */
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
-/* Unified Minimal Table Style */
-.results-table {
-  width: 100%; /* Allow table to shrink to content */
-  max-width: 100%; /* Prevent overflow */
+.athlete-section h2,
+.results-meet-history h2 {
+  color: var(--color-text-secondary);
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.athlete-section table {
+  width: 100%;
+  max-width: 600px;
   border-collapse: collapse;
-  margin-top: 0.25rem; /* Small space below heading */
-  margin-bottom: 0;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-    monospace;
-  font-size: 0.85rem;
-  line-height: 1.4;
-}
-.results-table thead {
-  display: none; /* Hide all headers */
-}
-.results-table td {
-  padding: 0.2rem 0.5rem; /* Minimal padding */
-  border: none; /* No cell borders */
-  border-bottom: 1px solid var(--color-border-soft); /* Light bottom border for rows */
-  white-space: nowrap; /* Prevent wrapping within cells */
-}
-.results-table tr:last-child td {
-  border-bottom: none; /* No border on last row of table/group */
-}
-/* Right-align text in the last column */
-.results-table tr > *:last-child {
+  border-spacing: 0; /* Ensure no spacing between cells */
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-standard);
+  box-shadow: var(--shadow-color-hard);
+  overflow: hidden;
+  border: 1px solid var(--color-border-hard);
   text-align: end;
 }
 
-/* Small Group Heading Style */
-.result-group-heading {
-  font-size: 0.85rem; /* Small heading */
-  width: 100%; /* Full width */
+.athlete-section td,
+.athlete-section th {
+  padding: 0.2rem 1rem; /* Apply padding to table cells */
+}
+
+/* Apply shading to every other row */
+.athlete-section tbody tr:nth-child(odd) {
+  background-color: var(
+    --color-surface-secondary,
+    #f8f9fa
+  ); /* Subtle shading */
+}
+
+.athlete-section tbody tr:nth-child(even) {
+  background-color: var(--color-surface, white); /* Default background */
+}
+
+.athlete-section tr *:first-child {
+  text-align: start;
+}
+
+.meet-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meet-group table {
+  width: min-content;
+}
+
+.meet-group h3 {
+  color: var(--color-text-secondary);
+  font-size: 1.2rem;
   font-weight: 600;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-bottom: 0.1rem;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--color-border-soft); /* Add back subtle border */
-  display: inline-block; /* Keep border only under text */
-}
-
-/* Loading/Error/Empty States (Keep as is) */
-.results-empty-message {
-  text-align: center;
-  color: var(--color-text-secondary);
-  padding: 2rem;
-  font-style: italic;
-  background-color: var(--color-surface-secondary, #f8f9fa);
-  border-radius: var(--border-radius-standard, 6px);
-}
-
-/* --- Responsive Adjustments --- */
-/* Keep general page/filter responsiveness */
-@media (max-width: 768px) {
-  .athlete-detail-page h1 {
-    font-size: 1.6rem;
-  }
-  .results-section h2 {
-    font-size: 1.3rem;
-  }
-  .results-filters {
-    flex-direction: column;
-  }
-  .results-filters select {
-    width: 100%;
-    min-width: unset;
-  }
-}
-
-/* Keep info-table responsiveness */
-@media (max-width: 480px) {
-  .info-table,
-  .info-table tbody,
-  .info-table tr,
-  .info-table td,
-  .info-table th {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .info-table tr {
-    border: 1px solid var(--color-border-soft);
-    border-radius: var(--border-radius-small);
-    margin-bottom: 1rem;
-    box-shadow: var(--box-shadow-standard);
-  }
-  .info-table thead {
-    display: none;
-  }
-  .info-table td {
-    border: none;
-    border-bottom: 1px solid var(--color-border-soft);
-    position: relative;
-    padding-left: 50%;
-    min-height: 1.5em;
-    text-align: right;
-  }
-  .info-table tr:last-child td:last-child {
-    border-bottom: none;
-  }
-  .info-table td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0.75rem;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    font-weight: 600;
-    color: var(--color-text-secondary);
-    text-align: left;
-  }
-  .info-table th {
-    display: none;
-  }
-  .info-table td ul {
-    text-align: right;
-  }
-  .info-table td[data-label="Contacts"] ul {
-    padding-left: 0;
-    margin-left: 0;
-  }
-}
-
-/* Keep general font adjustments */
-@media (max-width: 400px) {
-  .athlete-detail-page h1 {
-    font-size: 1.4rem;
-  }
-  .results-section h2 {
-    font-size: 1.2rem;
-  }
-  .results-table {
-    font-size: 0.8rem;
-  } /* Base size for results */
-}
-
-/* NO responsive stacking needed/wanted for .results-table */
-
-tr > *:first-child {
-  font-size: 1.5rem; /* Keep first column larger */
+  margin-bottom: 0.5rem;
 }

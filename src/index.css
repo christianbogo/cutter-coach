@@ -7,6 +7,7 @@
   --color-background-start: #fdfdfd;
   --color-background-end: #f8f9fa;
   --color-surface: #ffffff;
+  --color-surface-secondary: #f8f9fa;
   --color-footer-background: #e9ecef;
 
   /* --- Text --- */
@@ -16,6 +17,8 @@
 
   /* --- Borders & Shadows --- */
   --color-border-soft: #dee2e6;
+  --color-border-hard: #adb5bd;
+  --shadow-color-hard: rgba(0, 0, 0, 0.15);
   --shadow-color-soft: rgba(0, 0, 0, 0.075);
 
   /* --- Accents (Notifications, Links, Status) --- */

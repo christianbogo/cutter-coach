@@ -101,3 +101,46 @@ export function calculateAge(birthDate: string | undefined | null): number {
 
   return age;
 }
+
+/**
+ * Formats a date string ('YYYY-MM-DD') into 'M/D/YY' format.
+ * Handles potential invalid date strings gracefully.
+ * @param dateString Input date string ('YYYY-MM-DD')
+ * @returns Formatted date string (e.g., "3/21/25") or 'Invalid Date'
+ */
+export function getDisplayShort(dateString: string | undefined | null): string {
+  if (!dateString) {
+    return "N/A"; // Handle null or undefined input
+  }
+
+  // Split the string to avoid timezone issues with new Date(string)
+  const parts = dateString.split("-");
+  if (parts.length !== 3) {
+    return "Invalid Date Format";
+  }
+
+  // Parse parts into numbers (adjust month index for Date constructor)
+  const year = parseInt(parts[0], 10);
+  const month = parseInt(parts[1], 10) - 1; // Date months are 0-indexed
+  const day = parseInt(parts[2], 10);
+
+  // Create Date object using UTC to prevent timezone shifts affecting the date parts
+  const date = new Date(Date.UTC(year, month, day));
+
+  // Validate the date components after creation
+  if (
+    isNaN(date.getTime()) ||
+    date.getUTCDate() !== day ||
+    date.getUTCMonth() !== month ||
+    date.getUTCFullYear() !== year
+  ) {
+    return "Invalid Date";
+  }
+
+  // Format parts
+  const monthShort = (date.getUTCMonth() + 1).toString(); // Remove leading zero
+  const dayShort = date.getUTCDate().toString(); // Remove leading zero
+  const yearShort = date.getUTCFullYear().toString().slice(-2); // Get last 2 digits of year
+
+  return `${monthShort}/${dayShort}/${yearShort}`;
+}

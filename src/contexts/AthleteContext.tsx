@@ -1,4 +1,4 @@
-// AthleteContext.tsx
+// src/contexts/AthleteContext.tsx
 
 import React, {
   createContext,
@@ -7,6 +7,7 @@ import React, {
   useMemo,
   useContext,
   ReactNode,
+  useCallback, // Import useCallback
 } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import {
@@ -20,7 +21,7 @@ import {
   Timestamp as FirestoreTimestamp,
 } from "firebase/firestore";
 import { db } from "../firebase/firebase"; // Adjust path
-import { calculateAge, getDisplayDate } from "../utils/dateUtils"; // Adjust path
+import { calculateAge } from "../utils/dateUtils"; // Adjust path
 import {
   Person,
   Athlete,
@@ -38,21 +39,21 @@ export interface ContactInfo {
   personId: string;
 }
 
-// --- Helper Types for Processed Results ---
+// --- Helper Types (kept for potential future reference, but not directly used in context value) ---
 export interface BestEffortResult extends IndividualResult {
   eventName: string;
-  eventCode: string; // Added eventCode property
+  eventCode: string;
   meetName: string;
   meetDate: string;
 }
 export interface ResultWithEventName extends IndividualResult {
   eventName: string;
-  eventCode: string; // Added eventCode property
+  eventCode: string;
 }
 export interface ResultWithMeetInfo extends IndividualResult {
   meetName: string;
   meetDate: string;
-  eventCode: string; // Added eventCode property
+  eventCode: string;
 }
 export interface MeetGroup {
   meetId: string;
@@ -65,6 +66,7 @@ export interface EventGroup {
   eventName: string;
   results: ResultWithMeetInfo[];
 }
+// --- End Helper Types ---
 
 // --- Context Type Definition ---
 interface AthleteContextType {
@@ -74,20 +76,14 @@ interface AthleteContextType {
   seasons: Season[];
   meets: Meet[];
   events: Event[];
-  individualResults: IndividualResult[];
+  individualResults: IndividualResult[]; // Provide the raw results
   loading: boolean;
   error: string | null;
-  selectedSeason: string;
-  selectedMeetType: string;
-  selectedPresentation: string;
-  selectedEvent: string;
-  filteredResultsData: BestEffortResult[] | MeetGroup[] | EventGroup[];
-  // *** Updated handleFilterChange type ***
-  handleFilterChange: (
-    paramName: string
-  ) => (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectedSeason: string; // Keep track of the current filter
+  selectedMeetType: string; // Keep track of the current filter
+  applyFilters: (newSeason: string, newMeetType: string) => void; // Function to apply filters
   personId?: string;
-  currentAge: string | null; // Keep as string or number based on calculateAge output
+  currentAge: string | null;
 }
 
 // --- Create Context ---
@@ -103,10 +99,7 @@ const AthleteContext = createContext<AthleteContextType>({
   error: null,
   selectedSeason: "All-Time",
   selectedMeetType: "All-Meets",
-  selectedPresentation: "Best Efforts",
-  selectedEvent: "All-Events",
-  filteredResultsData: [],
-  handleFilterChange: () => () => {},
+  applyFilters: () => {}, // Default empty function
   personId: undefined,
   currentAge: null,
 });
@@ -122,7 +115,7 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
   const { personId } = useParams<{ personId: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // State declarations (remain the same)
+  // --- State Declarations ---
   const [person, setPerson] = useState<Person | null>(null);
   const [athleteRecords, setAthleteRecords] = useState<Athlete[]>([]);
   const [contacts, setContacts] = useState<ContactInfo[]>([]);
@@ -134,21 +127,19 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
   >([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  // State for selected filters, initialized from URL search params
   const [selectedSeason, setSelectedSeason] = useState<string>(
     searchParams.get("season") || "All-Time"
   );
   const [selectedMeetType, setSelectedMeetType] = useState<string>(
     searchParams.get("meetType") || "All-Meets"
   );
-  const [selectedPresentation, setSelectedPresentation] = useState<string>(
-    searchParams.get("presentation") || "Best Efforts"
-  );
-  const [selectedEvent, setSelectedEvent] = useState<string>(
-    searchParams.get("event") || "All-Events"
-  );
+  // Removed selectedPresentation and selectedEvent state
 
-  // Data Fetching useEffect (remains the same)
+  // --- Data Fetching useEffect (remains largely the same) ---
   useEffect(() => {
+    // Reset state and fetch data when personId changes
     if (!personId) {
       setError("Athlete ID not provided in URL.");
       setLoading(false);
@@ -157,6 +148,7 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
     const fetchData = async () => {
       setLoading(true);
       setError(null);
+      // Reset all fetched data states
       setPerson(null);
       setAthleteRecords([]);
       setContacts([]);
@@ -164,8 +156,15 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
       setMeets([]);
       setEvents([]);
       setIndividualResults([]);
+
+      // Reset filters based on *initial* URL params for this personId
+      // This prevents keeping filters from a previous athlete page
+      const initialParams = new URLSearchParams(window.location.search);
+      setSelectedSeason(initialParams.get("season") || "All-Time");
+      setSelectedMeetType(initialParams.get("meetType") || "All-Meets");
+
       try {
-        // 1. Fetch Person...
+        // 1. Fetch Person
         const personDocRef = doc(db, "people", personId);
         const personSnap = await getDoc(personDocRef);
         if (!personSnap.exists()) throw new Error("Athlete not found.");
@@ -174,7 +173,8 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
           ...personSnap.data(),
         } as Person;
         setPerson(personData);
-        // 2. Fetch Athlete records...
+
+        // 2. Fetch Athlete records for this person
         const athleteQuery = query(
           collection(db, "athletes"),
           where("person", "==", personId)
@@ -184,11 +184,19 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
           (d) => ({ id: d.id, ...d.data() } as Athlete)
         );
         setAthleteRecords(fetchedAthleteRecords);
+
         const athleteIds = fetchedAthleteRecords.map((a) => a.id);
-        const seasonIds = Array.from(
-          new Set(fetchedAthleteRecords.map((a) => a.season))
-        );
-        // 3. Fetch Contacts...
+        if (athleteIds.length === 0) {
+          // Early exit if no athlete records found, prevents further fetches
+          setLoading(false);
+          return;
+        }
+        const seasonIds = [
+          ...Array.from(new Set(fetchedAthleteRecords.map((a) => a.season))),
+        ];
+
+        // 3. Fetch Contacts
+        // (Contact fetching logic remains the same)
         const contactQuery1 = query(
           collection(db, "contacts"),
           where("contact", "==", personId)
@@ -210,9 +218,11 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
         ).filter((id) => id !== personId);
         let relatedPeopleMap = new Map<string, Person>();
         if (relatedPersonIds.length > 0) {
+          // Batch fetch related people (chunking logic remains the same)
           const chunks = [];
-          for (let i = 0; i < relatedPersonIds.length; i += 10) {
-            chunks.push(relatedPersonIds.slice(i, i + 10));
+          for (let i = 0; i < relatedPersonIds.length; i += 30) {
+            // Firebase v9 'in' supports up to 30
+            chunks.push(relatedPersonIds.slice(i, i + 30));
           }
           const peoplePromises = chunks.map((chunk) =>
             getDocs(
@@ -235,7 +245,7 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
           const relatedPerson = relatedPeopleMap.get(relatedId);
           const name = relatedPerson
             ? `${relatedPerson.firstName} ${relatedPerson.lastName}`
-            : `ID: ${relatedId}`;
+            : `ID: ${relatedId}`; // Fallback name
           return {
             relationship: c.relationship,
             personName: name,
@@ -243,12 +253,14 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
           };
         });
         setContacts(formattedContacts);
-        // 4. Fetch Relevant Seasons...
+
+        // 4. Fetch Relevant Seasons
         let fetchedSeasons: Season[] = [];
         if (seasonIds.length > 0) {
+          // Batch fetch seasons (chunking logic remains the same)
           const chunks = [];
-          for (let i = 0; i < seasonIds.length; i += 10) {
-            chunks.push(seasonIds.slice(i, i + 10));
+          for (let i = 0; i < seasonIds.length; i += 30) {
+            chunks.push(seasonIds.slice(i, i + 30));
           }
           const seasonPromises = chunks.map((chunk) =>
             getDocs(
@@ -261,18 +273,21 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
               snap.docs.map((d) => ({ id: d.id, ...d.data() } as Season))
             )
             .sort(
+              // Sort seasons by start date, newest first
               (a, b) =>
                 new Date(b.startDate).getTime() -
                 new Date(a.startDate).getTime()
             );
           setSeasons(fetchedSeasons);
         }
-        // 5. Fetch Individual Results...
+
+        // 5. Fetch Individual Results for the athlete records
         let fetchedResults: IndividualResult[] = [];
         if (athleteIds.length > 0) {
+          // Batch fetch results (chunking logic remains the same)
           const chunks = [];
-          for (let i = 0; i < athleteIds.length; i += 10) {
-            chunks.push(athleteIds.slice(i, i + 10));
+          for (let i = 0; i < athleteIds.length; i += 30) {
+            chunks.push(athleteIds.slice(i, i + 30));
           }
           const resultsPromises = chunks.map((chunk) =>
             getDocs(
@@ -288,18 +303,21 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
               (d) => ({ id: d.id, ...d.data() } as IndividualResult)
             )
           );
+          setIndividualResults(fetchedResults);
         }
-        setIndividualResults(fetchedResults);
-        // 6. Fetch Meets and Events...
+
+        // 6. Fetch Meets and Events referenced in the results
         const meetIds = Array.from(new Set(fetchedResults.map((r) => r.meet)));
         const eventIds = Array.from(
           new Set(fetchedResults.map((r) => r.event))
         );
+
         let fetchedMeets: Meet[] = [];
         if (meetIds.length > 0) {
+          // Batch fetch meets (chunking logic remains the same)
           const chunks = [];
-          for (let i = 0; i < meetIds.length; i += 10) {
-            chunks.push(meetIds.slice(i, i + 10));
+          for (let i = 0; i < meetIds.length; i += 30) {
+            chunks.push(meetIds.slice(i, i + 30));
           }
           const meetPromises = chunks.map((chunk) =>
             getDocs(
@@ -312,15 +330,18 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
           );
           setMeets(
             fetchedMeets.sort(
+              // Sort meets by date, newest first
               (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
             )
           );
         }
+
         let fetchedEvents: Event[] = [];
         if (eventIds.length > 0) {
+          // Batch fetch events (chunking logic remains the same)
           const chunks = [];
-          for (let i = 0; i < eventIds.length; i += 10) {
-            chunks.push(eventIds.slice(i, i + 10));
+          for (let i = 0; i < eventIds.length; i += 30) {
+            chunks.push(eventIds.slice(i, i + 30));
           }
           const eventPromises = chunks.map((chunk) =>
             getDocs(
@@ -331,7 +352,12 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
           fetchedEvents = eventSnaps.flatMap((snap) =>
             snap.docs.map((d) => ({ id: d.id, ...d.data() } as Event))
           );
-          setEvents(fetchedEvents);
+          // Optionally sort events, e.g., by nameShort or code
+          setEvents(
+            fetchedEvents.sort((a, b) =>
+              (a.nameShort || "").localeCompare(b.nameShort || "")
+            )
+          );
         }
       } catch (err) {
         console.error("Error fetching athlete details:", err);
@@ -343,194 +369,100 @@ export const AthleteProvider: React.FC<AthleteProviderProps> = ({
       }
     };
     fetchData();
+    // Dependency array includes personId to refetch when the athlete changes
   }, [personId]);
 
-  // Filter & Presentation Logic (remains the same)
-  const filteredResultsData = useMemo(():
-    | BestEffortResult[]
-    | MeetGroup[]
-    | EventGroup[] => {
-    const meetsMap = new Map(meets.map((m) => [m.id, m]));
-    const eventsMap = new Map(events.map((e) => [e.id, e])); // Use full Event object
-    let results = individualResults;
+  // --- Removed Filter & Presentation Logic ---
+  // The complex `filteredResultsData` memoization is removed.
+  // Filtering is now done within `AthleteResults` based on `selectedSeason` and `selectedMeetType`.
 
-    // Filters (same as before)
-    if (selectedSeason !== "All-Time") {
-      results = results.filter((r) => r.season === selectedSeason);
-    }
-    if (selectedMeetType !== "All-Meets") {
-      results = results.filter((r) => {
-        const meet = meetsMap.get(r.meet);
-        if (!meet) return false;
-        return selectedMeetType === "Official"
-          ? meet.official
-          : meet.benchmarks;
-      });
-    }
-    if (selectedPresentation !== "By Meet" && selectedEvent !== "All-Events") {
-      results = results.filter((r) => r.event === selectedEvent);
-    }
-
-    // Apply Presentation Logic
-    if (selectedPresentation === "Best Efforts") {
-      const bestEffortsMap = new Map<string, IndividualResult>();
-      results.forEach((r) => {
-        if (r.dq) return;
-        const cb = bestEffortsMap.get(r.event);
-        if (!cb || r.result < cb.result) {
-          bestEffortsMap.set(r.event, r);
-        }
-      });
-      return Array.from(bestEffortsMap.values())
-        .map((r): BestEffortResult => {
-          const event = eventsMap.get(r.event); // Get full event object
-          const meet = meetsMap.get(r.meet);
-          return {
-            ...r,
-            eventName: event?.nameShort || "Unknown Event",
-            eventCode: event?.code || "N/A", // Include eventCode
-            meetName: meet?.nameShort || "Unknown Meet",
-            meetDate: meet?.date || "N/A",
-          };
-        })
-        .sort((a, b) => a.eventName.localeCompare(b.eventName));
-    } else if (selectedPresentation === "By Meet") {
-      const resultsByMeet = new Map<string, MeetGroup>();
-      results.forEach((r) => {
-        const meet = meetsMap.get(r.meet);
-        if (!meet) return;
-        const event = eventsMap.get(r.event); // Get full event object
-        const meetInfo = {
-          meetId: meet.id,
-          meetName: meet.nameShort,
-          meetDate: meet.date,
-        };
-        const resultInfo: ResultWithEventName = {
-          ...r,
-          eventName: event?.nameShort || "Unknown Event",
-          eventCode: event?.code || "N/A", // Include eventCode
-        };
-        const existing: MeetGroup = resultsByMeet.get(meet.id) || {
-          ...meetInfo,
-          results: [],
-        };
-        existing.results.push(resultInfo);
-        existing.results.sort((a, b) => a.eventName.localeCompare(b.eventName)); // Sort by event name within meet
-        resultsByMeet.set(meet.id, existing);
-      });
-      return Array.from(resultsByMeet.values()).sort(
-        (a, b) =>
-          new Date(b.meetDate).getTime() - new Date(a.meetDate).getTime()
-      );
-    } else if (selectedPresentation === "By Event") {
-      const resultsByEvent = new Map<string, EventGroup>();
-      results.forEach((r) => {
-        const event = eventsMap.get(r.event);
-        if (!event) return;
-        const meet = meetsMap.get(r.meet); // Get full meet object
-        const eventInfo = { eventId: event.id, eventName: event.nameShort };
-        const resultInfo: ResultWithMeetInfo = {
-          ...r,
-          eventCode: event?.code || "N/A", // Include eventCode
-          meetName: meet?.nameShort || "Unknown Meet",
-          meetDate: meet?.date || "N/A",
-        };
-        const existing: EventGroup = resultsByEvent.get(event.id) || {
-          ...eventInfo,
-          results: [],
-        };
-        existing.results.push(resultInfo);
-        existing.results.sort(
-          (a, b) =>
-            new Date(b.meetDate).getTime() - new Date(a.meetDate).getTime()
-        ); // Sort by date within event
-        resultsByEvent.set(event.id, existing);
-      });
-      return Array.from(resultsByEvent.values()).sort((a, b) =>
-        a.eventName.localeCompare(b.eventName)
-      );
-    }
-    return [];
-  }, [
-    individualResults,
-    meets,
-    events,
-    selectedSeason,
-    selectedMeetType,
-    selectedPresentation,
-    selectedEvent,
-  ]);
-
-  // --- *** UPDATED Event Handler for Filters *** ---
-  const handleFilterChange =
-    (paramName: string) => (event: React.ChangeEvent<HTMLSelectElement>) => {
-      const value = event.target.value;
-
-      // Call the correct state setter based on paramName
-      switch (paramName) {
-        case "season":
-          setSelectedSeason(value);
-          break;
-        case "meetType":
-          setSelectedMeetType(value);
-          break;
-        case "presentation":
-          setSelectedPresentation(value);
-          break;
-        case "event":
-          setSelectedEvent(value);
-          break;
-        default:
-          console.warn("Unknown filter paramName:", paramName);
-          return;
-      }
+  // --- Function to Apply Filters and Update URL ---
+  const applyFilters = useCallback(
+    (newSeason: string, newMeetType: string) => {
+      // Update state
+      setSelectedSeason(newSeason);
+      setSelectedMeetType(newMeetType);
 
       // Prepare params for URL update
       const currentParams = new URLSearchParams(searchParams);
-      if (
-        value &&
-        !["All-Time", "All-Meets", "All-Events", "Best Efforts"].includes(value)
-      ) {
-        currentParams.set(paramName, value);
+
+      // Set or delete 'season' param
+      if (newSeason && newSeason !== "All-Time") {
+        currentParams.set("season", newSeason);
       } else {
-        currentParams.delete(paramName);
+        currentParams.delete("season");
       }
 
-      // Special handling for presentation change affecting event filter
-      if (paramName === "presentation" && value === "By Meet") {
-        currentParams.delete("event");
-        setSelectedEvent("All-Events"); // Reset event state directly
+      // Set or delete 'meetType' param
+      if (newMeetType && newMeetType !== "All-Meets") {
+        currentParams.set("meetType", newMeetType);
+      } else {
+        currentParams.delete("meetType");
       }
 
+      // Update URL search params without page reload
       setSearchParams(currentParams, { replace: true });
-    };
+    },
+    [searchParams, setSearchParams]
+  ); // Dependencies for useCallback
+
+  // --- Sync URL changes back to state ---
+  // This useEffect ensures that if the user navigates using browser back/forward
+  // buttons, the state reflects the URL parameters.
+  useEffect(() => {
+    const currentSeason = searchParams.get("season") || "All-Time";
+    const currentMeetType = searchParams.get("meetType") || "All-Meets";
+
+    if (currentSeason !== selectedSeason) {
+      setSelectedSeason(currentSeason);
+    }
+    if (currentMeetType !== selectedMeetType) {
+      setSelectedMeetType(currentMeetType);
+    }
+  }, [searchParams, selectedSeason, selectedMeetType]);
 
   // Calculate current age
   const currentAge = useMemo(
-    () => (person ? calculateAge(person.birthday)?.toString() ?? null : null), // Ensure calculateAge returns string or handle null
+    () => (person ? calculateAge(person.birthday)?.toString() ?? null : null),
     [person]
   );
 
-  // Context Value
-  const contextValue: AthleteContextType = {
-    person,
-    athleteRecords,
-    contacts,
-    seasons,
-    meets,
-    events,
-    individualResults,
-    loading,
-    error,
-    selectedSeason,
-    selectedMeetType,
-    selectedPresentation,
-    selectedEvent,
-    filteredResultsData,
-    handleFilterChange,
-    personId,
-    currentAge,
-  };
+  // --- Context Value ---
+  // Provide raw data and filter state/functions
+  const contextValue: AthleteContextType = useMemo(
+    () => ({
+      person,
+      athleteRecords,
+      contacts,
+      seasons,
+      meets,
+      events,
+      individualResults, // Provide all fetched results for the athlete
+      loading,
+      error,
+      selectedSeason, // Provide current filter state
+      selectedMeetType, // Provide current filter state
+      applyFilters, // Provide the function to change filters
+      personId,
+      currentAge,
+    }),
+    [
+      person,
+      athleteRecords,
+      contacts,
+      seasons,
+      meets,
+      events,
+      individualResults,
+      loading,
+      error,
+      selectedSeason,
+      selectedMeetType,
+      applyFilters,
+      personId,
+      currentAge,
+    ]
+  ); // Memoize context value
 
   return (
     <AthleteContext.Provider value={contextValue}>

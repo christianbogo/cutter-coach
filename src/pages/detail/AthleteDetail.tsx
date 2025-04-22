@@ -1,32 +1,61 @@
-// AthleteDetail.tsx
+// src/pages/AthleteDetail/AthleteDetail.tsx
 
-import React from "react";
+import React, { useState } from "react";
 import {
   AthleteProvider,
   useAthleteContext,
 } from "../../contexts/AthleteContext"; // Adjust path
 import AthleteResults from "../../components/AthleteResults"; // Adjust path
-import { getDisplayDate } from "../../utils/dateUtils"; // Adjust path
 import "../../styles/AthleteDetail.css"; // Adjust path
 
 // --- Main Detail Component Content ---
 const AthleteDetailContent: React.FC = () => {
-  // Consume context
   const {
     person,
     contacts,
     seasons,
-    events,
-    individualResults,
     loading,
     error,
     selectedSeason,
     selectedMeetType,
-    selectedPresentation,
-    selectedEvent,
-    handleFilterChange, // Get the updated handler from context
+    applyFilters, // We'll need a new function in the context to apply batch changes
     currentAge,
   } = useAthleteContext();
+
+  // State for filter visibility
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  // State to hold temporary filter selections before applying
+  const [tempSelectedSeason, setTempSelectedSeason] =
+    useState<string>(selectedSeason);
+  const [tempSelectedMeetType, setTempSelectedMeetType] =
+    useState<string>(selectedMeetType);
+
+  const toggleFilters = () => setIsFilterOpen(!isFilterOpen);
+
+  const handleTempFilterChange =
+    (filterType: "season" | "meetType") =>
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const value = event.target.value;
+      if (filterType === "season") {
+        setTempSelectedSeason(value);
+      } else {
+        setTempSelectedMeetType(value);
+      }
+    };
+
+  const handleSetFilters = () => {
+    // Call the context function to apply the temporary filters
+    // This function (applyFilters) will need to update the context state
+    // and potentially the URL search params. We'll define it in AthleteContext later.
+    applyFilters(tempSelectedSeason, tempSelectedMeetType);
+    setIsFilterOpen(false); // Close the filter section
+  };
+
+  // Update temp filters if context values change (e.g., initial load or URL change)
+  React.useEffect(() => {
+    setTempSelectedSeason(selectedSeason);
+    setTempSelectedMeetType(selectedMeetType);
+  }, [selectedSeason, selectedMeetType]);
 
   if (loading)
     return <div className="loading-indicator">Loading athlete details...</div>;
@@ -36,15 +65,32 @@ const AthleteDetailContent: React.FC = () => {
       <div className="error-message">Athlete data could not be loaded.</div>
     );
 
+  // Determine the display text for the filter status
+  const filterStatusText = `${
+    selectedMeetType === "Official"
+      ? "Official"
+      : selectedMeetType === "Benchmarks"
+      ? "Unofficial"
+      : ""
+  } ${
+    selectedSeason === "All-Time"
+      ? "All-Time"
+      : seasons.find((s) => s.id === selectedSeason)?.nameShort || "Unknown"
+  } Results for`;
+
   return (
     <div className="athlete-detail-page">
+      <button onClick={toggleFilters} className="athlete-subtext-toggle">
+        {filterStatusText}
+      </button>
+
       <h1>
         {person.firstName} {person.lastName}{" "}
         {person.preferredName && person.preferredName !== person.firstName
           ? `(${person.preferredName})`
           : ""}
-        {currentAge && currentAge !== "NaN" && `${currentAge}`}
-        {person.gender && `${person.gender}`}
+        ({currentAge && currentAge !== "NaN" && `${currentAge}`}
+        {person.gender && `${person.gender}`})
       </h1>
 
       {contacts.length > 0 && (
@@ -57,62 +103,46 @@ const AthleteDetailContent: React.FC = () => {
         </p>
       )}
 
-      {/* Filters Section - Updated onChange handlers */}
-      <section className="results-section">
-        <h2>Results</h2>
-        <div className="results-filters">
-          <select
-            value={selectedSeason}
-            onChange={handleFilterChange("season")}
-            aria-label="Filter by Season"
-          >
-            <option value="All-Time">All-Time</option>
-            {seasons.map((s) => (
-              <option key={s.id} value={s.id}>
-                {" "}
-                {s.nameShort}{" "}
-              </option>
-            ))}
-          </select>
-          <select
-            value={selectedMeetType}
-            onChange={handleFilterChange("meetType")}
-            aria-label="Filter by Meet Type"
-          >
-            <option value="All-Meets">All Meets</option>
-            <option value="Official">Official Meets</option>
-            <option value="Benchmarks">Benchmark Meets</option>
-          </select>
-          <select
-            value={selectedPresentation}
-            onChange={handleFilterChange("presentation")}
-            aria-label="Filter by Presentation Mode"
-          >
-            <option value="Best Efforts">Best Efforts</option>
-            <option value="By Meet">By Meet</option>
-            <option value="By Event">By Event</option>
-          </select>
-          {selectedPresentation !== "By Meet" && (
+      {isFilterOpen && (
+        <section className="results-filters-simplified">
+          {/* Add class for styling */}
+          <div className="filter-group">
+            <label htmlFor="season-filter">Season:</label>
             <select
-              value={selectedEvent}
-              onChange={handleFilterChange("event")}
-              aria-label="Filter by Event"
-              disabled={events.length === 0}
+              id="season-filter"
+              value={tempSelectedSeason}
+              onChange={handleTempFilterChange("season")}
+              aria-label="Filter by Season"
             >
-              <option value="All-Events">All Events</option>
-              {events
-                .sort((a, b) => a.nameShort.localeCompare(b.nameShort))
-                .map((e) => (
-                  <option key={e.id} value={e.id}>
-                    {" "}
-                    {e.nameShort}{" "}
-                  </option>
-                ))}
+              <option value="All-Time">All-Time</option>
+              {seasons.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.nameShort}
+                </option>
+              ))}
             </select>
-          )}
-        </div>
+          </div>
+          <div className="filter-group">
+            <label htmlFor="meet-type-filter">Meet Type:</label>
+            <select
+              id="meet-type-filter"
+              value={tempSelectedMeetType}
+              onChange={handleTempFilterChange("meetType")}
+              aria-label="Filter by Meet Type"
+            >
+              <option value="All-Meets">All Meets</option>
+              <option value="Official">Official Meets</option>
+              <option value="Benchmarks">Benchmark Meets</option>
+            </select>
+          </div>
+          <button onClick={handleSetFilters} className="set-filters-button">
+            Set Filters
+          </button>
+        </section>
+      )}
 
-        {/* Results Display Area - Render AthleteResults component */}
+      {/* Results Display Area - Render the updated AthleteResults component */}
+      <section className="results-section">
         <AthleteResults />
       </section>
     </div>
