@@ -39,11 +39,6 @@
   transform: translateY(-2px);
 }
 
-/* Specific styles for program cards */
-.program-card {
-  /* Inherits base card styles, add specific overrides if needed */
-}
-
 .program-name {
   font-size: 1.3rem;
   font-weight: 600;
@@ -80,10 +75,6 @@
   height: 18px;
   flex-shrink: 0; /* Prevent icon from shrinking */
   color: var(--color-accent-blue); /* Example color for icons */
-}
-
-.program-detail-text {
-  /* Styles for the text next to the icon, if needed */
 }
 
 /* Message shown when no programs are available */
