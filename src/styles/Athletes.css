@@ -1,0 +1,222 @@
+.athletes-page {
+  padding: 1rem; /* Match content-area padding */
+  max-width: 1200px; /* Adjust as needed */
+  margin: 0 auto;
+}
+
+.athletes-page a {
+  text-decoration: none !important; /* Override any global styles */
+}
+
+.athletes-page h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary); /* Use variable from App.css */
+  font-size: 1.8rem; /* Base size */
+}
+
+/* --- Controls --- */
+.athletes-controls {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.athletes-search-input,
+.athletes-team-filter {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--color-border-soft, #ced4da);
+  border-radius: var(--border-radius-small, 4px);
+  flex-grow: 1; /* Allow input/select to grow */
+  box-sizing: border-box;
+  background-color: var(--color-surface, white);
+  color: var(--color-text-primary);
+}
+
+/* Add focus styles similar to Home.css */
+.athletes-search-input:focus,
+.athletes-team-filter:focus {
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 0 3px rgba(10, 88, 202, 0.2);
+  outline: none;
+}
+
+/* Style adjustments for select dropdown arrow */
+.athletes-team-filter {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  padding-right: 2.5em;
+}
+
+/* --- Athletes List (Simplified to Flex Column) --- */
+.athletes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Vertical spacing between cards */
+}
+
+/* --- Athlete Card --- */
+.athlete-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  /* height: 100%; /* Removed: Height constraint less relevant in flex column */
+  border: 1px solid var(--color-border-soft, #e9ecef);
+  background-color: var(--color-surface, white);
+  padding: 1rem 1.25rem;
+  border-radius: var(--border-radius-standard, 8px);
+  box-shadow: var(--box-shadow-standard, 0 2px 8px rgba(0, 0, 0, 0.06));
+  transition: box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
+  position: relative; /* Keep for focus offset */
+  /* Removed accidental margin-bottom: 10rem; Spacing handled by parent gap */
+}
+
+.athlete-card-link:hover {
+  box-shadow: var(--box-shadow-hover, 0 4px 12px rgba(0, 0, 0, 0.1));
+  transform: translateY(-2px);
+}
+
+.athlete-card-link:focus {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+/* Simplify .athlete-card: It's now just a container for content within the link */
+.athlete-card {
+  flex-grow: 1;
+  display: contents;
+}
+
+.athlete-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-soft, #eee);
+  flex-shrink: 0;
+}
+
+.athlete-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  flex: 1 1 auto;
+  margin-right: 0.5rem;
+}
+
+.athlete-age-gender {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface-secondary, #f8f9fa);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--border-radius-small, 4px);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.athlete-card-body {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  flex-grow: 1; /* Body takes remaining space */
+}
+
+.athlete-detail-section {
+  margin-bottom: 0.75rem;
+}
+.athlete-detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.athlete-detail-section strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+}
+
+.athlete-detail-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 0.5rem;
+}
+
+.athlete-detail-section li {
+  margin-bottom: 0.15rem;
+  color: var(--color-text-primary);
+}
+.athlete-detail-section li:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Loading/Error/Empty States --- */
+.athletes-empty-message {
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 2rem;
+  font-style: italic;
+  /* Removed grid-column: 1 / -1; */
+  background-color: var(--color-surface-secondary, #f8f9fa);
+  border-radius: var(--border-radius-standard, 6px);
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Medium screens and down */
+@media (max-width: 600px) {
+  .athletes-controls {
+    flex-direction: column;
+  }
+
+  .athletes-search-input,
+  .athletes-team-filter {
+    width: 100%;
+    flex-grow: 0;
+  }
+
+  /* Removed .athletes-list specific rules as grid is gone */
+  /* .athletes-list { ... } */
+
+  .athletes-page h1 {
+    font-size: 1.6rem;
+  }
+
+  .athlete-card-link {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+  .athletes-page h1 {
+    font-size: 1.4rem;
+  }
+
+  .athlete-name {
+    font-size: 1.05rem;
+    margin-right: 0;
+  }
+
+  .athlete-age-gender {
+    align-self: flex-start;
+  }
+
+  .athlete-card-body {
+    font-size: 0.85rem;
+  }
+
+  .athlete-detail-section strong {
+    font-size: 0.8rem;
+  }
+}

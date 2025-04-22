@@ -1,0 +1,278 @@
+/* AthleteDetail.css */
+
+.athlete-detail-page {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.athlete-detail-page h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
+  font-size: 1.8rem;
+}
+
+/* --- Info Table --- */
+.info-table {
+  width: 100%;
+  max-width: 700px; /* Limit width for readability */
+  margin: 0 auto 2.5rem auto; /* Center table */
+  border-collapse: collapse;
+  border: 1px solid var(--color-border-soft, #dee2e6);
+  background-color: var(--color-surface, white);
+  box-shadow: var(--box-shadow-standard);
+  border-radius: var(--border-radius-standard);
+  overflow: hidden; /* Ensures border radius applies to content */
+}
+
+.info-table th,
+.info-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-soft, #dee2e6);
+  vertical-align: top; /* Align content top */
+}
+
+.info-table tr:last-child th,
+.info-table tr:last-child td {
+  border-bottom: none; /* Remove bottom border on last row */
+}
+
+.info-table th {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  white-space: nowrap; /* Prevent headers from wrapping */
+  width: 1%; /* Make header column take minimum needed width */
+  padding-right: 2rem; /* Add space between header and data */
+}
+
+.info-table td {
+  color: var(--color-text-primary);
+}
+
+/* Style links within the table */
+.info-table td a {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+}
+.info-table td a:hover {
+  text-decoration: underline;
+}
+
+/* Style list within the contacts cell */
+.info-table td ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.info-table td li {
+  margin-bottom: 0.25rem;
+}
+.info-table td li:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Results Section --- */
+.results-section {
+  margin-top: 2rem;
+}
+
+.results-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-soft);
+  padding-bottom: 0.5rem;
+}
+
+/* --- Filter Controls --- */
+.results-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: var(--color-surface-secondary, #f8f9fa);
+  border-radius: var(--border-radius-standard, 6px);
+}
+
+.results-filters select {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--color-border-soft, #ced4da);
+  border-radius: var(--border-radius-small, 4px);
+  flex-grow: 1;
+  min-width: 180px; /* Adjust min width */
+  box-sizing: border-box;
+  background-color: var(--color-surface, white);
+  color: var(--color-text-primary);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  padding-right: 2.5em;
+}
+
+.results-filters select:focus {
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 0 3px rgba(10, 88, 202, 0.2);
+  outline: none;
+}
+
+.results-filters select:disabled {
+  background-color: var(--color-button-disabled-bg, #e9ecef);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* --- Results Display Area --- */
+.results-display {
+  /* Placeholder for results table/list styling */
+  margin-top: 1rem;
+}
+
+.results-display table {
+  /* Example basic table styling */
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.results-display th,
+.results-display td {
+  border: 1px solid var(--color-border-soft);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.results-display th {
+  background-color: var(--color-surface-secondary);
+  font-weight: 600;
+}
+
+/* Style for meet/event groupings */
+.results-display .result-group-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+.results-display .result-group-heading:first-child {
+  margin-top: 0;
+}
+
+/* --- Loading/Error/Empty States --- */
+.results-empty-message {
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 2rem;
+  font-style: italic;
+  background-color: var(--color-surface-secondary, #f8f9fa);
+  border-radius: var(--border-radius-standard, 6px);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .info-table th,
+  .info-table td {
+    padding: 0.6rem 0.75rem;
+  }
+  .info-table th {
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .athlete-detail-page h1 {
+    font-size: 1.6rem;
+  }
+  .results-section h2 {
+    font-size: 1.3rem;
+  }
+  .results-filters {
+    flex-direction: column;
+  }
+  .results-filters select {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Stack table headers and data cells */
+  .info-table,
+  .info-table tbody,
+  .info-table tr,
+  .info-table td,
+  .info-table th {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .info-table tr {
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--border-radius-small);
+    margin-bottom: 1rem;
+    box-shadow: var(--box-shadow-standard);
+  }
+  .info-table thead {
+    display: none; /* Hide traditional header row */
+  }
+
+  .info-table td {
+    border: none;
+    border-bottom: 1px solid var(--color-border-soft);
+    position: relative;
+    padding-left: 50%; /* Make space for the label */
+    min-height: 1.5em; /* Ensure cells aren't too short */
+    text-align: right; /* Align data right */
+  }
+  .info-table tr:last-child td:last-child {
+    border-bottom: none;
+  }
+
+  .info-table td::before {
+    /* Use the th text as a label */
+    content: attr(
+      data-label
+    ); /* We'll need to add data-label attributes in JSX */
+    position: absolute;
+    left: 0.75rem;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-align: left; /* Align label left */
+  }
+  .info-table th {
+    display: none; /* Hide the actual th cell */
+  }
+  /* Adjust list styling in stacked view */
+  .info-table td ul {
+    text-align: right;
+  }
+  .info-table td[data-label="Contacts"] ul {
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .athlete-detail-page h1 {
+    font-size: 1.4rem;
+  }
+  .results-section h2 {
+    font-size: 1.2rem;
+  }
+  .info-table td,
+  .results-display th,
+  .results-display td {
+    font-size: 0.85rem;
+  }
+  .info-table td::before {
+    font-size: 0.8rem; /* Adjust label size */
+  }
+}

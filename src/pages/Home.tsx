@@ -1,13 +1,39 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react"; // Import useState
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import SiteLogo from "../assets/logo.svg";
 import ArrowRight from "../assets/nucleo/primary/20-arrow-right.svg";
 import Programs from "../components/Programs";
 import "../styles/Home.css";
 
 function Home(): React.ReactElement {
+  // State to hold the search input value
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  // Hook for navigation
+  const navigate = useNavigate();
+
+  // Handler for input changes
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  // Updated handler for the search button click
   const handleSearchClick = () => {
-    console.log("Navigate to /search page (to be implemented)");
+    // Trim whitespace from the search term
+    const trimmedSearchTerm = searchTerm.trim();
+    if (trimmedSearchTerm) {
+      // If there's a search term, navigate to /athletes with the query parameter
+      navigate(`/athletes?search=${encodeURIComponent(trimmedSearchTerm)}`);
+    } else {
+      // If the search term is empty, just navigate to the base /athletes page
+      navigate("/athletes");
+    }
+  };
+
+  // Optional: Allow pressing Enter in the input to trigger search
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearchClick();
+    }
   };
 
   return (
@@ -30,17 +56,21 @@ function Home(): React.ReactElement {
 
       <section className="athlete-finder-section">
         <h2 className="athlete-finder-title">Athlete Finder</h2>
+        {/* Note: Consider wrapping in a <form> element and using onSubmit */}
         <div className="athlete-finder-input-group">
           <input
             type="text"
             placeholder="Search for an athlete..."
             className="athlete-finder-input"
             aria-label="Athlete Search Input"
+            value={searchTerm} // Control the input value with state
+            onChange={handleInputChange} // Update state on change
+            onKeyDown={handleKeyDown} // Add Enter key functionality
           />
           <button
-            type="button"
+            type="button" // Keep as type="button" if not using a form's onSubmit
             className="athlete-finder-button"
-            onClick={handleSearchClick}
+            onClick={handleSearchClick} // Use the updated handler
           >
             Search Database
           </button>

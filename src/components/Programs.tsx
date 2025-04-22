@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import {
   collection,
   getDocs,
@@ -7,9 +8,9 @@ import {
   query,
   where,
   getCountFromServer,
-  Timestamp, // Import Timestamp if needed for comparison, though not directly used here
 } from "firebase/firestore";
-import { db } from "../firebase/firebase"; // Ensure this path is correct
+import { db } from "../firebase/firebase";
+import { getDisplayDate } from "../utils/dateUtils"; // Adjust path as needed
 
 // Import required icons
 import ShieldFilled from "../assets/nucleo/primary/20-shield-filled.svg";
@@ -18,84 +19,82 @@ import GraduationCap from "../assets/nucleo/primary/20-graduation-cap.svg";
 import Calendar from "../assets/nucleo/primary/20-calendar.svg";
 import Location from "../assets/nucleo/primary/20-pin.svg";
 import Users from "../assets/nucleo/primary/20-users.svg";
+// Optional: Default icon if type doesn't match
+// import DefaultIcon from '../assets/nucleo/primary/20-info.svg';
 
 // Import styles specific to this component
-import "../styles/Programs.css";
+import "../styles/Programs.css"; //
 
-// Interfaces based on your provided structure (simplified for relevance)
+// Interfaces (assuming these match your Firestore structure)
 interface Team {
-  id: string; // Firestore document ID
+  id: string;
   nameLong: string;
-  type: string;
+  type: string; // Expected values like "Club", "Middle School", "High School" or "Club Team" etc.
   locationName: string;
-  currentSeason?: string; // ID of the season document
-  // Add other fields from your Team interface if needed
+  currentSeason?: string;
 }
 
 interface Season {
-  id: string; // Firestore document ID
-  startDate: string; // Assuming 'YYYY-MM-DD'
-  endDate: string; // Assuming 'YYYY-MM-DD'
-  // Add other fields from your Season interface if needed
+  id: string;
+  startDate: string; // 'YYYY-MM-DD'
+  endDate: string; // 'YYYY-MM-DD'
 }
 
-// Interface for the data structure we will display in the component
 interface ProgramDisplayData {
-  id: string; // Use Firestore team ID as key
+  id: string; // This is the Team ID
   name: string;
-  type: string;
-  season: string; // Formatted date range string
+  type: string; // Store original type for mapping
+  season: string; // Will store the formatted date range
   location: string;
-  size: string; // Formatted athlete count string
+  size: string;
 }
 
-// --- Loading and Error Components (Simple Examples) ---
-// You can replace these with more sophisticated spinner/error components
 const LoadingIndicator = () => (
   <div className="loading-indicator">Loading programs...</div>
 );
-
 const ErrorMessage = ({ message }: { message: string }) => (
   <div className="error-message">Error loading programs: {message}</div>
 );
-// --------------------------------------------------------
+
+// Helper function to select the correct icon based on team type
+const getTypeIcon = (type: string): string => {
+  const lowerType = type.toLowerCase();
+  if (lowerType.includes("club")) return ShieldFilled;
+  if (lowerType.includes("middle school")) return Apple;
+  if (lowerType.includes("high school")) return GraduationCap;
+  return "";
+};
 
 function Programs(): React.ReactElement {
-  // State for storing the fetched and processed program data
   const [programsData, setProgramsData] = useState<ProgramDisplayData[]>([]);
-  // State to track loading status
   const [loading, setLoading] = useState<boolean>(true);
-  // State to store any potential errors during fetch
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate(); // Initialize navigate hook
 
   useEffect(() => {
-    // Define the async function to fetch and process data
     const fetchData = async () => {
-      setLoading(true); // Start loading
-      setError(null); // Reset error state
+      setLoading(true);
+      setError(null);
 
       try {
-        // 1. Get all teams
         const teamsCollectionRef = collection(db, "teams");
         const teamSnapshot = await getDocs(teamsCollectionRef);
 
         if (teamSnapshot.empty) {
-          setProgramsData([]); // No teams found
+          setProgramsData([]);
           setLoading(false);
           return;
         }
 
-        // Process each team to get season and athlete count
         const processedProgramsPromises = teamSnapshot.docs.map(
           async (teamDoc) => {
-            const teamData = teamDoc.data() as Omit<Team, "id">; // Cast data, ID is from teamDoc.id
+            const teamData = teamDoc.data() as Omit<Team, "id">;
             const teamId = teamDoc.id;
 
             let seasonString = "N/A";
             let athleteCount = 0;
             let seasonId: string | undefined = teamData.currentSeason;
 
-            // 2. Get current season information if available
             if (seasonId) {
               try {
                 const seasonDocRef = doc(db, "seasons", seasonId);
@@ -103,10 +102,12 @@ function Programs(): React.ReactElement {
 
                 if (seasonDocSnap.exists()) {
                   const seasonData = seasonDocSnap.data() as Omit<Season, "id">;
-                  // Format season date range
-                  seasonString = `${seasonData.startDate} - ${seasonData.endDate}`;
+                  const startDateFormatted = getDisplayDate(
+                    seasonData.startDate
+                  );
+                  const endDateFormatted = getDisplayDate(seasonData.endDate);
+                  seasonString = `${startDateFormatted} to ${endDateFormatted}`;
 
-                  // 3. Get athlete count for the current season
                   try {
                     const athletesCollectionRef = collection(db, "athletes");
                     const athleteQuery = query(
@@ -122,7 +123,6 @@ function Programs(): React.ReactElement {
                       `Error counting athletes for season ${seasonId}:`,
                       countError
                     );
-                    // Decide how to handle count error, maybe show 'Error' or 'N/A' for size
                   }
                 } else {
                   console.warn(
@@ -141,19 +141,17 @@ function Programs(): React.ReactElement {
               seasonString = "No current season set";
             }
 
-            // 4. Format the final display object
             return {
-              id: teamId,
+              id: teamId, // Ensure ID is correctly passed
               name: teamData.nameLong,
               type: teamData.type,
               season: seasonString,
               location: teamData.locationName,
-              size: seasonId ? `${athleteCount} athletes` : "N/A", // Only show count if season was valid
+              size: seasonId ? `${athleteCount} athletes` : "N/A",
             } as ProgramDisplayData;
           }
         );
 
-        // Wait for all team processing promises to resolve
         const resolvedPrograms = await Promise.all(processedProgramsPromises);
         setProgramsData(resolvedPrograms);
       } catch (err) {
@@ -162,17 +160,19 @@ function Programs(): React.ReactElement {
           err instanceof Error ? err.message : "An unexpected error occurred."
         );
       } finally {
-        setLoading(false); // Finish loading regardless of success or error
+        setLoading(false);
       }
     };
 
-    fetchData(); // Call the fetching function when the component mounts
+    fetchData();
+  }, []); // Removed navigate from dependency array as it's stable
 
-    // Cleanup function (optional, useful if you were using real-time listeners)
-    // return () => { /* Cleanup logic here */ };
-  }, []); // Empty dependency array ensures this runs only once on mount
+  // --- Navigation Handler ---
+  const handleCardClick = (teamId: string) => {
+    // Navigate to the Teams page with the specific team ID as a query parameter
+    navigate(`/teams?team=${encodeURIComponent(teamId)}`);
+  };
 
-  // --- Conditional Rendering based on state ---
   if (loading) {
     return (
       <section className="programs-section">
@@ -196,43 +196,65 @@ function Programs(): React.ReactElement {
       <h2 className="programs-title">Supported Programs</h2>
       <div className="programs-list">
         {programsData.length > 0 ? (
-          programsData.map((program) => (
-            // Use the Firestore team ID as the key
-            <div key={program.id} className="card program-card">
-              <h3 className="program-name">{program.name}</h3>
-              <p className="program-type">{program.type}</p>
-              <div className="program-details">
-                <p className="program-detail">
-                  <img
-                    className="program-detail-icon"
-                    src={Calendar}
-                    alt="Calendar icon"
-                  />
-                  <span className="program-detail-text">{program.season}</span>
-                </p>
-                <p className="program-detail">
-                  <img
-                    className="program-detail-icon"
-                    src={Location}
-                    alt="Location icon"
-                  />
-                  <span className="program-detail-text">
-                    {program.location}
-                  </span>
-                </p>
-                <p className="program-detail">
-                  <img
-                    className="program-detail-icon"
-                    src={Users}
-                    alt="Users icon"
-                  />
-                  <span className="program-detail-text">{program.size}</span>
-                </p>
+          programsData.map((program) => {
+            const iconSrc = getTypeIcon(program.type);
+            return (
+              // Add onClick handler to the card div
+              <div
+                key={program.id}
+                className="card program-card"
+                onClick={() => handleCardClick(program.id)} // Pass team ID
+                role="link" // Add role for accessibility
+                tabIndex={0} // Make it focusable
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ")
+                    handleCardClick(program.id);
+                }} // Keyboard accessibility
+              >
+                <div className="program-header">
+                  {iconSrc && (
+                    <img
+                      src={iconSrc}
+                      alt={`${program.type} icon`}
+                      className="program-type-icon"
+                    />
+                  )}
+                  <h3 className="program-name">{program.name}</h3>
+                </div>
+                <div className="program-details">
+                  <p className="program-detail">
+                    <img
+                      className="program-detail-icon"
+                      src={Calendar}
+                      alt="Calendar icon"
+                    />
+                    <span className="program-detail-text">
+                      {program.season}
+                    </span>
+                  </p>
+                  <p className="program-detail">
+                    <img
+                      className="program-detail-icon"
+                      src={Location}
+                      alt="Location icon"
+                    />
+                    <span className="program-detail-text">
+                      {program.location}
+                    </span>
+                  </p>
+                  <p className="program-detail">
+                    <img
+                      className="program-detail-icon"
+                      src={Users}
+                      alt="Users icon"
+                    />
+                    <span className="program-detail-text">{program.size}</span>
+                  </p>
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
         ) : (
-          // Message shown if loading is complete but no programs were found/processed
           <p className="programs-empty-message">No supported programs found.</p>
         )}
       </div>

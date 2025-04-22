@@ -172,7 +172,6 @@
   padding: 1.5rem;
   box-shadow: var(--box-shadow-standard, 0 2px 8px rgba(0, 0, 0, 0.06));
   border: 1px solid var(--color-border-soft, #e9ecef);
-  margin-bottom: 1.5rem; /* Add margin between stacked cards */
 }
 
 .disclaimer-text {

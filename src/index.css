@@ -103,7 +103,6 @@ p {
   border: 1px solid var(--color-border-soft);
   border-radius: var(--border-radius-standard);
   box-shadow: var(--box-shadow-standard);
-  margin-bottom: 1.5rem;
   padding: 1.5rem;
 }
 

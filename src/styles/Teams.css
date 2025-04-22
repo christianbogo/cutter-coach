@@ -1,0 +1,230 @@
+/* Teams.css */
+/* Styles adapted from Athletes.css */
+
+.teams-page {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.teams-page h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
+  font-size: 1.8rem;
+}
+
+/* --- Controls --- */
+.teams-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem; /* Increased gap slightly */
+  margin-bottom: 2rem;
+  /* Optional: Add light background like Athletes controls */
+  /* padding: 1rem; */
+  /* background-color: var(--color-surface-secondary, #f8f9fa); */
+  /* border-radius: var(--border-radius-standard, 6px); */
+}
+
+.team-filter,
+.season-filter {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--color-border-soft, #ced4da);
+  border-radius: var(--border-radius-small, 4px);
+  flex-grow: 1;
+  min-width: 200px; /* Ensure dropdowns have reasonable min width */
+  box-sizing: border-box;
+  background-color: var(--color-surface, white);
+  color: var(--color-text-primary);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  padding-right: 2.5em;
+}
+
+.team-filter:focus,
+.season-filter:focus {
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 0 3px rgba(10, 88, 202, 0.2);
+  outline: none;
+}
+
+.season-filter:disabled {
+  background-color: var(--color-button-disabled-bg, #e9ecef);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* --- Teams Content --- */
+.teams-content {
+  /* Main container for team sections */
+}
+
+.team-section {
+  margin-bottom: 2.5rem; /* Space between team sections */
+}
+
+.team-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-accent-blue); /* Emphasize team heading */
+}
+
+.team-seasons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Space between season cards */
+}
+
+/* --- Season Card --- */
+.season-card {
+  /* Inherit visual styles from athlete-card-link */
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border-soft, #e9ecef);
+  background-color: var(--color-surface, white);
+  padding: 1rem 1.25rem;
+  border-radius: var(--border-radius-standard, 8px);
+  box-shadow: var(--box-shadow-standard, 0 2px 8px rgba(0, 0, 0, 0.06));
+}
+
+.season-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Space out name and dates */
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-soft, #eee);
+  flex-shrink: 0;
+}
+
+.season-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0; /* Remove default heading margin */
+}
+
+.season-dates {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  flex-shrink: 0; /* Prevent dates from shrinking too much */
+  white-space: nowrap;
+}
+
+.season-card-body {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.meets-title {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+}
+
+.meet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 0.5rem; /* Indent list items slightly */
+}
+
+.meet-item {
+  margin-bottom: 0.15rem;
+  color: var(--color-text-primary);
+  font-size: 0.85rem; /* Slightly smaller text for meets */
+}
+.meet-item:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Loading/Error/Empty States --- */
+/* Reuse global styles if available */
+/* .loading-indicator { ... } */
+/* .error-message { ... } */
+
+.teams-empty-message,
+.no-seasons-message,
+.no-meets-message {
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 1rem;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.teams-empty-message {
+  padding: 2rem;
+  background-color: var(--color-surface-secondary, #f8f9fa);
+  border-radius: var(--border-radius-standard, 6px);
+}
+.no-seasons-message {
+  margin-top: 1rem;
+}
+.no-meets-message {
+  margin-top: 0.5rem;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 600px) {
+  .teams-controls {
+    flex-direction: column;
+  }
+
+  .team-filter,
+  .season-filter {
+    width: 100%;
+    min-width: unset; /* Remove min-width when stacked */
+  }
+
+  .teams-page h1 {
+    font-size: 1.6rem;
+  }
+
+  .team-heading {
+    font-size: 1.3rem;
+  }
+
+  .season-card {
+    padding: 0.75rem 1rem;
+  }
+  .season-name {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .teams-page h1 {
+    font-size: 1.4rem;
+  }
+
+  .team-heading {
+    font-size: 1.2rem;
+  }
+  .season-name {
+    font-size: 1rem;
+  }
+  .season-dates {
+    font-size: 0.8rem;
+  }
+  .meet-item {
+    font-size: 0.8rem;
+  }
+  .season-card-body {
+    font-size: 0.85rem;
+  }
+}
