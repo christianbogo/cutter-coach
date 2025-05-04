@@ -18,7 +18,6 @@ import {
   query,
   where,
   documentId,
-  Timestamp as FirestoreTimestamp,
 } from "firebase/firestore";
 import { db } from "../firebase/firebase"; // Adjust path
 import { calculateAge } from "../utils/dateUtils"; // Adjust path

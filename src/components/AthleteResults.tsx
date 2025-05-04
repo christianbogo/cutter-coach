@@ -1,14 +1,9 @@
 // src/components/AthleteResults.tsx
 
 import React, { useMemo } from "react";
-import {
-  useAthleteContext,
-  BestEffortResult, // Keep this type if useful, or redefine
-  MeetGroup, // Keep this type if useful, or redefine
-} from "../contexts/AthleteContext"; // Adjust path
+import { useAthleteContext } from "../contexts/AthleteContext"; // Adjust path
 import { IndividualResult } from "../models/index";
 import { getDisplayShort } from "../utils/dateUtils"; // Adjust path
-import { Meet, Event } from "../models/index"; // Adjust path
 import { formatResultTime } from "../utils/resultTime"; // Adjust path
 
 // --- Define simpler types for this component's needs ---
