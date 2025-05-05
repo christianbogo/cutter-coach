@@ -150,3 +150,11 @@ p {
   /* Consider adjusting text color on orange bg if contrast is low */
   /* color: var(--color-text-primary); */
 }
+
+.under-construction {
+  background-color: var(--color-surface-secondary);
+  color: var(--color-text-secondary);
+  padding: 2rem;
+  border-radius: var(--border-radius-standard);
+  box-shadow: var(--box-shadow-standard);
+}

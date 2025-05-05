@@ -44,7 +44,13 @@ function App(): React.ReactElement {
         <NavBar onToggleMenu={toggleNavMenu} />
         <NavMenu isOpen={isNavMenuOpen} onCloseMenu={closeNavMenu} />
         <main className="content-area">
-          <Routes>
+          {/* Under Construction Message */}
+          <div className="under-construction">
+            <h1>Under Construction</h1>
+            <p>This site is currently under serious construction.</p>
+            <p>Expect a working site Friday May 9th!</p>
+          </div>
+          {/* <Routes>
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="/home" element={<Home />} />
 
@@ -60,7 +66,7 @@ function App(): React.ReactElement {
 
             <Route path="/support" element={<Support />} />
             <Route path="*" element={<div>404: Page Not Found</div>} />
-          </Routes>
+          </Routes> */}
         </main>
         <Footer />
       </div>
