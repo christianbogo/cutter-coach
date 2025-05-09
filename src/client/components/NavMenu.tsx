@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
-// Requirement 1: Use new Nucleo SVGs
 import XMarkSM from "../graphics/nucleo/primary/xmark-sm.svg";
 import House from "../graphics/nucleo/primary/house.svg";
 import User from "../graphics/nucleo/primary/user.svg";
@@ -9,18 +7,14 @@ import Users from "../graphics/nucleo/primary/users.svg";
 import Database from "../graphics/nucleo/primary/database.svg";
 import OrderedList from "../graphics/nucleo/primary/ordered-list.svg";
 import Atom from "../graphics/nucleo/primary/atom.svg";
-
-// Requirement 3: Use hyphenated class names in CSS file
 import "../styles/NavMenu.css";
 
-// Props interface remains the same
 interface NavMenuProps {
   isOpen: boolean;
   onCloseMenu: () => void;
 }
 
 function NavMenu({ isOpen, onCloseMenu }: NavMenuProps): React.ReactElement {
-  // Handle Escape key to close menu
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
@@ -30,19 +24,17 @@ function NavMenu({ isOpen, onCloseMenu }: NavMenuProps): React.ReactElement {
 
     if (isOpen) {
       document.addEventListener("keydown", handleKeyDown);
-      // Prevent background scroll when menu is open
       document.body.style.overflow = "hidden";
     } else {
       document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = ""; // Restore scroll
+      document.body.style.overflow = "";
     }
 
-    // Cleanup function
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = ""; // Ensure scroll is restored on unmount
+      document.body.style.overflow = "";
     };
-  }, [isOpen, onCloseMenu]); // Re-run effect when isOpen changes
+  }, [isOpen, onCloseMenu]);
 
   const handleLinkClick = (): void => {
     onCloseMenu();
@@ -57,40 +49,33 @@ function NavMenu({ isOpen, onCloseMenu }: NavMenuProps): React.ReactElement {
   };
 
   const handleContentClick = (event: React.MouseEvent<HTMLElement>): void => {
-    event.stopPropagation(); // Prevent clicks inside content from closing menu
+    event.stopPropagation();
   };
 
   const handleCloseButtonClick = (): void => {
-    // No event needed if not used
     onCloseMenu();
   };
 
-  // Dynamically add 'is-open' class for CSS transitions
   const overlayClassName = `nav-menu-overlay ${isOpen ? "is-open" : ""}`;
 
   return (
-    // Requirement 5: Overlay covers entire screen (handled by CSS)
     <div className={overlayClassName} onClick={handleOverlayClick}>
-      {/* Requirement 6: Content slides in (handled by CSS) */}
       <nav className="nav-menu-content" onClick={handleContentClick}>
         <button
           className="nav-menu-close-button"
           onClick={handleCloseButtonClick}
           aria-label="Close navigation menu"
         >
-          {/* Use imported XMark SVG */}
           <img className="nav-menu-icon" src={XMarkSM} alt="Close" />
         </button>
         <ul className="nav-menu-list">
-          {/* Requirement 2: Icons left of text, both large */}
           <li className="nav-menu-item">
             <Link
               to="/home"
               className="nav-menu-link"
               onClick={handleLinkClick}
             >
-              <img className="nav-menu-icon" src={House} alt="" />{" "}
-              {/* Alt can be empty for decorative icons */}
+              <img className="nav-menu-icon" src={House} alt="" />
               <span>Home</span>
             </Link>
           </li>

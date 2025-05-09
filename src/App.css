@@ -1,0 +1,56 @@
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-area {
+  flex-grow: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page {
+  padding: 2rem 1rem;
+  margin: 0 auto;
+}
+
+.loading-indicator {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--color-text-secondary, #6c757d);
+  font-style: italic;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  animation: subtlePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.error-message {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin: 1rem auto;
+  border: 1px solid #f5c2c7;
+  background-color: #f8d7da;
+  color: #842029;
+  border-radius: var(--border-radius-standard);
+  max-width: 600px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.error-message::before {
+  content: "⚠️ ";
+  margin-right: 0.5em;
+}

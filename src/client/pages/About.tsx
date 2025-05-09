@@ -1,10 +1,9 @@
 import React from "react";
-import "../../styles/About.css"; // Adjust the path as necessary
-// Assuming you have an icon for this, like a lightbulb or gears for "philosophy"
+import "../styles/About.css";
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="about-page-container screen">
+    <div className="page">
       <header className="about-header">
         <h1>About Cutter's Coaching</h1>
         <p className="about-subtitle">Empowering Athletes Through Technology</p>

@@ -1,11 +1,11 @@
 import React from "react";
-import "../../styles/Support.css";
+import "../styles/Support.css";
 
-import SupportIcon from "../../graphics/nucleo/primary/heart.svg";
+import SupportIcon from "../graphics/nucleo/primary/heart.svg";
 
 function Support(): React.ReactElement {
   return (
-    <div className="support-page-container">
+    <div className="page">
       <div className="support-card">
         <img src={SupportIcon} alt="Support Icon" className="support-icon" />
 
