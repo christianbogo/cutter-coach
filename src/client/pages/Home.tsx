@@ -76,7 +76,7 @@ function Home(): React.ReactElement {
 
       <section className="disclaimer-section">
         <h2 className="disclaimer-title">Disclaimer</h2>
-        <div className="disclaimer-content card">
+        <div className="disclaimer-content">
           <p className="disclaimer-text">
             Please note: Cutter's Coaching is currently a work-in-progress.
             Information presented may not always be fully up-to-date or

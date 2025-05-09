@@ -61,7 +61,7 @@
 }
 
 .athlete-finder-section {
-  margin-bottom: 3rem;
+  margin-bottom: 6rem;
   text-align: center;
 }
 
@@ -142,7 +142,6 @@
 }
 
 .disclaimer-section {
-  margin-bottom: 2rem;
   padding: 2rem 1rem;
   background-color: var(--color-surface);
   border-radius: var(--border-radius-standard);

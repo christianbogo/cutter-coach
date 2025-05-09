@@ -5,7 +5,7 @@ import Pointer from "../graphics/nucleo/primary/pointer.svg";
 import SiteLogo from "../graphics/logo.svg";
 import Heart from "../graphics/nucleo/primary/heart.svg";
 
-import "../styles/NavBar.css";
+import "../styles/Nav.css";
 
 interface NavBarProps {
   onToggleMenu: () => void;

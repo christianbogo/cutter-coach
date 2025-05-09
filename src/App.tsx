@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from "./client/components/NavBar";
 import NavMenu from "./client/components/NavMenu";
@@ -33,11 +28,8 @@ function App(): React.ReactElement {
         <NavMenu isOpen={isNavMenuOpen} onCloseMenu={closeNavMenu} />
         <main className="content-area">
           <Routes>
-            <Route path="/" element={<Navigate replace to="/home" />} />
-            <Route path="/home" element={<Home />} />
-
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-
             <Route path="/support" element={<Support />} />
             <Route path="*" element={<div>404: Page Not Found</div>} />
           </Routes>

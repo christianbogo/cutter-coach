@@ -1,13 +1,84 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import XMarkSM from "../graphics/nucleo/primary/xmark-sm.svg";
 import House from "../graphics/nucleo/primary/house.svg";
 import User from "../graphics/nucleo/primary/user.svg";
 import Users from "../graphics/nucleo/primary/users.svg";
 import Database from "../graphics/nucleo/primary/database.svg";
-import OrderedList from "../graphics/nucleo/primary/ordered-list.svg";
 import Atom from "../graphics/nucleo/primary/atom.svg";
-import "../styles/NavMenu.css";
+
+import "../styles/Nav.css";
+
+interface SubMenuItem {
+  label: string;
+}
+
+interface NavItemStructure {
+  id: string;
+  path: string;
+  icon: string;
+  label: string;
+  subItems: SubMenuItem[];
+}
+
+const navItemsData: NavItemStructure[] = [
+  {
+    id: "home",
+    path: "/",
+    icon: House,
+    label: "Home",
+    subItems: [
+      { label: "Welcome Page" },
+      { label: "Latest News" },
+      { label: "Recent Uploads" },
+    ],
+  },
+  {
+    id: "teams",
+    path: "/teams",
+    icon: Users,
+    label: "Teams",
+    subItems: [
+      { label: "Program Summaries" },
+      { label: "Team & Season Records" },
+      { label: "Top Times" },
+    ],
+  },
+  {
+    id: "athletes",
+    path: "/athletes",
+    icon: User,
+    label: "Athletes",
+    subItems: [
+      { label: "Athlete Finder" },
+      { label: "Personal Bests" },
+      { label: "Performance Metrics" },
+    ],
+  },
+  {
+    id: "about",
+    path: "/about",
+    icon: Atom,
+    label: "About",
+    subItems: [
+      { label: "My Philosophy" },
+      { label: "What I Aim To Solve" },
+      { label: "Tech Portfolio" },
+    ],
+  },
+  {
+    id: "admin",
+    path: "/admin",
+    icon: Database,
+    label: "Admin",
+    subItems: [
+      { label: "DB Maintenance" },
+      { label: "Result Upload" },
+      { label: "Report Generation" },
+    ],
+  },
+];
 
 interface NavMenuProps {
   isOpen: boolean;
@@ -69,66 +140,33 @@ function NavMenu({ isOpen, onCloseMenu }: NavMenuProps): React.ReactElement {
           <img className="nav-menu-icon" src={XMarkSM} alt="Close" />
         </button>
         <ul className="nav-menu-list">
-          <li className="nav-menu-item">
-            <Link
-              to="/home"
-              className="nav-menu-link"
-              onClick={handleLinkClick}
-            >
-              <img className="nav-menu-icon" src={House} alt="" />
-              <span>Home</span>
-            </Link>
-          </li>
-          <li className="nav-menu-item">
-            <Link
-              to="/athletes"
-              className="nav-menu-link"
-              onClick={handleLinkClick}
-            >
-              <img className="nav-menu-icon" src={User} alt="" />
-              <span>Athletes</span>
-            </Link>
-          </li>
-          <li className="nav-menu-item">
-            <Link
-              to="/teams"
-              className="nav-menu-link"
-              onClick={handleLinkClick}
-            >
-              <img className="nav-menu-icon" src={Users} alt="" />
-              <span>Teams</span>
-            </Link>
-          </li>
-          <li className="nav-menu-item">
-            <Link
-              to="/results"
-              className="nav-menu-link"
-              onClick={handleLinkClick}
-            >
-              <img className="nav-menu-icon" src={Database} alt="" />
-              <span>Results</span>
-            </Link>
-          </li>
-          <li className="nav-menu-item">
-            <Link
-              to="/records"
-              className="nav-menu-link"
-              onClick={handleLinkClick}
-            >
-              <img className="nav-menu-icon" src={OrderedList} alt="" />
-              <span>Records</span>
-            </Link>
-          </li>
-          <li className="nav-menu-item">
-            <Link
-              to="/about"
-              className="nav-menu-link"
-              onClick={handleLinkClick}
-            >
-              <img className="nav-menu-icon" src={Atom} alt="" />
-              <span>About</span>
-            </Link>
-          </li>
+          {navItemsData.map((item) => (
+            <li key={item.id} className="nav-menu-item">
+              <Link
+                to={item.path}
+                className="nav-menu-link"
+                onClick={handleLinkClick}
+              >
+                <img className="nav-menu-icon" src={item.icon} alt="" />
+                <span>{item.label}</span>
+              </Link>
+              {item.subItems && item.subItems.length > 0 && (
+                <ul className="nav-submenu-list">
+                  {item.subItems.map((subItem) => (
+                    <li key={subItem.label} className="nav-submenu-item">
+                      <Link
+                        to={item.path}
+                        className="nav-submenu-link"
+                        onClick={handleLinkClick}
+                      >
+                        {subItem.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
         </ul>
       </nav>
     </div>
