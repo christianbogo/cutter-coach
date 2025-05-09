@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SiteLogo from "../graphics/logo.svg";
 import ArrowRight from "../graphics/nucleo/primary/arrow-right.svg";
-import Programs from "../components/Programs";
+import { Cards } from "../components/Cards";
+
 import "../styles/Home.css";
+import "../styles/Cards.css";
 
 function Home(): React.ReactElement {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -46,6 +48,10 @@ function Home(): React.ReactElement {
         </Link>
       </section>
 
+      <section className="cards-section">
+        <Cards />
+      </section>
+
       <section className="athlete-finder-section">
         <h2 className="athlete-finder-title">Athlete Finder</h2>
         <div className="athlete-finder-input-group">
@@ -67,8 +73,6 @@ function Home(): React.ReactElement {
           </button>
         </div>
       </section>
-
-      <Programs />
 
       <section className="disclaimer-section">
         <h2 className="disclaimer-title">Disclaimer</h2>

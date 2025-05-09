@@ -87,7 +87,7 @@
   margin: 0 auto;
   background-color: var(--color-surface, white);
   border-radius: var(--border-radius-standard);
-  box-shadow: var(--box-shadow-standard);
+  box-shadow: var(--shadow);
   border: 1px solid var(--color-border-soft);
   overflow: hidden;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -143,6 +143,11 @@
 
 .disclaimer-section {
   margin-bottom: 2rem;
+  padding: 2rem 1rem;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-standard);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--color-border-soft);
 }
 
 .disclaimer-title {
