@@ -157,7 +157,7 @@ This structured approach ensures data integrity and allows for powerful querying
 
 The live Cutter's Coaching platform can be accessed here:
 
-[https://cutter.coach/teams](https://cutter.coach/teams)
+[https://cutter.coach](https://cutter.coach)
 
 Feel free to explore the public-facing features. Access to administrative features is role-based and requires appropriate credentials.
 

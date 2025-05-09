@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Requirement 1: Use new Nucleo SVGs
-import XMarkSM from "../assets/nucleo/primary/20-xmark-sm.svg";
-import House from "../assets/nucleo/primary/20-house.svg";
-import User from "../assets/nucleo/primary/20-user.svg";
-import Users from "../assets/nucleo/primary/20-users.svg";
-import Database from "../assets/nucleo/primary/20-database.svg";
-import OrderedList from "../assets/nucleo/primary/20-ordered-list.svg";
-import Atom from "../assets/nucleo/primary/20-atom.svg";
+import XMarkSM from "../graphics/nucleo/primary/20-xmark-sm.svg";
+import House from "../graphics/nucleo/primary/20-house.svg";
+import User from "../graphics/nucleo/primary/20-user.svg";
+import Users from "../graphics/nucleo/primary/20-users.svg";
+import Database from "../graphics/nucleo/primary/20-database.svg";
+import OrderedList from "../graphics/nucleo/primary/20-ordered-list.svg";
+import Atom from "../graphics/nucleo/primary/20-atom.svg";
 
 // Requirement 3: Use hyphenated class names in CSS file
 import "../styles/NavMenu.css";

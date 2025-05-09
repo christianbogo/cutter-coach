@@ -6,26 +6,26 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import NavBar from "./components/NavBar";
-import NavMenu from "./components/NavMenu";
+import NavBar from "./client/components/NavBar";
+import NavMenu from "./client/components/NavMenu";
 
-import Home from "./pages/Home";
+import Home from "./client/pages/Home";
 
-import Athletes from "./pages/primary/Athletes";
-import Teams from "./pages/primary/Teams";
-import Results from "./pages/primary/Results";
-import Records from "./pages/primary/Records";
+import Athletes from "./client/pages/primary/Athletes";
+import Teams from "./client/pages/primary/Teams";
+import Results from "./client/pages/primary/Results";
+import Records from "./client/pages/primary/Records";
 
-import About from "./pages/primary/About";
+import About from "./client/pages/primary/About";
 
-import Footer from "./components/Footer";
+import Footer from "./client/components/Footer";
 
-import "./styles/App.css";
-import AthleteDetail from "./pages/detail/AthleteDetail";
-import TeamDetail from "./pages/detail/TeamDetail";
-import ResultDetail from "./pages/detail/ResultDetail";
-import RecordDetail from "./pages/detail/RecordDetail";
-import Support from "./pages/secondary/Support";
+import "./client/styles/App.css";
+import AthleteDetail from "./client/pages/detail/AthleteDetail";
+import TeamDetail from "./client/pages/detail/TeamDetail";
+import ResultDetail from "./client/pages/detail/ResultDetail";
+import RecordDetail from "./client/pages/detail/RecordDetail";
+import Support from "./client/pages/secondary/Support";
 
 function App(): React.ReactElement {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);

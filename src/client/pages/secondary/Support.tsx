@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/Support.css"; // Import the corresponding CSS
 
-import SupportIcon from "../../assets/nucleo/primary/20-heart.svg"; // Example icon
+import SupportIcon from "../../graphics/nucleo/primary/20-heart.svg"; // Example icon
 
 function Support(): React.ReactElement {
   return (

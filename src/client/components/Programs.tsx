@@ -9,18 +9,18 @@ import {
   where,
   getCountFromServer,
 } from "firebase/firestore";
-import { db } from "../firebase/firebase";
-import { getDisplayDate } from "../utils/dateUtils"; // Adjust path as needed
+import { db } from "../../firebase/firebase";
+import { getDisplayDate } from "../../utils/dateUtils"; // Adjust path as needed
 
 // Import required icons
-import ShieldFilled from "../assets/nucleo/primary/20-shield-filled.svg";
-import Apple from "../assets/nucleo/primary/20-apple.svg";
-import GraduationCap from "../assets/nucleo/primary/20-graduation-cap.svg";
-import Calendar from "../assets/nucleo/primary/20-calendar.svg";
-import Location from "../assets/nucleo/primary/20-pin.svg";
-import Users from "../assets/nucleo/primary/20-users.svg";
+import ShieldFilled from "../graphics/nucleo/primary/20-shield-filled.svg";
+import Apple from "../graphics/nucleo/primary/20-apple.svg";
+import GraduationCap from "../graphics/nucleo/primary/20-graduation-cap.svg";
+import Calendar from "../graphics/nucleo/primary/20-calendar.svg";
+import Location from "../graphics/nucleo/primary/20-pin.svg";
+import Users from "../graphics/nucleo/primary/20-users.svg";
 // Optional: Default icon if type doesn't match
-// import DefaultIcon from '../assets/nucleo/primary/20-info.svg';
+// import DefaultIcon from '../graphics/nucleo/primary/20-info.svg';
 
 // Import styles specific to this component
 import "../styles/Programs.css"; //

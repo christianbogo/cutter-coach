@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Import the Link component
 
-import Pointer from "../assets/nucleo/primary/20-pointer.svg";
-import SiteLogo from "../assets/logo.svg";
-import Heart from "../assets/nucleo/primary/20-heart.svg";
+import Pointer from "../graphics/nucleo/primary/20-pointer.svg";
+import SiteLogo from "../graphics/logo.svg";
+import Heart from "../graphics/nucleo/primary/20-heart.svg";
 
 import "../styles/NavBar.css";
 

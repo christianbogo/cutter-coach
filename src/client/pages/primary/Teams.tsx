@@ -6,7 +6,7 @@ import {
   Timestamp as FirestoreTimestamp,
 } from "firebase/firestore";
 // Assuming your firebase config is exported from 'firebase.ts' or adjust path
-import { db } from "../../firebase/firebase"; // Adjust path as needed
+import { db } from "../../../firebase/firebase"; // Adjust path as needed
 import "../../styles/Teams.css"; // Styles specific to this component
 
 // --- Data Interfaces (Copied from your prompt) ---

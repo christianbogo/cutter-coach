@@ -19,8 +19,8 @@ import {
   where,
   documentId,
 } from "firebase/firestore";
-import { db } from "../firebase/firebase"; // Adjust path
-import { calculateAge } from "../utils/dateUtils"; // Adjust path
+import { db } from "../../firebase/firebase"; // Adjust path
+import { calculateAge } from "../../utils/dateUtils"; // Adjust path
 import {
   Person,
   Athlete,
@@ -29,7 +29,7 @@ import {
   Meet,
   Event,
   Contact,
-} from "../models/index"; // Adjust path
+} from "../../models/index"; // Adjust path
 
 // Type for combined contact info
 export interface ContactInfo {

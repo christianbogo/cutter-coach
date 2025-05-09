@@ -2,9 +2,9 @@
 
 import React, { useMemo } from "react";
 import { useAthleteContext } from "../contexts/AthleteContext"; // Adjust path
-import { IndividualResult } from "../models/index";
-import { getDisplayShort } from "../utils/dateUtils"; // Adjust path
-import { formatResultTime } from "../utils/resultTime"; // Adjust path
+import { IndividualResult } from "../../models/index";
+import { getDisplayShort } from "../../utils/dateUtils"; // Adjust path
+import { formatResultTime } from "../../utils/resultTime"; // Adjust path
 
 // --- Define simpler types for this component's needs ---
 interface DisplayBestTime {

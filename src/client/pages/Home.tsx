@@ -1,7 +1,7 @@
 import React, { useState } from "react"; // Import useState
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
-import SiteLogo from "../assets/logo.svg";
-import ArrowRight from "../assets/nucleo/primary/20-arrow-right.svg";
+import SiteLogo from "../graphics/logo.svg";
+import ArrowRight from "../graphics/nucleo/primary/20-arrow-right.svg";
 import Programs from "../components/Programs";
 import "../styles/Home.css";
 

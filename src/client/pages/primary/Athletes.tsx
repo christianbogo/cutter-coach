@@ -7,7 +7,7 @@ import {
 } from "firebase/firestore";
 // Assuming your firebase config is exported from 'firebase.ts' in the same directory or adjust path
 // e.g., import { db } from '../firebase';
-import { db } from "../../firebase/firebase"; // Adjust path as needed
+import { db } from "../../../firebase/firebase"; // Adjust path as needed
 import "../../styles/Athletes.css"; // Adjust path as needed
 
 // --- Data Interfaces (Copied from your prompt) ---
