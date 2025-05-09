@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // Link is still used for main items
 
 import XMarkSM from "../graphics/nucleo/primary/xmark-sm.svg";
 import House from "../graphics/nucleo/primary/house.svg";
@@ -154,13 +154,9 @@ function NavMenu({ isOpen, onCloseMenu }: NavMenuProps): React.ReactElement {
                 <ul className="nav-submenu-list">
                   {item.subItems.map((subItem) => (
                     <li key={subItem.label} className="nav-submenu-item">
-                      <Link
-                        to={item.path}
-                        className="nav-submenu-link"
-                        onClick={handleLinkClick}
-                      >
-                        {subItem.label}
-                      </Link>
+                      {/* MODIFICATION START */}
+                      <span className="nav-submenu-link">{subItem.label}</span>
+                      {/* MODIFICATION END */}
                     </li>
                   ))}
                 </ul>

@@ -112,14 +112,10 @@
   overflow-y: auto;
 }
 
-.nav-menu-item {
-  margin-bottom: 0.25rem;
-}
-
 .nav-menu-link {
   display: flex;
   align-items: center;
-  padding: 0.8rem 0.5rem 0 0.5rem;
+  padding: 0.8rem 0.5rem;
   text-decoration: none;
   color: var(--color-text-primary, #212529);
   font-size: 1.6rem;
@@ -150,6 +146,7 @@
   padding: 0;
   margin: 0;
   padding-left: 4rem;
+  transform: translateY(-1rem);
 }
 
 .nav-submenu-link {

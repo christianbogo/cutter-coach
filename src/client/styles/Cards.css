@@ -1,16 +1,118 @@
-.cards-section {
+.cards-header {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-text-primary);
+}
+
+.cards-subheader {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.cards-text {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.cards-list,
+.records-list {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
   justify-content: center;
-  gap: 0.5rem;
   margin-bottom: 3rem;
+}
+
+.cards-list {
+  gap: 1rem;
 }
 
 .card {
   background-color: var(--color-surface);
   border-radius: var(--border-radius-standard);
-  border: 1px solid var(--color-border-soft);
   box-shadow: var(--shadow);
-  padding: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.card .split {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card .two-strong,
+.card .two {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card .two-strong p:first-child {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card .two-strong p:last-child {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.card .two p:last-child {
+  color: var(--color-text-secondary);
+}
+
+.card .list {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+}
+
+.card .cta {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-surface-secondary);
+  border: none;
+  border-radius: var(--border-radius-standard);
+}
+
+.record {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  font-family: monospace;
+  font-size: 1.2rem;
+  max-width: calc(100vw - 4rem);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.records-list .record:last-child {
+  border-bottom: none;
+}
+
+.record .code {
+  font-weight: bold;
+  width: 3rem;
+}
+
+.record .rank {
+  width: 4rem;
+  color: var(--color-text-secondary);
+}
+
+.result {
+  text-align: end;
+  width: 6rem;
+}
+
+.record .athlete {
+  text-align: end;
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

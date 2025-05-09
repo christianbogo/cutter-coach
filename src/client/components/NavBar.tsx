@@ -29,7 +29,7 @@ function NavBar({ onToggleMenu }: NavBarProps): React.ReactElement {
           <img className="nav-icon" src={Pointer} alt="Navigation Toggle" />
         </button>
 
-        <Link to="/home" aria-label="Go to homepage">
+        <Link to="/" aria-label="Go to homepage">
           <img
             className="nav-icon site-logo"
             src={SiteLogo}

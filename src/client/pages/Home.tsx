@@ -48,9 +48,7 @@ function Home(): React.ReactElement {
         </Link>
       </section>
 
-      <section className="cards-section">
-        <Cards />
-      </section>
+      <Cards />
 
       <section className="athlete-finder-section">
         <h2 className="athlete-finder-title">Athlete Finder</h2>
