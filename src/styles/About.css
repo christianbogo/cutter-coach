@@ -1,0 +1,149 @@
+/* about.css */
+
+.about-page-container {
+  max-width: 1000px;
+  margin: 0 auto; /* Center the container */
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 2rem; /* More space after the main header */
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-soft, #e0e0e0);
+}
+
+.about-header h1 {
+  font-size: 2.2rem; /* Large, prominent title */
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.about-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.about-section {
+  background-color: var(--color-surface, white);
+  padding: 1.5rem;
+  border-radius: var(--border-radius-standard, 8px);
+  box-shadow: var(--box-shadow-standard, 0 2px 8px rgba(0, 0, 0, 0.06));
+  border: 1px solid var(--color-border-soft, #e9ecef);
+  margin-bottom: 2rem; /* Space between sections */
+}
+
+.about-section:last-child {
+  margin-bottom: 0; /* No margin for the last section */
+}
+
+.about-section h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-top: 0; /* Remove default margin */
+  margin-bottom: 1rem;
+  /* Optional: Add an icon or a border like .team-heading from Teams.css */
+  /* padding-bottom: 0.5rem; */
+  /* border-bottom: 2px solid var(--color-accent-blue); */
+}
+
+.about-section p,
+.about-section ul {
+  font-size: 1rem; /* Standard paragraph size */
+  line-height: 1.7; /* Improved readability */
+  color: var(
+    --color-text-primary
+  ); /* Default to primary, can be secondary for specific text */
+  margin-bottom: 1rem;
+}
+
+.about-section p:last-child,
+.about-section ul:last-child {
+  margin-bottom: 0;
+}
+
+.about-section ul {
+  list-style-position: outside;
+  padding-left: 1.5rem; /* Indent list items */
+}
+
+.about-section li {
+  margin-bottom: 0.5rem;
+}
+
+.about-section strong {
+  font-weight: 600;
+  color: var(
+    --color-text-emphasis,
+    var(--color-text-primary)
+  ); /* Use a specific emphasis color or fallback */
+}
+
+.about-cta-section {
+  text-align: center;
+  background-color: var(
+    --color-surface-secondary,
+    #f8f9fa
+  ); /* Slightly different background for CTA */
+}
+
+/* Example for a CTA button, if you add one */
+.about-cta-button {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-on-accent, white);
+  background-color: var(--color-accent-green, #146c43);
+  border: none;
+  border-radius: var(--border-radius-standard, 8px);
+  text-decoration: none;
+  transition: background-color 0.15s ease-in-out;
+  margin-top: 1rem;
+}
+
+.about-cta-button:hover {
+  background-color: #105433; /* Darker green on hover */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .about-header h1 {
+    font-size: 1.8rem;
+  }
+  .about-subtitle {
+    font-size: 1rem;
+  }
+  .about-section h2 {
+    font-size: 1.4rem;
+  }
+  .about-section p,
+  .about-section ul {
+    font-size: 0.95rem;
+  }
+  .about-section {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-header h1 {
+    font-size: 1.6rem;
+  }
+  .about-subtitle {
+    font-size: 0.9rem;
+  }
+  .about-section h2 {
+    font-size: 1.25rem;
+  }
+  .about-section p,
+  .about-section ul {
+    font-size: 0.9rem;
+  }
+  .about-section {
+    padding: 1rem;
+  }
+}
