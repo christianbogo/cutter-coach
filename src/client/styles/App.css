@@ -1,9 +1,4 @@
 /* Basic reset and screen setup */
-body {
-  margin: 0;
-  font-family: sans-serif;
-  background-color: #f0f0f0; /* Example background */
-}
 
 .screen {
   min-height: 100vh;
@@ -13,7 +8,9 @@ body {
 
 .content-area {
   padding: 20px;
-  flex-grow: 1; /* Allows content area to fill remaining space */
+  flex-grow: 1;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 /* Basic button styling reset */

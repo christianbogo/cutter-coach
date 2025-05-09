@@ -1,48 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap");
 
-:root {
-  --color-background-start: #fdfdfd;
-  --color-background-end: #f8f9fa;
-  --color-surface: #ffffff;
-  --color-surface-secondary: #f8f9fa;
-  --color-footer-background: #e9ecef;
-  --color-text-primary: #212529;
-  --color-text-secondary: #6c757d;
-  --color-text-on-accent: #ffffff;
-  --color-border-soft: #dee2e6;
-  --color-border-hard: #adb5bd;
-  --shadow-color-hard: rgba(0, 0, 0, 0.15);
-  --shadow-color-soft: rgba(0, 0, 0, 0.075);
-  --color-accent-blue: #0a58ca;
-  --color-accent-green: #146c43;
-  --color-accent-red: #b02a37;
-  --color-accent-orange: #d97706;
-  --color-link-hover: #08449e;
-  --color-button-disabled-bg: #e9ecef;
-  --color-button-disabled-text: #6c757d;
-  --border-radius-standard: 0.375rem;
-  --box-shadow-standard: 0 0.125rem 0.25rem var(--shadow-color-soft);
-  --font-family-sans-serif: "Source Sans 3", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
-  --base-font-size: 1rem;
-  --base-line-height: 1.5;
-}
-
 body {
   margin: 0;
-  font-family: var(--font-family-sans-serif);
-  font-size: var(--base-font-size);
-  font-weight: 400;
-  line-height: var(--base-line-height);
-  color: var(--color-text-primary);
-  background-color: var(--color-background-end);
   background-image: linear-gradient(
     to bottom,
     var(--color-background-start),
     var(--color-background-end)
   );
   min-height: 100vh;
+  font-family: var(--font-family-sans-serif);
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -52,6 +19,17 @@ button {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  color: var(--color-text-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
   color: var(--color-text-primary);
 }
 
@@ -66,72 +44,34 @@ a:hover {
   text-decoration: underline;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-  font-weight: 600;
-}
+:root {
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f8f9fa;
+  --color-footer-background: #e9ecef;
 
-p {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
+  --color-text-primary: #212529;
+  --color-text-secondary: #6c757d;
 
-.card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border-soft);
-  border-radius: var(--border-radius-standard);
-  box-shadow: var(--box-shadow-standard);
-  padding: 1.5rem;
-}
+  --color-border-soft: #dee2e6;
+  --color-border-hard: #adb5bd;
 
-.footer {
-  background-color: var(--color-footer-background);
-  color: var(--color-text-secondary);
-  padding: 1.5rem;
-  margin-top: 2rem;
-  border-top: 1px solid var(--color-border-soft);
-}
+  --color-accent-green: #146c43;
+  --color-accent-red: #b02a37;
+  --color-accent-orange: #d97706;
 
-.text-info {
-  color: var(--color-accent-blue);
-}
-.text-success {
-  color: var(--color-accent-green);
-}
-.text-danger {
-  color: var(--color-accent-red);
-}
-.text-warning {
-  color: var(--color-accent-orange);
-}
+  --color-accent-blue: #0a58ca;
+  --color-link-hover: #08449e;
+  --color-button-disabled-bg: #e9ecef;
+  --color-button-disabled-text: #6c757d;
 
-.bg-info {
-  background-color: var(--color-accent-blue);
-  color: var(--color-text-on-accent);
-}
-.bg-success {
-  background-color: var(--color-accent-green);
-  color: var(--color-text-on-accent);
-}
-.bg-danger {
-  background-color: var(--color-accent-red);
-  color: var(--color-text-on-accent);
-}
-.bg-warning {
-  background-color: var(--color-accent-orange);
-  color: var(--color-text-on-accent);
-}
+  --border-radius-standard: 0.375rem;
 
-.under-construction {
-  background-color: var(--color-surface-secondary);
-  color: var(--color-text-secondary);
-  padding: 2rem;
-  border-radius: var(--border-radius-standard);
-  box-shadow: var(--box-shadow-standard);
+  --shadow: 0 0.125rem 0.25rem var(--shadow-soft);
+  --shadow-soft: rgba(0, 0, 0, 0.075);
+
+  --font-family-sans-serif: "Source Sans 3", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  --color-background-start: #fdfdfd;
+  --color-background-end: #f8f9fa;
 }

@@ -1,14 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import the Link component
+import { Link } from "react-router-dom";
 
-import Pointer from "../graphics/nucleo/primary/20-pointer.svg";
+import Pointer from "../graphics/nucleo/primary/pointer.svg";
 import SiteLogo from "../graphics/logo.svg";
-import Heart from "../graphics/nucleo/primary/20-heart.svg";
+import Heart from "../graphics/nucleo/primary/heart.svg";
 
 import "../styles/NavBar.css";
 
 interface NavBarProps {
-  onToggleMenu: () => void; // Function that takes no args and returns nothing
+  onToggleMenu: () => void;
 }
 
 function NavBar({ onToggleMenu }: NavBarProps): React.ReactElement {
@@ -20,36 +20,31 @@ function NavBar({ onToggleMenu }: NavBarProps): React.ReactElement {
 
   return (
     <header className="nav-bar">
-      {/* Menu Toggle Button */}
-      <button
-        onClick={handleToggleClick}
-        className="nav-bar__menu-button"
-        aria-label="Toggle navigation menu"
-      >
-        <img className="nav-icon" src={Pointer} alt="Navigation Toggle" />
-      </button>
+      <div className="nav-content">
+        <button
+          onClick={handleToggleClick}
+          className="menu-button"
+          aria-label="Toggle navigation menu"
+        >
+          <img className="nav-icon" src={Pointer} alt="Navigation Toggle" />
+        </button>
 
-      {/* Site Logo Link to Home */}
-      <Link
-        to="/home"
-        className="nav-bar__logo-link"
-        aria-label="Go to homepage"
-      >
-        <img
-          className="nav-icon site-logo"
-          src={SiteLogo}
-          alt="Cutter's Coaching Logo"
-        />
-      </Link>
+        <Link to="/home" aria-label="Go to homepage">
+          <img
+            className="nav-icon site-logo"
+            src={SiteLogo}
+            alt="Cutter's Coaching Logo"
+          />
+        </Link>
 
-      {/* Support Link */}
-      <Link
-        to="/support"
-        className="nav-bar__support-link"
-        aria-label="Go to support page"
-      >
-        <img className="nav-icon" src={Heart} alt="Support" />
-      </Link>
+        <Link
+          to="/support"
+          className="menu-button"
+          aria-label="Go to support page"
+        >
+          <img className="nav-icon" src={Heart} alt="Support" />
+        </Link>
+      </div>
     </header>
   );
 }

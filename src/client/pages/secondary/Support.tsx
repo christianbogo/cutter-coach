@@ -1,7 +1,7 @@
 import React from "react";
-import "../../styles/Support.css"; // Import the corresponding CSS
+import "../../styles/Support.css";
 
-import SupportIcon from "../../graphics/nucleo/primary/20-heart.svg"; // Example icon
+import SupportIcon from "../../graphics/nucleo/primary/heart.svg";
 
 function Support(): React.ReactElement {
   return (
@@ -16,8 +16,6 @@ function Support(): React.ReactElement {
         </p>
         <div className="support-venmo-info">
           <span className="support-venmo-handle">@christianbogo</span>
-          {/* You could add a QR code image here if desired */}
-          {/* <img src="/path/to/venmo-qr.png" alt="Venmo QR Code" className="venmo-qr" /> */}
         </div>
         <p className="support-thank-you">Thank you for your generosity!</p>
       </div>
