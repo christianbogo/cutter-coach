@@ -61,13 +61,33 @@ export const Cards: React.FC = () => {
       <div className="records-list">
         <div className="record">
           <p className="code">2FRR</p>
-          <p className="result">2:00.00</p>
+          <p className="result">1:06.55</p>
           <p className="athlete">Christian C.</p>
         </div>
         <div className="record">
           <p className="code">1BR</p>
-          <p className="result">57.62</p>
+          <p className="result">1:12.05</p>
+          <p className="athlete">Jack W.</p>
+        </div>
+        <div className="record">
+          <p className="code">2FRR</p>
+          <p className="result">1:06.55</p>
           <p className="athlete">Christian C.</p>
+        </div>
+        <div className="record">
+          <p className="code">1BR</p>
+          <p className="result">1:12.05</p>
+          <p className="athlete">Jack W.</p>
+        </div>
+        <div className="record">
+          <p className="code">2FRR</p>
+          <p className="result">1:06.55</p>
+          <p className="athlete">Christian C.</p>
+        </div>
+        <div className="record">
+          <p className="code">1BR</p>
+          <p className="result">1:12.05</p>
+          <p className="athlete">Jack W.</p>
         </div>
       </div>
 
@@ -76,13 +96,33 @@ export const Cards: React.FC = () => {
       <div className="records-list">
         <div className="record">
           <p className="rank">1</p>
-          <p className="result">2:00.00</p>
-          <p className="athlete">Christian C.</p>
+          <p className="result">55.12</p>
+          <p className="athlete">Nate B.</p>
         </div>
         <div className="record">
           <p className="rank">12</p>
           <p className="result">57.62</p>
-          <p className="athlete">Christian C.</p>
+          <p className="athlete">Connor E.</p>
+        </div>
+        <div className="record">
+          <p className="rank">1</p>
+          <p className="result">55.12</p>
+          <p className="athlete">Nate B.</p>
+        </div>
+        <div className="record">
+          <p className="rank">12</p>
+          <p className="result">57.62</p>
+          <p className="athlete">Connor E.</p>
+        </div>
+        <div className="record">
+          <p className="rank">1</p>
+          <p className="result">55.12</p>
+          <p className="athlete">Nate B.</p>
+        </div>
+        <div className="record">
+          <p className="rank">12</p>
+          <p className="result">57.62</p>
+          <p className="athlete">Connor E.</p>
         </div>
       </div>
     </>

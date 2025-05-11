@@ -84,7 +84,7 @@
   flex-wrap: nowrap;
   gap: 1rem;
   font-family: monospace;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   max-width: calc(100vw - 4rem);
   padding: 0.5rem 1rem;
   border-bottom: 1px solid var(--color-border-soft);
@@ -97,11 +97,13 @@
 .record .code {
   font-weight: bold;
   width: 3rem;
+  text-align: center;
 }
 
 .record .rank {
-  width: 4rem;
+  width: 3rem;
   color: var(--color-text-secondary);
+  text-align: center;
 }
 
 .result {
