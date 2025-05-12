@@ -5,14 +5,21 @@
 }
 
 .content-area {
+  display: flex;
+  flex-direction: row;
   flex-grow: 1;
   max-width: 1000px;
   margin: 0 auto;
+  width: 100%; /* Ensure it spans the full width of the screen */
 }
 
 .page {
+  flex: 1;
   padding: 2rem 1rem;
   margin: 0 auto;
+  max-width: 1000px; /* Limit the width to 1000px */
+  width: 100%; /* Allow it to shrink to the screen width */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .loading-indicator {

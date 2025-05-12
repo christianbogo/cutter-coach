@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SiteLogo from "../graphics/logo.svg";
 import ArrowRight from "../graphics/nucleo/primary/arrow-right.svg";
-import { Cards } from "../components/Cards";
 
 import "../styles/Home.css";
-import "../styles/Cards.css";
 
 function Home(): React.ReactElement {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -47,8 +45,6 @@ function Home(): React.ReactElement {
           <img className="hero-arrow-icon" src={ArrowRight} alt="->" />
         </Link>
       </section>
-
-      <Cards />
 
       <section className="athlete-finder-section">
         <h2 className="athlete-finder-title">Athlete Finder</h2>
