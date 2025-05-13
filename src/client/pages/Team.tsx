@@ -6,7 +6,7 @@ function Team(): React.ReactElement {
   return (
     <div className="page">
       <section className="header">
-        <h1 className="title">Central Valley Sharks</h1>
+        <h1 className="title name">Central Valley Sharks</h1>
         <div className="info">
           <span>CVS</span>
           <span>High School</span>
@@ -19,273 +19,220 @@ function Team(): React.ReactElement {
         </div>
       </section>
 
-      <section className="body records">
+      <section className="body">
         <h2 className="title">Team Records</h2>
-        <ul className="records-list team-records-list">
-          <li className="record-item">
-            <div className="record-info">
-              <span className="record-event-name">50 Free</span>
-              <span className="record-time">1:21.05</span>
-              <span className="record-holder">Michael Phelps</span>
-              <span className="record-year">2023</span>
+        <ul className="records">
+          <li className="item">
+            <div className="info">
+              <span className="event">50 Free</span>
+              <span className="result">1:21.05</span>
+              <span className="name">Michael Phelps</span>
+              <span className="year">2023</span>
             </div>
             <button
-              className="view-event-results-button"
+              className="close-button"
               aria-expanded="false"
               aria-controls="event-results-50free"
             >
               Close Results
             </button>
-            <div className="event-results-dropdown" id="event-results-50free">
-              <h4 className="dropdown-title">All Team 50 Free Results</h4>
-              <ul className="results-detailed-list">
-                <li className="result-detail-item">
-                  <span className="result-place">1st</span>
-                  <span className="result-time-value">21.05</span>
+            <div className="window">
+              <h4 className="title">All Team 50 Free Results</h4>
+              <ul className="results">
+                <li className="item">
+                  <span className="place">1st</span>
+                  <span className="result">21.05</span>
                   <a href="#person-michael" className="person-link">
                     Michael Phelps
                   </a>
-                  <span className="result-year-achieved">2023</span>
+                  <span className="year">2023</span>
                 </li>
-                <li className="result-detail-item">
-                  <span className="result-place">2nd</span>
-                  <span className="result-time-value">21.15</span>
+                <li className="item">
+                  <span className="place">2nd</span>
+                  <span className="result">21.15</span>
                   <a href="#person-ryan" className="person-link">
                     Ryan Lochte
                   </a>
-                  <span className="result-year-achieved">2022</span>
+                  <span className="year">2022</span>
                 </li>
-                <li className="result-detail-item">
-                  <span className="result-place">3rd</span>
-                  <span className="result-time-value">21.25</span>
+                <li className="item">
+                  <span className="place">3rd</span>
+                  <span className="result">21.25</span>
                   <a href="#person-caeleb" className="person-link">
                     Caeleb Dressel
                   </a>
-                  <span className="result-year-achieved">2023</span>
+                  <span className="year">2023</span>
                 </li>
               </ul>
               <button className="view-all-button">View Top 25</button>
             </div>
           </li>
-          <li className="record-item">
-            <div className="record-info">
-              <span className="record-event-name">100 Butterfly</span>
-              <span className="record-time">49.82</span>
-              <span className="record-holder-name">Caeleb Dressel</span>
-              <span className="record-year">2024</span>
+          <li className="item">
+            <div className="info">
+              <span className="event">100 Butterfly</span>
+              <span className="result">49.82</span>
+              <span className="name">Caeleb Dressel</span>
+              <span className="year">2024</span>
             </div>
             <button
-              className="view-event-results-button"
+              className="view-all-button"
               aria-expanded="false"
               aria-controls="event-results-100fly"
             >
               View All Results
             </button>
-            <div
-              className="event-results-dropdown"
-              id="event-results-100fly"
-              hidden
-            >
-              <h4 className="dropdown-title">
-                All Team Results: 100 Butterfly
-              </h4>
-              <ul className="results-detailed-list">
-                <li className="result-detail-item">
-                  <span className="result-place">1st</span>
-                  <span className="result-time-value">49.82</span>
-                  <a href="#person-caeleb" className="person-link">
-                    Caeleb Dressel
-                  </a>
-                  <span className="result-year-achieved">2024</span>
-                </li>
-              </ul>
-            </div>
           </li>
         </ul>
-        <button className="view-all-button team-records-view-all">
-          View All Team Records
-        </button>
+        <button className="view-all-button">View All Records</button>
       </section>
 
-      <section className="team-seasons-section">
-        <h2 className="section-title">Seasons</h2>
-        <ul className="seasons-list">
-          <li
-            className="season-summary-item"
-            data-season-id="season-2024-spring"
-          >
-            <div className="season-summary-info">
-              <span className="season-year-quarter">Spring 2024</span>
-              <span className="season-athlete-count">Athletes: 45</span>
-              <span className="season-results-count">Results: 300</span>
+      <section className="body">
+        <h2 className="title">Seasons</h2>
+        <ul className="seasons">
+          <li className="item">
+            <div className="info">
+              <span className="season">Spring 2024</span>
+              <span>Athletes: 45</span>
+              <span>Results: 300</span>
             </div>
-            <button className="view-season-details-button">View Details</button>
+            <button className="open-season-button">Open Season</button>
           </li>
-          <li className="season-summary-item" data-season-id="season-2023-fall">
-            <div className="season-summary-info">
-              <span className="season-year-quarter">Fall 2023</span>
-              <span className="season-athlete-count">Athletes: 52</span>
-              <span className="season-results-count">Results: 410</span>
+          <li className="item">
+            <div className="info">
+              <span className="season">Fall 2023</span>
+              <span>Athletes: 52</span>
+              <span>Results: 410</span>
             </div>
-            <button className="view-season-details-button">View Details</button>
+            <button className="open-season-button">Open Season</button>
           </li>
         </ul>
-        <button className="view-all-button team-seasons-view-all">
-          View All Seasons
-        </button>
+        <button className="view-all-button">View All Seasons</button>
 
-        <div className="season-details-card" id="season-details-placeholder">
-          <div className="season-card-header">
-            <h3 className="season-card-title">
+        <div className="season-details">
+          <div className="header">
+            <h3 className="title">
               Season Details:
-              <span className="dynamic-season-name">Spring 2024</span>
+              <span className="name">Spring 2024</span>
             </h3>
-            <button className="close-season-card-button">Close</button>
+            <button className="close-season-button">Close</button>
           </div>
-          <nav className="season-card-tabs">
-            <button className="tab-button active" data-tab-target="roster">
+          <nav className="tabs">
+            <button className="active" data-tab-target="roster">
               Roster
             </button>
-            <button className="tab-button" data-tab-target="season-records">
-              Season Records
-            </button>
-            <button className="tab-button" data-tab-target="season-meets">
-              Meets
-            </button>
+            <button data-tab-target="season-records">Records</button>
+            <button data-tab-target="season-meets">Meets</button>
           </nav>
 
-          <div className="season-card-content">
+          <div className="season-content">
             <div className="tab-content active" id="roster">
-              <h4 className="tab-content-title">Roster (Spring 2024)</h4>
-              <ul className="roster-list">
-                <li className="roster-athlete-item">
-                  <a
-                    href="#person-jane"
-                    className="person-link roster-athlete-name"
-                  >
+              <h4 className="title">Roster (Spring 2024)</h4>
+              <ul className="roster">
+                <li className="item">
+                  <a href="#person-jane" className="person-link name">
                     Jane Doe
                   </a>
-                  <span className="roster-athlete-age">Age: 17</span>
-                  <span className="roster-athlete-gender">Gender: F</span>
-                  <span className="roster-athlete-grade">Grade: 11</span>
+                  <span className="age">Age: 17</span>
+                  <span className="gender">Gender: F</span>
+                  <span className="grade">Grade: 11</span>
                 </li>
-                <li className="roster-athlete-item">
-                  <a
-                    href="#person-john"
-                    className="person-link roster-athlete-name"
-                  >
+                <li className="item">
+                  <a href="#person-john" className="person-link name">
                     John Smith
                   </a>
-                  <span className="roster-athlete-age">Age: 16</span>
-                  <span className="roster-athlete-gender">Gender: M</span>
-                  <span className="roster-athlete-grade">Grade: 10</span>
+                  <span className="age">Age: 16</span>
+                  <span className="gender">Gender: M</span>
+                  <span className="grade">Grade: 10</span>
                 </li>
               </ul>
-              <button className="view-all-button roster-view-all">
-                View Full Roster
-              </button>
+              <button className="view-all-button">View Full Roster</button>
             </div>
 
-            <div className="tab-content" id="season-records">
-              <h4 className="tab-content-title">
-                Season Records (Spring 2024)
-              </h4>
-              <ul className="records-list season-records-list">
-                <li className="record-item">
-                  <div className="record-info">
-                    <span className="record-event-name">100 Backstroke</span>
-                    <span className="record-time">58.02</span>
-                    <span className="record-holder-name">Jane Doe</span>
-                    <span className="record-year">2024</span>
+            <div className="content" id="season-records">
+              <h4 className="title">Season Records (Spring 2024)</h4>
+              <ul className="records">
+                <li className="item">
+                  <div className="info">
+                    <span className="name">100 Backstroke</span>
+                    <span className="result">58.02</span>
+                    <span className="name">Jane Doe</span>
+                    <span className="year">2024</span>
                   </div>
-                  <button className="view-event-results-button">
-                    View All Results
-                  </button>
-                  <div className="event-results-dropdown">
-                    <h4 className="dropdown-title">
+                  <button className="view-all-button">View All Results</button>
+                  <div className="window">
+                    <h4 className="title">
                       All Season Results: 100 Backstroke
                     </h4>
-                    <ul className="results-detailed-list">
-                      <li className="result-detail-item">
-                        <span className="result-place">1st</span>
-                        <span className="result-time-value">58.02</span>
+                    <ul className="results">
+                      <li className="item">
+                        <span className="place">1st</span>
+                        <span className="result">58.02</span>
                         <a href="#person-jane" className="person-link">
                           Jane Doe
                         </a>
-                        <span className="result-year-achieved">2024</span>
+                        <span className="year">2024</span>
                       </li>
                     </ul>
                   </div>
                 </li>
               </ul>
-              <button className="view-all-button season-records-view-all">
-                View All Season Records
-              </button>
+              <button className="view-all-button">View All Records</button>
             </div>
 
-            <div className="tab-content" id="season-meets">
-              <h4 className="tab-content-title">Meets (Spring 2024)</h4>
-              <ul className="meets-list">
-                <li className="meet-summary-item">
-                  <div className="meet-summary-info">
-                    <span className="meet-name-short">District Champs</span>
-                    <span className="meet-event-count">Events: 22</span>
-                    <span className="meet-date">2024-05-15</span>
+            <div className="content" id="season-meets">
+              <h4 className="title">Meets (Spring 2024)</h4>
+              <ul className="meets">
+                <li className="item">
+                  <div className="info">
+                    <span className="name">District Champs</span>
+                    <span className="events">Events: 22</span>
+                    <span className="date">2024-05-15</span>
                   </div>
-                  <button className="view-meet-results-button">
+                  <button className="view-meet-button">
                     View Meet Results
                   </button>
-                  <div className="meet-results-display">
-                    <h5 className="meet-results-title">
-                      Results: District Champs
-                    </h5>
-                    <div className="meet-event-results-group">
-                      <h6 className="meet-event-title">
-                        Event 1: 200 Medley Relay
-                      </h6>
-                      <ul className="results-detailed-list">
-                        <li className="result-detail-item">
-                          <span className="result-place">1st</span>
-                          <span className="result-time-value">1:45.12</span>
+                  <div className="meet">
+                    <h5 className="title">Results: District Champs</h5>
+                    <div className="event-results">
+                      <h6 className="title">Event 1: 200 Medley Relay</h6>
+                      <ul className="results">
+                        <li className="item">
+                          <span className="place">1st</span>
+                          <span className="result">1:45.12</span>
                           <a href="#person-relay-team" className="person-link">
                             Team A
                           </a>
-                          <span className="result-year-achieved">2024</span>
+                          <span className="year">2024</span>
                         </li>
                       </ul>
                     </div>
-                    <div className="meet-event-results-group">
-                      <h6 className="meet-event-title">
-                        Event 2: 200 Freestyle
-                      </h6>
-                      <ul className="results-detailed-list">
-                        <li className="result-detail-item">
-                          <span className="result-place">1st</span>
-                          <span className="result-time-value">1:50.67</span>
+                    <div className="event-results">
+                      <h6 className="title">Event 2: 200 Freestyle</h6>
+                      <ul className="results">
+                        <li className="item">
+                          <span className="place">1st</span>
+                          <span className="result">1:50.67</span>
                           <a href="#person-jane" className="person-link">
                             Jane Doe
                           </a>
-                          <span className="result-year-achieved">2024</span>
+                          <span className="year">2024</span>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </li>
-                <li className="meet-summary-item">
-                  <div className="meet-summary-info">
-                    <span className="meet-name-short">Regional Qualifiers</span>
-                    <span className="meet-event-count">Events: 18</span>
-                    <span className="meet-date">2024-04-20</span>
+                <li className="item">
+                  <div className="info">
+                    <span className="name">Regional Qualifiers</span>
+                    <span className="events">Events: 18</span>
+                    <span className="date">2024-04-20</span>
                   </div>
-                  <button className="view-meet-results-button">
+                  <button className="view-meet-button">
                     View Meet Results
                   </button>
-                  <div className="meet-results-display"></div>
                 </li>
               </ul>
-              <button className="view-all-button season-meets-view-all">
-                View All Meets
-              </button>
+              <button className="view-all-button">View All Meets</button>
             </div>
           </div>
         </div>
