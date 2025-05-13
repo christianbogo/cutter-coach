@@ -1,12 +1,12 @@
 .about-header {
   text-align: center;
-  margin-bottom: 2rem; /* More space after the main header */
+  margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-border-soft, #e0e0e0);
 }
 
 .about-header h1 {
-  font-size: 2.2rem; /* Large, prominent title */
+  font-size: 2.2rem;
   font-weight: 700;
   color: var(--color-text-primary);
   margin-bottom: 0.5rem;
@@ -25,31 +25,26 @@
   border-radius: var(--border-radius-standard, 8px);
   box-shadow: var(--box-shadow-standard, 0 2px 8px rgba(0, 0, 0, 0.06));
   border: 1px solid var(--color-border-soft, #e9ecef);
-  margin-bottom: 2rem; /* Space between sections */
+  margin-bottom: 2rem;
 }
 
 .about-section:last-child {
-  margin-bottom: 0; /* No margin for the last section */
+  margin-bottom: 0;
 }
 
 .about-section h2 {
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--color-text-primary);
-  margin-top: 0; /* Remove default margin */
+  margin-top: 0;
   margin-bottom: 1rem;
-  /* Optional: Add an icon or a border like .team-heading from Teams.css */
-  /* padding-bottom: 0.5rem; */
-  /* border-bottom: 2px solid var(--color-accent-blue); */
 }
 
 .about-section p,
 .about-section ul {
-  font-size: 1rem; /* Standard paragraph size */
-  line-height: 1.7; /* Improved readability */
-  color: var(
-    --color-text-primary
-  ); /* Default to primary, can be secondary for specific text */
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-primary);
   margin-bottom: 1rem;
 }
 
@@ -60,7 +55,7 @@
 
 .about-section ul {
   list-style-position: outside;
-  padding-left: 1.5rem; /* Indent list items */
+  padding-left: 1.5rem;
 }
 
 .about-section li {
@@ -69,21 +64,14 @@
 
 .about-section strong {
   font-weight: 600;
-  color: var(
-    --color-text-emphasis,
-    var(--color-text-primary)
-  ); /* Use a specific emphasis color or fallback */
+  color: var(--color-text-emphasis, var(--color-text-primary));
 }
 
 .about-cta-section {
   text-align: center;
-  background-color: var(
-    --color-surface-secondary,
-    #f8f9fa
-  ); /* Slightly different background for CTA */
+  background-color: var(--color-surface, #f8f9fa);
 }
 
-/* Example for a CTA button, if you add one */
 .about-cta-button {
   display: inline-block;
   padding: 0.8rem 1.8rem;
@@ -99,10 +87,9 @@
 }
 
 .about-cta-button:hover {
-  background-color: #105433; /* Darker green on hover */
+  background-color: #105433;
 }
 
-/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
   .about-header h1 {
     font-size: 1.8rem;

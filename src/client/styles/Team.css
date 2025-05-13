@@ -1,305 +1,39 @@
-.section-title {
-  font-size: 1.8em;
-  color: #0056b3;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #dee2e6;
+section.header {
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--color-border-soft);
 }
 
-.team-profile-header {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e9ecef;
-}
-
-.team-name-long {
+section.header .title {
   font-size: 2.5em;
-  color: #343a40;
-  margin-bottom: 10px;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
 }
 
-.team-meta-info span,
-.team-stats-summary span {
+section.header .info,
+section.header .stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+section.header .info span,
+section.header .stats span {
   display: inline-block;
-  margin-right: 15px;
-  color: #6c757d;
-  font-size: 0.95em;
+  color: var(--color-text-secondary);
+  font-size: 0.9em;
 }
-.team-stats-summary {
-  margin-top: 10px;
-}
-.team-stats-summary span {
-  background-color: #e9ecef;
+
+section.header .stats span {
+  background-color: var(--color-surface-secondary);
   padding: 5px 10px;
   border-radius: 4px;
 }
 
-.records-list {
+section.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   list-style: none;
   padding: 0;
-  margin-bottom: 20px;
-}
-
-.record-item {
-  background-color: #f8f9fa;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #e9ecef;
-}
-
-.record-info {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 20px;
-  margin-bottom: 10px;
-}
-
-.record-event-name {
-  font-weight: 600;
-  color: #0056b3;
-  flex-basis: 200px;
-}
-
-.record-time {
-  font-weight: bold;
-  font-size: 1.1em;
-  color: #28a745;
-}
-
-.record-holder-name,
-.record-year {
-  color: #495057;
-}
-
-button {
-  padding: 10px 15px;
-  font-size: 0.95em;
-  border-radius: 5px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-}
-
-.view-event-results-button,
-.view-season-details-button,
-.view-meet-results-button {
-  background-color: #007bff;
-  color: white;
-  border-color: #007bff;
-}
-
-.view-event-results-button:hover,
-.view-season-details-button:hover,
-.view-meet-results-button:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-}
-
-.view-all-button {
-  background-color: #6c757d;
-  color: white;
-  margin-top: 10px;
-  display: inline-block;
-}
-.view-all-button:hover {
-  background-color: #5a6268;
-}
-
-.event-results-dropdown,
-.meet-results-display {
-  background-color: #ffffff;
-  border: 1px solid #dee2e6;
-  padding: 15px;
-  margin-top: 10px;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-.dropdown-title,
-.meet-results-title {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  color: #495057;
-}
-.results-detailed-list {
-  list-style: none;
-}
-.result-detail-item {
-  padding: 8px 0;
-  border-bottom: 1px dashed #e0e0e0;
-  display: flex;
-  gap: 15px;
-}
-.result-detail-item:last-child {
-  border-bottom: none;
-}
-.result-place {
-  font-weight: bold;
-  width: 30px;
-}
-.result-time-value {
-  color: #17a2b8;
-}
-.person-link {
-  color: #007bff;
-  text-decoration: none;
-}
-.person-link:hover {
-  text-decoration: underline;
-}
-
-.team-seasons-section {
-  margin-top: 40px;
-}
-.seasons-list {
-  list-style: none;
-  margin-bottom: 20px;
-  padding: 0;
-}
-.season-summary-item {
-  background-color: #f8f9fa;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #e9ecef;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.season-summary-info span {
-  margin-right: 15px;
-  color: #495057;
-}
-.season-year-quarter {
-  font-weight: 600;
-  color: #0056b3;
-}
-
-.season-details-card {
-  margin-top: 20px;
-  background-color: #ffffff;
-  border: 1px solid #ced4da;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-.season-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #dee2e6;
-}
-.season-card-title {
-  font-size: 1.5em;
-  color: #343a40;
-}
-.close-season-card-button {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-}
-.close-season-card-button:hover {
-  background-color: #c82333;
-}
-
-.season-card-tabs {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #dee2e6;
-}
-.season-card-tabs .tab-button {
-  background-color: transparent;
-  border: none;
-  border-bottom: 3px solid transparent;
-  padding: 10px 15px;
-  margin-right: 5px;
-  font-size: 1em;
-  color: #007bff;
-  border-radius: 0;
-}
-.season-card-tabs .tab-button.active {
-  border-bottom-color: #007bff;
-  font-weight: 600;
-  color: #0056b3;
-}
-.season-card-tabs .tab-button:not(.active):hover {
-  background-color: #e9ecef;
-  color: #0056b3;
-}
-
-.tab-content {
-}
-.tab-content.active {
-}
-.tab-content-title {
-  font-size: 1.3em;
-  margin-bottom: 15px;
-  color: #495057;
-}
-
-.roster-list {
-  list-style: none;
-}
-.roster-athlete-item {
-  padding: 10px;
-  border-bottom: 1px solid #f1f3f5;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 20px;
-  align-items: center;
-}
-.roster-athlete-item:last-child {
-  border-bottom: none;
-}
-.roster-athlete-name {
-  font-weight: 500;
-}
-.roster-athlete-age,
-.roster-athlete-gender,
-.roster-athlete-grade {
-  font-size: 0.9em;
-  color: #6c757d;
-  background-color: #e9ecef;
-  padding: 2px 6px;
-  border-radius: 3px;
-}
-
-.meets-list {
-  list-style: none;
-}
-.meet-summary-item {
-  background-color: #f8f9fa;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #e9ecef;
-}
-.meet-summary-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
-}
-.meet-name-short {
-  font-weight: 600;
-  color: #0056b3;
-}
-.meet-event-count,
-.meet-date {
-  font-size: 0.9em;
-  color: #495057;
-}
-.meet-event-results-group {
-  margin-top: 15px;
-  padding-left: 15px;
-  border-left: 2px solid #007bff;
-}
-.meet-event-title {
-  font-size: 1.1em;
-  font-weight: 600;
-  margin-bottom: 5px;
-  color: #17a2b8;
 }

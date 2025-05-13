@@ -10,6 +10,7 @@ import Footer from "./client/components/Footer";
 
 import "./App.css";
 import Team from "./client/pages/Team";
+import TeamOLD from "./client/pages/TeamOLD";
 
 function App(): React.ReactElement {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
@@ -33,6 +34,7 @@ function App(): React.ReactElement {
             <Route path="/about" element={<About />} />
             <Route path="/support" element={<Support />} />
             <Route path="/team" element={<Team />} />
+            <Route path="/old" element={<TeamOLD />} />
             <Route path="*" element={<div>404: Page Not Found</div>} />
           </Routes>
         </main>

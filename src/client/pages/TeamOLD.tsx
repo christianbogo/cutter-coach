@@ -1,26 +1,26 @@
 import React from "react";
-import "../styles/Team.css";
+import "../styles/TeamOLD.css";
 import "../../App.css";
 
-function Team(): React.ReactElement {
+function TeamOLD(): React.ReactElement {
   return (
     <div className="page">
-      <section className="header">
-        <h1 className="title">Central Valley Sharks</h1>
-        <div className="info">
-          <span>CVS</span>
-          <span>High School</span>
-          <span>Springfield, USA</span>
+      <section className="team-profile-header">
+        <h1 className="team-name-long">Central Valley Sharks</h1>
+        <div className="team-meta-info">
+          <span className="team-code">CVS</span>
+          <span className="team-type">High School</span>
+          <span className="team-location">Springfield, USA</span>
         </div>
-        <div className="stats">
-          <span>Seasons: 12</span>
-          <span>Total Meets: 150</span>
-          <span>Total Results: 3500+</span>
+        <div className="team-stats-summary">
+          <span className="team-stat">Seasons: 12</span>
+          <span className="team-stat">Total Meets: 150</span>
+          <span className="team-stat">Total Results: 3500+</span>
         </div>
       </section>
 
-      <section className="body records">
-        <h2 className="title">Team Records</h2>
+      <section className="team-records-section">
+        <h2 className="section-title">Team Records</h2>
         <ul className="records-list team-records-list">
           <li className="record-item">
             <div className="record-info">
@@ -294,4 +294,4 @@ function Team(): React.ReactElement {
   );
 }
 
-export default Team;
+export default TeamOLD;

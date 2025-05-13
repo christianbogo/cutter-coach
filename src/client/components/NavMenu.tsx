@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom"; // Link is still used for main items
+import { Link } from "react-router-dom";
 
 import XMarkSM from "../graphics/nucleo/primary/xmark-sm.svg";
 import House from "../graphics/nucleo/primary/house.svg";
@@ -87,25 +87,16 @@ interface NavMenuProps {
 
 function NavMenu({ isOpen, onCloseMenu }: NavMenuProps): React.ReactElement {
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent): void => {
-      if (event.key === "Escape") {
-        onCloseMenu();
-      }
-    };
-
     if (isOpen) {
-      document.addEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "hidden";
     } else {
-      document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     }
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
-  }, [isOpen, onCloseMenu]);
+  }, [isOpen]);
 
   const handleLinkClick = (): void => {
     onCloseMenu();
@@ -147,16 +138,18 @@ function NavMenu({ isOpen, onCloseMenu }: NavMenuProps): React.ReactElement {
                 className="nav-menu-link"
                 onClick={handleLinkClick}
               >
-                <img className="nav-menu-icon" src={item.icon} alt="" />
+                <img
+                  className="nav-menu-icon"
+                  src={item.icon}
+                  alt={`${item.label} icon`}
+                />
                 <span>{item.label}</span>
               </Link>
               {item.subItems && item.subItems.length > 0 && (
                 <ul className="nav-submenu-list">
                   {item.subItems.map((subItem) => (
                     <li key={subItem.label} className="nav-submenu-item">
-                      {/* MODIFICATION START */}
                       <span className="nav-submenu-link">{subItem.label}</span>
-                      {/* MODIFICATION END */}
                     </li>
                   ))}
                 </ul>

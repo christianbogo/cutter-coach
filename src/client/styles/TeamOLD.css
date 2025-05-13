@@ -1,0 +1,326 @@
+.section-title {
+  font-size: 1.8em;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-border-hard);
+}
+
+.team-profile-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.team-name-long {
+  font-size: 2.5em;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.team-meta-info,
+.team-stats-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.team-meta-info span,
+.team-stats-summary span {
+  display: inline-block;
+  color: var(--color-text-secondary);
+  font-size: 0.95em;
+}
+
+.team-stats-summary span {
+  background-color: var(--color-surface-secondary);
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.records-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.record-item {
+  background-color: var(--color-surface);
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.record-info {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.record-info span {
+  white-space: nowrap;
+}
+
+.record-event-name {
+  flex: 1;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.record-time {
+  flex: 1;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: var(--color-accent-blue);
+  font-family: monospace;
+  text-align: right;
+}
+
+.record-holder {
+  flex: 3;
+  text-align: right;
+  color: var(--color-text-primary);
+}
+
+.record-year {
+  flex: 1;
+  text-align: right;
+  color: var(--color-text-secondary);
+}
+
+button {
+  padding: 5px 10px;
+  font-size: 0.95em;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.view-event-results-button,
+.view-season-details-button,
+.view-meet-results-button {
+  margin-top: 1rem;
+  width: 100%;
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border-hard);
+}
+
+.view-all-button {
+  background-color: transparent;
+  border: none;
+  color: var(--color-accent-blue);
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+.event-results-dropdown,
+.meet-results-display {
+  margin-top: 1rem;
+}
+
+.dropdown-title,
+.meet-results-title {
+  font-size: 1.2em;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.results-detailed-list {
+  padding: 0;
+  list-style: none;
+}
+
+.result-detail-item {
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--color-border-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.result-detail-item:last-child {
+  border-bottom: none;
+}
+
+.result-place {
+  font-weight: bold;
+  width: 30px;
+}
+
+.result-time-value {
+  color: var(--color-accent-blue);
+}
+
+.person-link {
+  flex: 1;
+  text-align: right;
+  color: var(--color-accent-green);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.result-year-achieved {
+  color: var(--color-text-secondary);
+  text-align: right;
+}
+
+.team-seasons-section {
+  margin-top: 40px;
+}
+.seasons-list {
+  list-style: none;
+  margin-bottom: 20px;
+  padding: 0;
+}
+.season-summary-item {
+  background-color: #f8f9fa;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.season-summary-info span {
+  margin-right: 15px;
+  color: #495057;
+}
+.season-year-quarter {
+  font-weight: 600;
+  color: #0056b3;
+}
+
+.season-details-card {
+  margin-top: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.season-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #dee2e6;
+}
+.season-card-title {
+  font-size: 1.5em;
+  color: #343a40;
+}
+.close-season-card-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+.close-season-card-button:hover {
+  background-color: #c82333;
+}
+
+.season-card-tabs {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #dee2e6;
+}
+.season-card-tabs .tab-button {
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 10px 15px;
+  margin-right: 5px;
+  font-size: 1em;
+  color: #007bff;
+  border-radius: 0;
+}
+.season-card-tabs .tab-button.active {
+  border-bottom-color: #007bff;
+  font-weight: 600;
+  color: #0056b3;
+}
+.season-card-tabs .tab-button:not(.active):hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+}
+
+.tab-content-title {
+  font-size: 1.3em;
+  margin-bottom: 15px;
+  color: #495057;
+}
+
+.roster-list {
+  list-style: none;
+}
+.roster-athlete-item {
+  padding: 10px;
+  border-bottom: 1px solid #f1f3f5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  align-items: center;
+}
+.roster-athlete-item:last-child {
+  border-bottom: none;
+}
+.roster-athlete-name {
+  font-weight: 500;
+}
+.roster-athlete-age,
+.roster-athlete-gender,
+.roster-athlete-grade {
+  font-size: 0.9em;
+  color: #6c757d;
+  background-color: #e9ecef;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.meets-list {
+  list-style: none;
+}
+.meet-summary-item {
+  background-color: #f8f9fa;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+.meet-summary-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.meet-name-short {
+  font-weight: 600;
+  color: #0056b3;
+}
+.meet-event-count,
+.meet-date {
+  font-size: 0.9em;
+  color: #495057;
+}
+.meet-event-results-group {
+  margin-top: 15px;
+  padding-left: 15px;
+  border-left: 2px solid #007bff;
+}
+.meet-event-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #17a2b8;
+}
