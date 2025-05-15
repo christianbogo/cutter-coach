@@ -86,7 +86,7 @@
   max-width: 600px;
   margin: 0 auto;
   background-color: var(--color-surface, white);
-  border-radius: var(--border-radius-standard);
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
   border: 1px solid var(--color-border-soft);
   overflow: hidden;
@@ -107,7 +107,7 @@
   box-sizing: border-box;
   background-color: transparent;
   color: var(--color-text-primary);
-  border-radius: var(--border-radius-standard) var(--border-radius-standard) 0 0;
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .athlete-finder-button {
@@ -120,7 +120,7 @@
   cursor: pointer;
   transition: background-color 0.15s ease-in-out;
   flex-shrink: 0;
-  border-radius: 0 0 var(--border-radius-standard) var(--border-radius-standard);
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 
 .athlete-finder-button:hover {
@@ -132,19 +132,17 @@
     flex-direction: row;
   }
   .athlete-finder-input {
-    border-radius: var(--border-radius-standard) 0 0
-      var(--border-radius-standard);
+    border-radius: var(--radius) 0 0 var(--radius);
   }
   .athlete-finder-button {
-    border-radius: 0 var(--border-radius-standard) var(--border-radius-standard)
-      0;
+    border-radius: 0 var(--radius) var(--radius) 0;
   }
 }
 
 .disclaimer-section {
   padding: 2rem 1rem;
   background-color: var(--color-surface);
-  border-radius: var(--border-radius-standard);
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
   border: 1px solid var(--color-border-soft);
 }

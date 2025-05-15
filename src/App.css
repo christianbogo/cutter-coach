@@ -50,7 +50,7 @@
   border: 1px solid #f5c2c7;
   background-color: #f8d7da;
   color: #842029;
-  border-radius: var(--border-radius-standard);
+  border-radius: var(--radius);
   max-width: 600px;
   font-weight: 500;
   font-size: 0.95rem;

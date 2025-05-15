@@ -113,7 +113,7 @@
   color: var(--color-text-primary, #212529);
   font-size: 1.6rem;
   font-weight: 500;
-  border-radius: var(--border-radius-standard, 4px);
+  border-radius: var(--radius, 4px);
 }
 
 .nav-menu-link .nav-menu-icon {
@@ -149,7 +149,7 @@
   color: var(--color-text-secondary, #495057);
   font-size: 1rem;
   font-weight: 400;
-  border-radius: var(--border-radius-standard, 4px);
+  border-radius: var(--radius, 4px);
   line-height: 1;
 }
 

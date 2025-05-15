@@ -22,7 +22,7 @@
 .about-section {
   background-color: var(--color-surface, white);
   padding: 1.5rem;
-  border-radius: var(--border-radius-standard, 8px);
+  border-radius: var(--radius, 8px);
   box-shadow: var(--box-shadow-standard, 0 2px 8px rgba(0, 0, 0, 0.06));
   border: 1px solid var(--color-border-soft, #e9ecef);
   margin-bottom: 2rem;
@@ -80,7 +80,7 @@
   color: var(--color-text-on-accent, white);
   background-color: var(--color-accent-green, #146c43);
   border: none;
-  border-radius: var(--border-radius-standard, 8px);
+  border-radius: var(--radius, 8px);
   text-decoration: none;
   transition: background-color 0.15s ease-in-out;
   margin-top: 1rem;

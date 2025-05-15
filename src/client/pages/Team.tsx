@@ -14,8 +14,8 @@ function Team(): React.ReactElement {
         </div>
         <div className="stats">
           <span>Seasons: 12</span>
-          <span>Total Meets: 150</span>
-          <span>Total Results: 3500+</span>
+          <span>Meets: 150</span>
+          <span>Results: 3500+</span>
         </div>
       </section>
 
@@ -24,20 +24,26 @@ function Team(): React.ReactElement {
         <ul className="records">
           <li className="item">
             <div className="info">
-              <span className="event">50 Free</span>
-              <span className="result">1:21.05</span>
+              <span className="event">500 Free</span>
+              <span className="result">10:21.05</span>
               <span className="name">Michael Phelps</span>
               <span className="year">2023</span>
             </div>
-            <button
-              className="close-button"
-              aria-expanded="false"
-              aria-controls="event-results-50free"
-            >
-              Close Results
-            </button>
+
             <div className="window">
-              <h4 className="title">All Team 50 Free Results</h4>
+              <div className="header">
+                <h4 className="title">
+                  Results:
+                  <span className="name">50 Free</span>
+                </h4>
+                <button
+                  className="close-button"
+                  aria-expanded="false"
+                  aria-controls="event-results-50free"
+                >
+                  Close
+                </button>
+              </div>
               <ul className="results">
                 <li className="item">
                   <span className="place">1st</span>
@@ -95,7 +101,6 @@ function Team(): React.ReactElement {
               <span>Athletes: 45</span>
               <span>Results: 300</span>
             </div>
-            <button className="open-season-button">Open Season</button>
           </li>
           <li className="item">
             <div className="info">
@@ -103,7 +108,6 @@ function Team(): React.ReactElement {
               <span>Athletes: 52</span>
               <span>Results: 410</span>
             </div>
-            <button className="open-season-button">Open Season</button>
           </li>
         </ul>
         <button className="view-all-button">View All Seasons</button>
@@ -114,7 +118,7 @@ function Team(): React.ReactElement {
               Season Details:
               <span className="name">Spring 2024</span>
             </h3>
-            <button className="close-season-button">Close</button>
+            <button className="close-button">Close</button>
           </div>
           <nav className="tabs">
             <button className="active" data-tab-target="roster">
@@ -126,7 +130,6 @@ function Team(): React.ReactElement {
 
           <div className="season-content">
             <div className="tab-content active" id="roster">
-              <h4 className="title">Roster (Spring 2024)</h4>
               <ul className="roster">
                 <li className="item">
                   <a href="#person-jane" className="person-link name">
@@ -148,8 +151,7 @@ function Team(): React.ReactElement {
               <button className="view-all-button">View Full Roster</button>
             </div>
 
-            <div className="content" id="season-records">
-              <h4 className="title">Season Records (Spring 2024)</h4>
+            <div className="tab-content active" id="season-records">
               <ul className="records">
                 <li className="item">
                   <div className="info">
@@ -158,7 +160,7 @@ function Team(): React.ReactElement {
                     <span className="name">Jane Doe</span>
                     <span className="year">2024</span>
                   </div>
-                  <button className="view-all-button">View All Results</button>
+                  <button className="view-all-button">View More Results</button>
                   <div className="window">
                     <h4 className="title">
                       All Season Results: 100 Backstroke
@@ -179,8 +181,7 @@ function Team(): React.ReactElement {
               <button className="view-all-button">View All Records</button>
             </div>
 
-            <div className="content" id="season-meets">
-              <h4 className="title">Meets (Spring 2024)</h4>
+            <div className="tab-content active" id="season-meets">
               <ul className="meets">
                 <li className="item">
                   <div className="info">
@@ -188,9 +189,7 @@ function Team(): React.ReactElement {
                     <span className="events">Events: 22</span>
                     <span className="date">2024-05-15</span>
                   </div>
-                  <button className="view-meet-button">
-                    View Meet Results
-                  </button>
+                  <button className="view-all-button">View Meet Results</button>
                   <div className="meet">
                     <h5 className="title">Results: District Champs</h5>
                     <div className="event-results">
@@ -227,9 +226,7 @@ function Team(): React.ReactElement {
                     <span className="events">Events: 18</span>
                     <span className="date">2024-04-20</span>
                   </div>
-                  <button className="view-meet-button">
-                    View Meet Results
-                  </button>
+                  <button className="view-all-button">View Meet Results</button>
                 </li>
               </ul>
               <button className="view-all-button">View All Meets</button>

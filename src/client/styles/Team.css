@@ -1,82 +1,34 @@
-/* src/styles/Team.css */
-
-body {
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-md);
-  color: var(--color-text-primary);
-  background-color: var(--color-surface-primary);
-  line-height: 1.6;
-}
-
-/* General Elements */
-button {
-  padding: var(--space-xs) var(--space-sm);
-  font-size: var(--font-size-sm);
-  border-radius: var(--border-radius-sm);
-  border: var(--border-width) solid transparent;
-  cursor: pointer;
-  transition: background-color var(--transition-speed) ease-in-out,
-    border-color var(--transition-speed) ease-in-out,
-    color var(--transition-speed) ease-in-out;
-  font-family: inherit;
-  background-color: var(--color-surface-secondary);
-  color: var(--color-text-secondary);
-  border-color: var(--color-border-hard);
-}
-
-button:hover {
-  border-color: var(--color-accent-primary);
-  color: var(--color-accent-primary);
-}
-
 a.person-link {
   color: var(--color-accent-secondary);
   text-decoration: none;
-  font-weight: var(--font-weight-semibold);
 }
 
-a.person-link:hover {
-  text-decoration: underline;
-  color: var(--color-accent-secondary-hover);
+.header {
+  margin-bottom: 2rem;
 }
 
-/* Page Layout */
-.page {
-  /* Assuming App.css or another file provides max-width, padding, etc. */
-  /* Add specific page padding if needed: padding: var(--space-lg); */
-}
-
-/* Section Shared Styles */
-.header, /* Top profile header */
-.body, /* Main content sections (Records, Seasons) */
-.season-details /* Pop-up/detailed card */ {
-  margin-bottom: var(--space-xl);
+.header .title.name {
+  font-size: var(--font-size-xxxl);
+  margin-bottom: 0.75rem;
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .title {
   font-size: var(--font-size-xxl);
   color: var(--color-text-primary);
-  margin-bottom: var(--space-md);
-  padding-bottom: var(--space-sm);
-  border-bottom: var(--border-width-lg) solid var(--color-border-hard);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-border-soft);
   font-weight: var(--font-weight-semibold);
-}
-
-/* Specific Header Styles (Team Profile) */
-.header .title.name {
-  /* Team Name */
-  font-size: var(--font-size-xxxl);
-  margin-bottom: var(--space-sm);
-  border-bottom: none; /* Override general title border */
-  padding-bottom: 0;
 }
 
 .header .info,
 .header .stats {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm) var(--space-md); /* Row gap, Column gap */
-  margin-bottom: var(--space-sm);
+  gap: 1rem;
+  margin-bottom: 0.3rem;
 }
 
 .header .info span {
@@ -88,12 +40,11 @@ a.person-link:hover {
   display: inline-block;
   background-color: var(--color-surface-tertiary);
   color: var(--color-text-secondary);
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--border-radius-sm);
+  padding: 0.2rem 0.4rem;
+  border-radius: var(--radius);
   font-size: var(--font-size-sm);
 }
 
-/* List Standardization (Records, Seasons, Results, Roster, Meets) */
 .records,
 .seasons,
 .results,
@@ -101,31 +52,31 @@ a.person-link:hover {
 .meets {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: 0.5rem;
   list-style: none;
   padding: 0;
-  margin: 0 0 var(--space-md) 0; /* Reset margin, add bottom margin */
+  margin: 0 0 1rem 0;
 }
 
-/* List Item Standardization */
+.roster {
+  margin-bottom: 0rem;
+}
+
 .records > .item,
 .seasons > .item,
-.roster > .item,
 .meets > .item {
   background-color: var(--color-surface-secondary);
-  padding: var(--space-md);
-  border-radius: var(--border-radius-md);
-  border: var(--border-width) solid var(--color-border-hard);
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border-soft);
 }
 
-/* Detailed Results List Item */
 .results > .item {
-  /* Nested results list (dropdown/window) */
-  padding: var(--space-sm) 0;
-  border-bottom: var(--border-width) dashed var(--color-border-soft);
+  padding: 0.1rem 0;
+  border-bottom: 1px dashed var(--color-border-soft);
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm) var(--space-md); /* Row gap, Column gap */
+  gap: 0.5rem;
   align-items: center;
 }
 
@@ -133,100 +84,86 @@ a.person-link:hover {
   border-bottom: none;
 }
 
-/* Info Container Standardization */
 .item > .info {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
-  gap: var(--space-sm) var(--space-md); /* Row gap, Column gap */
-  margin-bottom: var(--space-sm); /* Add space before potential buttons */
+  gap: 0.5rem;
 }
 
-/* Styling common elements within .info */
 .info > span {
   white-space: nowrap;
   color: var(--color-text-primary);
 }
-
-.info .event,   /* e.g., 50 Free */
-.info .name,    /* e.g., Michael Phelps, District Champs */
-.info .season   /* e.g., Spring 2024 */ {
-  flex: 2; /* Allow name/event to take more space */
-  font-weight: var(--font-weight-semibold);
+.info .event,
+.info .name,
+.info .season {
+  font-weight: var(--font-weight-normal);
 }
 
-.info .result,  /* e.g., 1:21.05 */
-.info .time     /* If you specifically use .time */ {
-  flex: 1;
+.info .result {
+  flex-basis: 6rem;
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-lg);
   color: var(--color-accent-primary);
-  font-family: var(--font-family-mono);
+  font-family: var(--font-mono);
   text-align: right;
 }
 
-.info .year,    /* e.g., 2023 */
-.info .date     /* e.g., 2024-05-15 */ {
-  flex: 1;
+.info .year,
+.info .date {
   text-align: right;
   color: var(--color-text-secondary);
   font-size: var(--font-size-xs);
 }
 
-.info .events   /* e.g., Events: 22 */ {
+.info .events {
   color: var(--color-text-secondary);
   font-size: var(--font-size-xs);
 }
 
-/* Specific List Styles */
-
-/* Records List Item Info */
 .records > .item > .info .event {
-  flex-basis: 150px; /* Give event name a minimum width */
-  flex-grow: 1;
+  flex-basis: 5rem;
 }
 .records > .item > .info .name {
-  /* Holder name */
   flex: 3;
-  text-align: right;
+  text-align: left;
 }
 
-/* Seasons List Item Info */
 .seasons > .item {
-  display: flex; /* Use flex directly on item for side-by-side layout */
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .seasons > .item > .info {
-  margin-bottom: 0; /* Remove bottom margin as button is alongside */
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
 }
 .seasons > .item > .info .season {
   color: var(--color-accent-primary);
 }
 .seasons > .item > .info span:not(.season) {
-  /* Other info like athlete/result count */
   color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
 }
 
-/* Roster List Item Info */
 .roster > .item {
-  display: flex; /* Use flex directly on item */
+  display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm) var(--space-lg);
+  gap: 0.5rem;
   align-items: center;
-  padding: var(--space-sm) var(--space-md); /* Slightly less padding */
+  padding: 0.5rem;
   border: none;
-  border-bottom: var(--border-width) solid var(--color-border-soft);
+  border-bottom: 1px solid var(--color-border-soft);
   background-color: transparent;
 }
 .roster > .item:last-child {
   border-bottom: none;
 }
 .roster .item .name {
-  /* Athlete Name Link */
-  flex-basis: 150px;
+  text-align: left;
   flex-grow: 1;
 }
 .roster .item .age,
@@ -235,16 +172,14 @@ a.person-link:hover {
   font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
   background-color: var(--color-surface-tertiary);
-  padding: var(--space-xs);
-  border-radius: var(--border-radius-sm);
+  padding: 0.2rem 0.4rem;
+  border-radius: var(--radius);
   white-space: nowrap;
 }
 
-/* Meets List Item Info */
 .meets > .item > .info {
   /* Flex applied directly to item */
   justify-content: space-between; /* Pushes name left, details right */
-  margin-bottom: var(--space-sm);
 }
 .meets > .item > .info .name {
   /* Meet name */
@@ -284,46 +219,34 @@ a.person-link:hover {
   flex: 0 0 50px; /* Fixed width, no grow/shrink */
 }
 
-/* Dropdown / Window Styles */
 .window,
 .meet {
-  /* Container for detailed results */
-  margin-top: var(--space-md);
-  padding: var(--space-md);
+  margin-top: 0.5rem;
+  padding: 0.5rem;
   background-color: var(--color-surface-primary);
-  border: var(--border-width) solid var(--color-border-soft);
-  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius);
 }
 
 .window .title,
 .meet .title {
-  /* Title inside dropdown/meet display */
   font-size: var(--font-size-lg);
-  margin-bottom: var(--space-md);
+  margin-bottom: 0.5rem;
   color: var(--color-text-primary);
   text-align: center;
-  border-bottom: var(--border-width) solid var(--color-border-soft);
-  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-border-soft);
+  padding-bottom: 0.5rem;
 }
 
-/* Button Variations */
-.view-all-button,
-.close-button,
-.open-season-button,
-.view-meet-button,
-.close-season-button {
-  /* Inherit base button styles */
-}
-
-/* Button shown at the bottom of a list/section */
 .view-all-button {
   background-color: transparent;
+  text-align: center;
   border: none;
   color: var(--color-accent-primary);
-  margin-top: var(--space-sm);
-  display: inline-block; /* Or block if it should take full width */
-  padding: var(--space-xs) 0; /* Minimal padding */
-  font-weight: var(--font-weight-semibold);
+  display: block;
+  padding: 0.5rem 0;
+  font-weight: var(--font-weight-normal);
+  width: 100%;
 }
 .view-all-button:hover {
   color: var(--color-accent-primary-hover);
@@ -332,44 +255,54 @@ a.person-link:hover {
   text-decoration: underline;
 }
 
-/* Button within a list item to expand/collapse */
 .item > .close-button,
-.item > .view-all-button, /* If used within item like 100 fly */
+.item > .view-all-button,
 .item > .open-season-button,
 .item > .view-meet-button {
-  margin-top: var(--space-sm);
-  width: 100%; /* Make button full width */
+  margin-top: 0.5rem;
+  width: 100%;
 }
 
-/* Season Details Card Styles */
+.close-button {
+  background-color: var(--color-danger);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+}
+
 .season-details {
-  margin-top: var(--space-lg);
+  margin-top: 1rem;
   background-color: var(--color-surface-primary);
-  border: var(--border-width) solid var(--color-border-hard);
-  border-radius: var(--border-radius-md);
-  padding: var(--space-lg);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius);
+  padding: 0.5rem;
+  box-shadow: var(--shadow);
 }
 
-.season-details > .header {
+.season-details > .header,
+.window > .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-md);
-  border-bottom: var(--border-width) solid var(--color-border-hard);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-soft);
 }
 
-.season-details > .header .title {
-  font-size: var(--font-size-xl);
+.season-details > .header .title,
+.window > .header .title {
+  font-size: var(--font-md);
   color: var(--color-text-primary);
-  border-bottom: none; /* Remove double border */
+  border-bottom: none;
   margin-bottom: 0;
   padding-bottom: 0;
 }
-.season-details > .header .title .name {
-  font-weight: var(--font-weight-normal); /* Dynamic part less bold */
-  margin-left: var(--space-sm);
+.season-details > .header .title .name,
+.window > .header .title .name {
+  font-weight: var(--font-weight-normal);
+  margin-left: 0.5rem;
 }
 
 .close-season-button {
@@ -384,21 +317,19 @@ a.person-link:hover {
 
 /* Season Details Tabs */
 .season-details .tabs {
-  margin-bottom: var(--space-lg);
-  border-bottom: var(--border-width) solid var(--color-border-hard);
+  margin-bottom: 1rem;
   display: flex;
 }
 
 .season-details .tabs button {
+  flex: 1;
   background-color: transparent;
   border: none;
-  border-bottom: 3px solid transparent; /* Space for active indicator */
-  padding: var(--space-sm) var(--space-md);
-  margin-right: var(--space-xs);
+  border-bottom: 3px solid transparent;
+  padding: 0.25rem;
   font-size: var(--font-size-md);
   color: var(--color-accent-primary);
-  border-radius: 0; /* Override default button radius */
-  margin-bottom: -1px; /* Overlap container border */
+  border-radius: 0;
   transition: border-color var(--transition-speed) ease-in-out,
     color var(--transition-speed) ease-in-out;
 }
@@ -406,81 +337,55 @@ a.person-link:hover {
 .season-details .tabs button.active {
   border-bottom-color: var(--color-accent-primary);
   font-weight: var(--font-weight-semibold);
-  color: var(
-    --color-accent-primary
-  ); /* Keep color consistent or make slightly darker */
-}
-
-.season-details .tabs button:not(.active):hover {
-  border-bottom-color: var(--color-border-hard); /* Subtle hover indicator */
-  color: var(--color-accent-primary-hover);
-  background-color: var(--color-surface-secondary);
-}
-
-/* Season Details Tab Content */
-.season-content {
-  /* Styles for the container of all tab panels */
+  color: var(--color-accent-primary);
 }
 
 .tab-content {
-  display: none; /* Hide inactive tabs by default */
+  display: none;
 }
 
 .tab-content.active {
-  display: block; /* Show active tab */
+  display: block;
 }
 
-.tab-content .title {
-  /* Title within a tab panel */
-  font-size: var(--font-size-xl); /* Adjust size as needed */
-  margin-bottom: var(--space-md);
-  color: var(--color-text-secondary);
-  border-bottom: none; /* No border for tab titles */
-  padding-bottom: 0;
-}
-
-/* Meet Results Specifics within Season Details */
 .meet {
-  /* Display area for a single meet's results */
   border: none;
   padding: 0;
-  margin-top: var(--space-sm);
+  margin-top: 0.5rem;
   background: none;
 }
+
 .meet > .title {
-  /* e.g., "Results: District Champs" */
   text-align: left;
-  font-size: var(--font-size-lg);
-  margin-bottom: var(--space-sm);
-  padding-bottom: var(--space-xs);
-  border-bottom: var(--border-width) dashed var(--color-border-soft);
+  font-size: var(--font-size-md);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed var(--color-border-soft);
 }
 
 .event-results {
-  /* Grouping for results of a single event within a meet */
-  margin-top: var(--space-md);
-  padding-left: var(--space-md);
-  border-left: var(--border-width-lg) solid var(--color-accent-secondary);
+  margin-top: 1rem;
+  padding-left: 0.25rem;
+  border-left: 2px solid var(--color-accent-secondary);
 }
+
 .event-results .title {
-  /* e.g., "Event 1: 200 Medley Relay" */
-  font-size: var(--font-size-lg); /* Slightly smaller */
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--space-sm);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-normal);
   color: var(--color-accent-secondary);
   text-align: left;
   border: none;
   padding: 0;
 }
+
 .event-results .results {
-  /* The actual list of results for that event */
-  gap: var(--space-xs); /* Tighter spacing for meet results */
-}
-.event-results .results > .item {
-  padding: var(--space-xs) 0; /* Minimal padding */
+  gap: 0.2rem;
 }
 
-/* Add [hidden] attribute styling if needed for JS toggling */
+.event-results .results > .item {
+  padding: 0.2rem 0;
+}
+
 [hidden] {
   display: none !important;
 }
