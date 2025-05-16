@@ -5,8 +5,8 @@ import {
   getDocs,
   documentId,
   FirestoreError,
-} from 'firebase/firestore';
-import { db } from '../firebase/firebase';
+} from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 
 const FIRESTORE_IN_QUERY_LIMIT = 30;
 
@@ -29,7 +29,7 @@ export async function fetchChunkedData<T>(
   const dataMap = new Map<string, Partial<T> & { id: string }>();
 
   const uniqueValidIds = Array.from(new Set(ids)).filter(
-    (id) => typeof id === 'string' && id.trim() !== ''
+    (id) => typeof id === "string" && id.trim() !== ""
   );
 
   if (uniqueValidIds.length === 0) {
@@ -42,7 +42,7 @@ export async function fetchChunkedData<T>(
     try {
       const chunkQuery = query(
         collection(db, collectionName),
-        where(documentId(), 'in', chunkIds)
+        where(documentId(), "in", chunkIds)
       );
       const snapshot = await getDocs(chunkQuery);
 

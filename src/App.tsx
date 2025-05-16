@@ -10,7 +10,9 @@ import Footer from "./client/components/Footer";
 
 import "./App.css";
 import Team from "./client/pages/Team";
-import TeamOLD from "./client/pages/TeamOLD";
+import { AuthProvider } from "./admin/contexts/AuthContext";
+import AdminRoute from "./admin/components/AdminRoute";
+import AdminCheck from "./admin/components/AdminCheck";
 
 function App(): React.ReactElement {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
@@ -25,21 +27,26 @@ function App(): React.ReactElement {
 
   return (
     <Router>
-      <div className="screen">
-        <NavBar onToggleMenu={toggleNavMenu} />
-        <NavMenu isOpen={isNavMenuOpen} onCloseMenu={closeNavMenu} />
-        <main className="content-area">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/support" element={<Support />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/old" element={<TeamOLD />} />
-            <Route path="*" element={<div>404: Page Not Found</div>} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <AuthProvider>
+        <div className="screen">
+          <NavBar onToggleMenu={toggleNavMenu} />
+          <NavMenu isOpen={isNavMenuOpen} onCloseMenu={closeNavMenu} />
+          <main className="content-area">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/support" element={<Support />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="*" element={<div>404: Page Not Found</div>} />
+              <Route path="/admin-check" element={<AdminCheck />} />
+              <Route path="/admin" element={<AdminRoute />}>
+                <Route index element={<p>Hello there!</p>} />
+              </Route>
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </AuthProvider>
     </Router>
   );
 }

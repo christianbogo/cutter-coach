@@ -36,7 +36,7 @@ const navItemsData: NavItemStructure[] = [
   },
   {
     id: "teams",
-    path: "/teams",
+    path: "/team",
     icon: Users,
     label: "Teams",
     subItems: [
@@ -69,7 +69,7 @@ const navItemsData: NavItemStructure[] = [
   },
   {
     id: "admin",
-    path: "/admin",
+    path: "/admin-check",
     icon: Database,
     label: "Admin",
     subItems: [

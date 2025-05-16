@@ -1,0 +1,53 @@
+/* layout.css */
+
+.app {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100vh;
+}
+
+.data-viewport {
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 0.5rem;
+  gap: 0;
+  flex: 4;
+}
+
+.panel-content-container {
+  height: 105%;
+  width: 100%;
+  overflow: auto;
+  /* padding: 0.5rem; */
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+
+.form-viewport {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-content-container.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-style: italic;
+  background-color: #efefef;
+}
+
+.form-viewport {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  border-left: 1px solid #ccc;
+}
+
+.form-options {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+}
